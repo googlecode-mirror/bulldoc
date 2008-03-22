@@ -6,13 +6,13 @@ svn export http://bulldoc.googlecode.com/svn/branches/branch_%RELEASE% %DISTRIB_
 del ..\download\%RELEASE%\distrib\build_release.bat
 CALL bulldoc bulldoc_site
 @echo on
-CALL bulldoc bulldoc
+CALL bulldoc bulldoc_book
 @echo on
 CALL bulldoc bulldoc_chm
 @echo on
 D:\chm_factory\wshop\hhc workshop\output\bulldoc_chm\bulldoc_chm.hhp
 
-cd workshop\output\bulldoc
+cd workshop\output\bulldoc_book
 zip -rq ..\..\..\%DISTRIB_PATH%bulldoc_doc_%RELEASE%.zip *
 tar -cf ..\..\..\%DISTRIB_PATH%bulldoc_doc_%RELEASE%.tar *
 gzip -fq ..\..\..\%DISTRIB_PATH%bulldoc_doc_%RELEASE%.tar
