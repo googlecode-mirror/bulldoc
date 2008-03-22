@@ -12,11 +12,20 @@ php_flag magic_quotes_gpc off
 
 RewriteEngine On
 
+
+#This configs not match with source directory name
+#So we need special setup
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^bulldoc_site/(.+)\.(jp?g|png|gif|txt)$ workshop/source/bulldoc/pages/$1.$2 [L,QSA]
+RewriteRule ^bulldoc_site/(.+)\.(jp?g|png|gif|txt)$ workshop/source/bulldoc_book/pages/$1.$2 [L,QSA]
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^bulldoc_chm/(.+)\.(jp?g|png|gif|txt)$ workshop/source/bulldoc_book/pages/$1.$2 [L,QSA]
+
+#General config
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
