@@ -1,0 +1,15 @@
+bulldoc:
+  
+bulldoc_chm:
+  title: BullDoc CHM
+  rootIndexLevel: -1
+  source: bulldoc
+  dest: bulldoc_chm
+  theme: blueprint_chm
+  buildChm: 1
+  
+bulldoc_site:
+  title: BullDoc for Web-Site
+  source: bulldoc
+  dest: ../../../doc
+  theme: blueprint_site
