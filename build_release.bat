@@ -1,9 +1,13 @@
-SET RELEASE=0_2
+SET BRANCH=0_2
+SET RELEASE=0_21
 SET DISTRIB_PATH=..\download\%RELEASE%\
 mkdir %DISTRIB_PATH%
 
-svn export http://bulldoc.googlecode.com/svn/branches/branch_%RELEASE% %DISTRIB_PATH%distrib
+svn export http://bulldoc.googlecode.com/svn/branches/branch_%BRANCH% %DISTRIB_PATH%distrib
 del ..\download\%RELEASE%\distrib\build_release.bat
+mkdir ..\download\%RELEASE%\distrib\cache
+mkdir ..\download\%RELEASE%\distrib\workshop\output
+
 CALL bulldoc bulldoc_site
 @echo on
 CALL bulldoc bulldoc_book
