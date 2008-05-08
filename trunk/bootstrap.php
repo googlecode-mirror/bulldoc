@@ -2,7 +2,8 @@
 $docRoot=realpath(dirname(__FILE__)).'/';
 $urlRoot=rtrim(dirname($_SERVER['SCRIPT_NAME']),'\\/').'/';
 
-require_once($docRoot.'lib/coleso_lib/application/application.lib.php');
+set_include_path($docRoot);
+require_once('lib/coleso_lib/application/application.lib.php');
 colesoApplication::init();
 colesoApplication::setConfigVal('/system/docRoot',$docRoot);
 colesoApplication::setConfigVal('/system/libDir',$docRoot.'lib/coleso_lib/');
@@ -27,10 +28,10 @@ colesoApplication::setConfigVal('/docgen/useStandaloneTheme',true);
 colesoApplication::loadSysMessages($docRoot.'messages/docgen.msg.ini');
 
 
-require_once(dirname(__FILE__).'/config/docgen_config.ini.php');
-require_once(colesoLibrarian::getModule('docgen/exceptions.php'));
-require_once(colesoLibrarian::getModule('docgen/page_builder.class.php'));
-require_once(colesoLibrarian::getModule('docgen/book_loader.class.php'));
+require_once('config/docgen_config.ini.php');
+require_once('packages/docgen/exceptions.php');
+require_once('packages/docgen/page_builder.class.php');
+require_once('packages/docgen/book_loader.class.php');
 
 //=================================================================================
 function detectAbsolutePath($path)
