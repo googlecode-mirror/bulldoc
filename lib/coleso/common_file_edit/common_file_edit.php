@@ -40,8 +40,11 @@ abstract class colesoTextFileEditController extends colesoGeneralController
   function savePageContent($content)
   {
     $fileName=$this->getPageFileName();
-    if ($content!='') file_put_contents($fileName,$content);
-    else {
+    if ($content!='') {
+      $dir=dirname($fileName);
+      if (!file_exists($dir)) mkdir($dir,0777,true);
+      file_put_contents($fileName,$content);
+    } else {
       if (file_exists($fileName)) unlink ($fileName);
     }
   }

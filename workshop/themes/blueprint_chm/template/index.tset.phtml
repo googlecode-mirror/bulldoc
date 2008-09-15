@@ -1,0 +1,15 @@
+<!-- #indexTopic# -->
+<p style='margin: 0'>
+<?php echo $word; ?> <span style='font-size: x-small'>
+<?php foreach ($pages as $page): ?>
+[<?php echo "<a href='$rootPath{$page['path']}'>".$page['title']."</a>" ?>] 
+<?php endforeach; ?>
+</span>
+</p>
+
+<!-- #indexSection# -->
+<div style="margin-top: 30px">
+<p style="font-weight: bold;margin-bottom: 5px"><?php echo strtoupper($curLetter); ?></p>
+<?php echo $buffer; ?>
+</div>
+
