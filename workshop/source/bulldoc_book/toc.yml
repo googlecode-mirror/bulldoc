@@ -1,0 +1,35 @@
+introduction.html: Введение
+installation.html: Установка
+quickstart.html:  Простой пример
+    
+content:
+  type: chapter
+  title: Книга
+  topics:
+    bookshelf.html: Книжная полка
+    toc.html: Структура
+    text.html: Текст
+    topic_index.html: Автоматический предметный указатель
+
+layout:
+  type: chapter
+  title: Оформление и настройки
+  topics:
+    theme.html:  Темы
+    language.html:  Язык интерфейса
+    system_settings.html: Системные настройки
+
+export.html: Экспорт
+
+web_interface.html: Веб-интерфейс
+
+appendix:
+  type: chapter
+  title: Приложения
+  topics:
+    topic_index.html: {type: index, title: Предметный указатель}
+    authors.html: Авторы
+    license.html: Лицензия
+    similar.html: Аналоги
+    roadmap.html: Планы по развитию
+
