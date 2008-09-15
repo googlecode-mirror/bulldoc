@@ -1,0 +1,7 @@
+<h3><?php echo $title; ?></h3>
+&laquo; <a href='<?php echo $bakToViewLink; ?>'><?php echo strtolower(colesoApplication::getMessage('form','viewtext')); ?></a>
+<form method='post'>
+<input name='<?php echo $tokenFieldName; ?>' type='hidden' value='<?php echo $tokenValue; ?>' />
+<textarea name='content' rows='10' style='width: 550px'><?php echo $content; ?></textarea><br/>
+<input type='submit' value='<?php echo colesoApplication::getMessage('form','savetext'); ?>'>
+</form>
