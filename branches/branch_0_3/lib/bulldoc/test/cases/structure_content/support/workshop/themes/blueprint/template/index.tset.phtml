@@ -1,0 +1,14 @@
+<!-- #indexTopic# -->
+<p>
+<?php echo $word; ?> <span style='font-size: x-small'>
+<?php $i=1;foreach ($pages as $page): ?>
+[<?php echo "<a href='$rootPath{$page['path']}' title='{$page['title']}'>".$i++."</a>" ?>] 
+<?php endforeach; ?>
+</span>
+
+<!-- #indexSection# -->
+<div style="margin-top: 30px">
+<p style="font-weight: bold"><?php echo strtoupper($curLetter); ?></p>
+<?php echo $buffer; ?>
+</div>
+
