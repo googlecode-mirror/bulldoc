@@ -13,6 +13,8 @@ class docTemplateSet
     $this->pathBuilder=$params['path'];
     $this->structureHolder=$params['structure'];
     $content=file_get_contents($filename);
+    
+    $content=preg_replace('/<cls:keywords.*?\/>/i','',$content);
     $content=preg_replace_callback('/<cls:link\s+page=[\'"](.*?)[\'"]\s*\/>/i',array($this,'getPageLink'),$content);
     $content=preg_replace_callback('/<cls:(\w+)>(.*?)<\/cls:\w+>/sm',array($this,'highlightMatches'),$content);
     return $content;
