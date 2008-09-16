@@ -1,0 +1,166 @@
+<cls:keywords data='новый проект, пример проекта, быстрый старт' />
+<h3>Приготовления</h3>
+<p>Для нашего примера нам понадобятся:</p>
+<ol>
+<li>Дистрибутив Bulldoc, см. раздел <cls:link page='installation.html'/></li>
+<li>Какой-нибудь сайт на локальной машине, под управлением Apache</li>
+<li>Договоримся, что файлы сайта лежат в <span style='white-space: nowrap;color: maroon'>/home/bulldoc</span>, а сам сайт доступен по <span style='white-space: nowrap;color: maroon'>http://bulldoc</span>. Располагать Bulldoc в корне сайта не обязательно, подойдет любая директория.</li>
+</ol>
+
+<p>Распакуйте дистрибутив в <span style='white-space: nowrap;color: maroon'>/home/bulldoc</span></p>
+
+<h3>Примерный план книги</h3>
+<p>Наша книга будет очень простой. В ней будет "Предисловие". Раздел "Браузеры" и две страницы в нем: "Opera" и "Firefox". Называться будет "Снусмумрики в Интернете". Удобно будет сделать заготовку в текстовом редакторе такого содержания:</p>
+<pre>
+Снусмумрики в Сети
+=======================
+
+Предисловие
+Браузеры
+  Firefox
+  Opera
+</pre>
+
+<h3>Создаем новый проект</h3>
+<p>В командной строке из <span style='white-space: nowrap;color: maroon'>/home/bulldoc</span> запускаем:</p>
+<code class='commandline'>
+bulldoc snusmumrik
+</code>
+
+<p>Эта команда создаст 2 папки:<br/>
+<span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik</span><br/>
+<span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/pages</span><br/>
+</p>
+
+<p>И два файла:<br/>
+пустой <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span><br/>
+и <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/book_data.yml</span><br/>
+</p>
+
+<p>
+Также в конец файла <span style='white-space: nowrap;color: maroon'>/home/bulldoc/config/bookshelf.yml</span>, допишется строчка:</p>
+<pre>
+snusmumrik:
+</pre>
+
+<p>Отредактируйте файл <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/book_data.yml</span>, вписав туда название книги, и по желанию изменив другие параметры:</p>
+<pre>
+title: Снусмумрики в Сети
+author: Юный Сказочник
+
+copyright: Юный Сказочник, 2008
+site: www.snusmumrik.ru
+</pre>
+
+<p>Система может уже распознать нашу пустую книгу. Зайдите браузером по адресу <span style='white-space: nowrap;color: maroon'>http://bulldoc</span>, в списке доступных книг появилась и наша. Перейдите по ссылке и увидите страницу книги. Пока на ней ничего нет. Сейчас мы этим займемся.</p>
+
+<h3>Файл структуры</h3>
+<p>Наполните файл структуры <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> вот так:</p>
+<pre>
+introduction.html: Введение
+browsers:
+  type: chapter
+  title: Бродилки
+  topics:
+    firefox.html: Firefox
+    opera.html: Opera
+</pre>
+<p>Посмотрите книгу в бруазере <span style='white-space: nowrap;color: maroon'>http://bulldoc/snusmumrik</span>. Появились оглавление, навигация, меню и вместо содержимого страниц скупая фраза "Наполняется". Переходим к страницам.</p>
+
+<h3>Контент</h3>
+<p>Создайте файл <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>. Впишите туда такое содержимое:</p>
+<div class='file'>
+&lt;cls:keywords data='браузер' />
+<p>&lt;p><br/>
+&lt;b>Веб-обозреватель&lt;/b> или &lt;b>браузер&lt;/b> (из англ. Web browser, бро узер — неправильно) — это программное обеспечение для поиска, просмотра веб-сайтов, то есть для запроса вебстраниц (преимущественно из Сети), для их обработки, вывода и перехода от одной страницы к другой.<br/>
+&lt;/p></p>
+<p>&lt;p><br/>
+Большинство браузеров также наделены способностями к просмотру оглавления FTP-серверов.<br/>
+&lt;/p></p>
+<p>&lt;p><br/>
+Браузеры постоянно развивались со времён зарождения Всемирной паутины, и с её ростом становились всё более важной программой типичного персонального компьютера. Ныне браузер — комплексное приложение для обработки и вывода разных составляющих веб-страницы, и для предоставления интерфейса между веб-сайтом и его посетителем. Практически все популярные браузеры распространяются бесплатно или «в комплекте» с другим приложением: Internet Explorer (как неотъемлемая часть &lt;a href='http://ru.wikipedia.org/wiki/Microsoft_Windows'>Microsoft Windows&lt;/a>), Mozilla Firefox (бесплатно, свободное ПО), Opera (бесплатно, начиная с версии 8.50), Safari (совместно с Mac OS или бесплатно для Windows NT).<br/>&lt;/p></p>
+</div>
+
+<p>Попробуйте посмотреть что получилось: <span style='white-space: nowrap;color: maroon'>http://bulldoc/snusmumrik/introduction.html</span></p>
+
+<p>Создайте файлы про браузеры и наполните их (можете воспользоваться веб-интерфейсом, для этого зайдите на страницу через оглавление и нажмите ссылку "правка"):</p>
+<div  class='file'>
+<b>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</b><br/>
+&lt;cls:keywords data='netscape, mozilla, firefox' />
+<p>&lt;p><br/>
+Mozilla Firefox - свободно распространяемый браузер. Является вторым по популярности после Internet Explorer.
+<br/>&lt;/p></p>
+<p>&lt;p><br/>
+Mozilla Firefox использует открытый кросс-платформенный движок Gecko, разработанный с учётом поддержки открытых стандартов.<br/>
+&lt;/p></p>
+<p>&lt;p><br/>
+Существуют официальные версии для Microsoft Windows, Mac OS X, GNU/Linux, и неофициальные для OS/2, FreeBSD, NetBSD, OpenBSD, Solaris и других операционных систем.
+<br/>&lt;/p></p>
+</div>
+
+<div class='file'>
+<b>/home/bulldoc/workshop/source/snusmumrik/browsers/opera.html</b><br/>
+&lt;cls:keywords data='opera, opera mini' />
+<p>&lt;p><br/>
+Opera - веб-браузер и программный пакет для работы в Интернете, выпускаемый компанией Opera Software ASA. Разработан в 1994 году группой исследователей из норвежской компании Televerket.<br/>&lt;/p></p>
+<p>&lt;p><br/>
+С 1995 года продукт компании Opera Software, образованной авторами первой версии браузера. Opera входит в число наиболее популярных браузеров для ПК. Opera Mini в настоящее время играет доминирующую роль на рынке браузеров для КПК, мобильных телефонов и смартфонов благодаря технологии Small Screen Rendering.<br/>
+&lt;/p></p>
+<p>&lt;p><br/>
+С 2005 года версии Opera для ПК и устройств мобильной связи распространяются бесплатно.
+<br/>&lt;/p></p>
+</div>
+
+<p>Пройдитесь по страницам, посмотрите, что получилось.</p>
+<p>Положите вот <a href='firefox.png'>этот</a> логотип в <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.png</span> и отредактируйте <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</span> добавив в начало файла</p>
+<pre>
+&lt;img src='firefox.png'>
+</pre>
+<p>Посмотрите, что получилось.</p>
+<p>Отредактируйте <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>, заменив название Opera на</p>
+<pre>
+&lt;cls:link page='browsers/opera.html' />
+</pre>
+<p>Посмотрите результат.</p>
+
+<p>Добавьте в текст любой страницы код PHP:</p>
+<pre class="php">&lt;cls:php>&nbsp;
+<span style="color: #000000; font-weight: bold;">function</span> _yamlizeArray<span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$array</span>,<span style="color: #0000ff;">$indent</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+    <span style="color: #b1b100;">if</span> <span style="color: #66cc66;">&#40;</span><a href="http://www.php.net/is_array"><span style="color: #000066;">is_array</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$array</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+      <span style="color: #0000ff;">$string</span> = <span style="color: #ff0000;">''</span>;
+      <span style="color: #b1b100;">foreach</span> <span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$array</span> <span style="color: #b1b100;">as</span> <span style="color: #0000ff;">$key</span> =&gt; <span style="color: #0000ff;">$value</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+        <span style="color: #0000ff;">$string</span> .= <span style="color: #0000ff;">$this</span>-&gt;_yamlize<span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$key</span>,<span style="color: #0000ff;">$value</span>,<span style="color: #0000ff;">$indent</span><span style="color: #66cc66;">&#41;</span>;
+      <span style="color: #66cc66;">&#125;</span>
+      <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$string</span>;
+    <span style="color: #66cc66;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #66cc66;">&#123;</span>
+      <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">false</span>;
+    <span style="color: #66cc66;">&#125;</span>
+  <span style="color: #66cc66;">&#125;</span>
+&lt;/cls:php>  
+</pre>
+<p>Должна появиться подсветка.</p>
+
+<h3>Предметный указатель</h3>
+<p>Добавьте в файл структуры <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> страницу предметного указателя (также можно воспользоваться веб-интерфейсом, нажав сверху на ссылку "Правка TOC"):</p>
+<pre>
+introduction.html: Введение
+browsers:
+  type: chapter
+  title: Бродилки
+  topics:
+    firefox.html: Firefox
+    opera.html: Opera
+topic_index.html: {type: index, title: Предметный указатель}
+</pre>
+
+<p>Зайдите на страницу предметного указателя, &mdash; он уже не пуст!</p>
+
+<h3>Экспорт в статику</h3>
+<p>Осталось построить статический набор html-файлов. В консоли наберите</p>
+<code class='commandline'>
+cd /home/bulldoc
+bulldoc snusmumrik
+</code>
+<p>Посмотрите, что получилось в папке <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/output/snusmumrik</span></p>
+
+

@@ -1,0 +1,30 @@
+introduction.html: Введение
+installation.html: Установка
+quickstart.html:  Простой пример
+    
+content:
+  type: chapter
+  title: Книга
+  topics:
+    bookshelf.html: Книжная полка
+    toc.html: Структура
+    text.html: Текст
+
+layout:
+  type: chapter
+  title: Оформление
+  topics:
+    theme.html:  Темы
+    system_settings.html:  Системные настройки
+
+export.html: Экспорт
+
+appendix:
+  type: chapter
+  title: Приложения
+  topics:
+    authors.html: Авторы
+    license.html: Лицензия
+    similar.html: Аналоги
+    roadmap.html: Планы по развитию
+

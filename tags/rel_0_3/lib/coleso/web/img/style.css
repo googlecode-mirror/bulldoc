@@ -1,0 +1,93 @@
+html,body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+div.listeven{
+  background-color: #dddddd;
+}
+
+input.nod {
+  display: none;
+}
+
+input {
+  vertical-align: middle;
+}
+
+div.content {
+  width: 500px;
+  margin: 0 auto;
+}
+
+div.menu
+{
+font-size: 16px;
+color: white;
+font-weight: bold;
+}
+
+div.menu a{
+  color: white;
+  text-decoration: none;
+}
+
+div.menu a:hover{
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: large;
+  color: #2D3240;
+}
+
+.formerr{
+font-weight: bold;
+color: red;
+}
+
+.formerrLabel {
+color: red;
+}
+
+p.menutopic{
+margin-top: 0px;
+margin-bottom: 7px;
+padding: 3px;
+}
+
+span.errMsg{
+ color: red;
+ font-weight: bold;
+}
+
+.formdescr
+{
+font-style: italic;
+color: green;
+}
+
+a.profile:link, a.profile:hover, a.profile:visited {
+    color: #4B4BE9;
+}
+
+a.menu:link, a.menu:hover, a.menu:visited {
+    color: #2F429D;
+}
+
+a.hdr:link, a.hdr:hover, a.hdr:visited {
+    color: white;
+    font-size: small;
+}
+a.menutop {
+}
+a.menutop:hover {
+  background-color: #F1E7DA;
+}
+
+div.calendar
+{
+  position: absolute;
+  visibility: hidden;
+  width: 150px;
+  background-color: #F5EFD6;
+}
