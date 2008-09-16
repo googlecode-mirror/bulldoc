@@ -27,6 +27,28 @@
 &lt;/cls:php>
 </pre>
 
+<p>Выглядеть будет примерно так:</p>
+<cls:php>
+class mediaItem
+{
+  private $fromPath;
+  private $toPath;
+  
+  public function __construct($fileName,$sourceBasePath,$destBasePath)
+  {
+    $this->fromPath=$fileName;
+    $this->toPath=$destBasePath.$this->getRelativePath($fileName,$sourceBasePath);
+  }
+//--------------------------------------------
+  private function getRelativePath($fileName,$sourceBasePath)
+  {
+    $baseLength=strlen($sourceBasePath);
+    $relativePath=substr($fileName,$baseLength);
+    return $relativePath;
+  }
+}
+</cls:php>
+
 <h3>Ключевые слова для предметного указателя</h3>
 <p>Странице с текстом можно назначить ключевые слова. Эти слова впоследствии будут использованы при автоматическом построении Предметного указателя и при построении индекса для CHM документа.</p>
 <p>Ключевые слова задаются с помощью специального тэга:</p>
