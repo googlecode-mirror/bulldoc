@@ -34,7 +34,7 @@ class bookLoader
     foreach ($this->books as $key=>$book){
       if (!is_array($this->books[$key])) $this->books[$key]=array('source'=>$book);
       $this->books[$key]['source']=$this->getBookSource($key);
-      $this->books[$key]['title']=$this->getBookTitle($key);
+      $this->obtainBookData($key);
     }
   }
 //-----------------------------------------------------------
@@ -50,21 +50,28 @@ class bookLoader
     return $source;
   }
 //-----------------------------------------------------------
-  public function getBookTitle($key)
+  public function obtainBookData($key)
   {
-    if (isset($this->books[$key]['title'])) return  $this->books[$key]['title'];
     $dataFile= $this->books[$key]['source'].'book_data.yml';
-    if (file_exists($dataFile)){
-      $DATA = Spyc::YAMLLoad($dataFile);
-      return $DATA['title'];
-    } else {
-      return $key;
-    }
+    if (file_exists($dataFile)) $DATA = Spyc::YAMLLoad($dataFile);  //probably we need to use cache
+    else $DATA=array();
+    
+    if (isset($this->books[$key]['title'])) $bookShelfTitle=$this->books[$key]['title'];
+    elseif (isset($DATA['title'])) $bookShelfTitle=$DATA['title'];
+    else $bookShelfTitle=$key;
+    
+    $this->books[$key]=array_merge($this->books[$key],$DATA);
+    $this->books[$key]['bookShelfTitle']=$bookShelfTitle;
   }
 //-----------------------------------------------------------
   public function getBooks()
   {
     return $this->books;
+  }
+//-----------------------------------------------------------
+  public function getBookTitle($key)
+  {
+    return isset($this->books[$key]['title'])? $this->books[$key]['title']:$this->books[$key]['bookShelfTitle']; 
   }
 //-----------------------------------------------------------
   public function getBook($key)
@@ -78,18 +85,23 @@ class bookLoader
 class book
 {
   private $bookData;
-  private $bookName;
+  private $bookKey;
+
+  protected $tocFileName;
+  protected $pagesSourcePath;
   
-  public function __construct($bookData,$bookName)
+  public function __construct($bookData,$bookKey)
   {
     $this->bookData=$bookData;
-    $this->bookName=$bookName;
+    $this->bookKey=$bookKey;
+    $this->tocFileName=$this->obtainTocFileName();
+    $this->pagesSourcePath=dirname($this->tocFileName).'/pages/';
   }
 //-----------------------------------------------------------
   public function getBookDest()
   {
     if (!isset($this->bookData['dest'])) 
-      return colesoApplication::getConfigVal('/bulldoc/workshopDir')."output/{$this->bookName}/";
+      return colesoApplication::getConfigVal('/bulldoc/workshopDir')."output/{$this->bookKey}/";
 
     $dest=$this->bookData['dest'];
     if (detectAbsolutePath($dest)) return $dest;
@@ -98,9 +110,9 @@ class book
     return $dest;
   }
 //-----------------------------------------------------------
-  public function getBookName()
+  public function getBookKey()
   {
-    return $this->bookName;
+    return $this->bookKey;
   }
 //-----------------------------------------------------------
   public function getBookData()
@@ -126,6 +138,11 @@ class book
   public function needChm()
   {
     return isset($this->bookData['buildChm'])? $this->bookData['buildChm']:false; 
+  }
+//-----------------------------------------------------------
+  public function needSinglePageExport()
+  {
+    return isset($this->bookData['singlePageExport'])? $this->bookData['singlePageExport']:false; 
   }
 //-----------------------------------------------------------
   public function getBookSource()
@@ -165,6 +182,24 @@ class book
 //-----------------------------------------------------------
   public function getTocFileName()
   {
+    return $this->tocFileName;
+  }
+//-----------------------------------------------------------
+  public function getStructureHolder()
+  {  
+    $cacheFile=colesoApplication::getConfigVal('/system/cacheDir')."bulldoc/{$this->bookKey}/toc.cache";
+    $TOC=colesoYMLLoader::load($this->tocFileName,$cacheFile);
+    $structureHolder=new structureHolder($TOC);
+    return $structureHolder;
+  }
+//-----------------------------------------------------------
+  public function getPagesSourcePath()
+  {
+    return $this->pagesSourcePath;
+  }
+//-----------------------------------------------------------
+  protected function obtainTocFileName()
+  {
     $sourcePath=rtrim($this->getBookSource(),'\\/').'/';
     if (file_exists($sourcePath.'toc.php')) return $sourcePath.'toc.php';
     elseif (file_exists($sourcePath.'toc.yml')) return $sourcePath.'toc.yml';
@@ -173,9 +208,9 @@ class book
 //-----------------------------------------------------------
   public function getBookRenderer()
   {
-    $tocFile=$this->getTocFileName();
     $manager=new bulldocDecoThemes($this->getBookTheme());
-    $render=new renderDocPage($tocFile,$this->bookName,$manager);
+    //$render=new renderDocPage($this->tocFileName,$this->bookKey,$manager);
+    $render=new renderDocPage($this,$manager);
     $rootIndexLevel=$this->getBookRootIndexLevel();
     if ($rootIndexLevel) $render->setRootIndexLevel($rootIndexLevel);
     return $render;
