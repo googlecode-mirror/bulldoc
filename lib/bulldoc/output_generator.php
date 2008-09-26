@@ -155,7 +155,7 @@ class outputGenerator
   private function buildCHMIndex()
   {
     $sourcePath=$this->book->getPagesSourcePath();
-    $toc=$this->book->getBookRenderer()->getToc();
+    $toc=$this->book->getStructureHolder()->getToc();
     $indexBuilder=new IndexBuilder($sourcePath,$toc);
     $myIndexRender=new IndexRender($indexBuilder,$this->booKey,null);
     $content=$myIndexRender->renderCHMIndex();
