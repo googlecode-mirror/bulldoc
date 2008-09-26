@@ -3,9 +3,9 @@ require_once ('lib/geshi/geshi.php');
 
 class docTemplateSet
 {
-  private $previous;
-  private $structureHolder;
-  private $pathBuilder;
+  protected $structureHolder;
+  protected $pathBuilder;
+  protected $singlePageMode;
   
 //---------------------------------------------
   public function parseFile($filename,$params)
@@ -13,6 +13,8 @@ class docTemplateSet
     $this->pathBuilder=$params['path'];
     $this->structureHolder=$params['structure'];
     $content=file_get_contents($filename);
+    
+    $content=preg_replace('/<cls:keywords.*?\/>/i','',$content);
     $content=preg_replace_callback('/<cls:link\s+page=[\'"](.*?)[\'"]\s*\/>/i',array($this,'getPageLink'),$content);
     $content=preg_replace_callback('/<cls:(\w+)>(.*?)<\/cls:\w+>/sm',array($this,'highlightMatches'),$content);
     return $content;
@@ -21,9 +23,14 @@ class docTemplateSet
   private function getPageLink($matches)
   {
     $link=$matches[1];
-    return '<a class="inner" href="'.
-           $this->pathBuilder->getPathFromCurrent($link).'">'.
-           $this->structureHolder->getSectionTitleByPath($link).'</a>';
+    if ($this->singlePageMode){
+      return '<a class="inner" href="#'.$link.'">'.
+             $this->structureHolder->getSectionTitleByPath($link).'</a>';
+    } else {
+      return '<a class="inner" href="'.
+             $this->pathBuilder->getPathFromCurrent($link).'">'.
+             $this->structureHolder->getSectionTitleByPath($link).'</a>';
+    }
   }
 //-------------------------------------------------
   private function highlightMatches($matches)
@@ -35,6 +42,11 @@ class docTemplateSet
   {
     $geshi =new GeSHi($code, $language);
     return $geshi->parse_code();
+  }
+//-------------------------------------------------
+  public function setSinglePageMode($mode)
+  {
+    $this->singlePageMode=$mode;
   }
 }
 ?>

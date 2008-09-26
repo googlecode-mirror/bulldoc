@@ -12,7 +12,7 @@
 <h3>Примерный план книги</h3>
 <p>Наша книга будет очень простой. В ней будет "Предисловие". Раздел "Браузеры" и две страницы в нем: "Opera" и "Firefox". Называться будет "Снусмумрики в Интернете". Удобно будет сделать заготовку в текстовом редакторе такого содержания:</p>
 <pre>
-Снусмумрики в Интернете
+Снусмумрики в Сети
 =======================
 
 Предисловие
@@ -45,7 +45,7 @@ snusmumrik:
 
 <p>Отредактируйте файл <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/book_data.yml</span>, вписав туда название книги, и по желанию изменив другие параметры:</p>
 <pre>
-title: Снусмумрики в Интернете
+title: Снусмумрики в Сети
 author: Юный Сказочник
 
 copyright: Юный Сказочник, 2008
@@ -55,7 +55,7 @@ site: www.snusmumrik.ru
 <p>Система может уже распознать нашу пустую книгу. Зайдите браузером по адресу <span style='white-space: nowrap;color: maroon'>http://bulldoc</span>, в списке доступных книг появилась и наша. Перейдите по ссылке и увидите страницу книги. Пока на ней ничего нет. Сейчас мы этим займемся.</p>
 
 <h3>Файл структуры</h3>
-<p>Наполните файл структуры <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> вот так:</p>
+<p>Наполните файл структуры <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> вот так (можете воспользоваться веб-интерфейсом, для этого нажмите в верхнем меню ссылку "правка TOC"):</p>
 <pre>
 introduction.html: Введение
 browsers:
@@ -83,9 +83,9 @@ browsers:
 
 <p>Попробуйте посмотреть что получилось: <span style='white-space: nowrap;color: maroon'>http://bulldoc/snusmumrik/introduction.html</span></p>
 
-<p>Создайте файлы про браузеры и наполните их:</p>
+<p>Создайте файлы про браузеры и наполните их (можете воспользоваться веб-интерфейсом, для этого зайдите на страницу через оглавление и нажмите ссылку "правка"):</p>
+<div><b>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</b></div>
 <div  class='file'>
-<b>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</b><br/>
 &lt;cls:keywords data='netscape, mozilla, firefox' />
 <p>&lt;p><br/>
 Mozilla Firefox - свободно распространяемый браузер. Является вторым по популярности после Internet Explorer.
@@ -97,9 +97,8 @@ Mozilla Firefox использует открытый кросс-платформенный движок Gecko, разработан
 Существуют официальные версии для Microsoft Windows, Mac OS X, GNU/Linux, и неофициальные для OS/2, FreeBSD, NetBSD, OpenBSD, Solaris и других операционных систем.
 <br/>&lt;/p></p>
 </div>
-
+<div><b>/home/bulldoc/workshop/source/snusmumrik/browsers/opera.html</b></div>
 <div class='file'>
-<b>/home/bulldoc/workshop/source/snusmumrik/browsers/opera.html</b><br/>
 &lt;cls:keywords data='opera, opera mini' />
 <p>&lt;p><br/>
 Opera - веб-браузер и программный пакет для работы в Интернете, выпускаемый компанией Opera Software ASA. Разработан в 1994 году группой исследователей из норвежской компании Televerket.<br/>&lt;/p></p>
@@ -119,7 +118,7 @@ Opera - веб-браузер и программный пакет для работы в Интернете, выпускаемый комп
 <p>Посмотрите, что получилось.</p>
 <p>Отредактируйте <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>, заменив название Opera на</p>
 <pre>
-&lt;cls:link page='browsers/opera.html'>
+&lt;cls:link page='browsers/opera.html' />
 </pre>
 <p>Посмотрите результат.</p>
 
@@ -141,7 +140,7 @@ Opera - веб-браузер и программный пакет для работы в Интернете, выпускаемый комп
 <p>Должна появиться подсветка.</p>
 
 <h3>Предметный указатель</h3>
-<p>Добавьте в файл структуры <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> страницу предметного указателя:</p>
+<p>Добавьте в файл структуры <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> страницу предметного указателя (также можно воспользоваться веб-интерфейсом, нажав сверху на ссылку "Правка TOC"):</p>
 <pre>
 introduction.html: Введение
 browsers:

@@ -14,6 +14,13 @@ bulldoc_chm:
   theme: blueprint_chm
   buildChm: 1
 
+bulldoc_single_page:
+  title: BullDoc Single Page
+  rootIndexLevel: -1
+  source: bulldoc_book
+  theme: blue_print_single
+  singlePageExport: 1
+
 bulldoc_site:
   title: BullDoc for Web-Site
   source: bulldoc_book
