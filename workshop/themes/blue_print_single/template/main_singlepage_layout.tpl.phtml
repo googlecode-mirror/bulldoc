@@ -5,27 +5,11 @@
 <link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/screen.css" type="text/css" media="screen, projection"/>
 <link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/print.css" type="text/css" media="print"/>
 <link rel="stylesheet" media="screen" type="text/css" href="<?php echo $assetsURL; ?>style.css" />
-<title><?php echo $bookTitle.' :: '; ?><?php echo $curTitle; ?></title>
+<title><?php echo $bookData['title']; ?></title>
 </head>
 <body style='margin: 10px'>
-<table style='width: 100%'>
-<tr><td style='width: 50%'>
-<?php 
-if ($prev) echo "<a href='".$prev['href']."'>&laquo;".$prev['title']."</a>";
-else echo '&nbsp;';
-?>
-</td>
-<td style='width: 50%;text-align: right;'>
-<?php
-if ($next) echo "<a href='".$next['href']."'>".$next['title']." &raquo;</a>";
-else echo '&nbsp;';
-?>
-</td>
-</tr>
-</table>
-
 <div style='margin-left: 40px;margin-right: 40px'>
-<h2><?php echo $curTitle; ?></h2>
+<h1><?php echo $bookData['title']; ?></h1>
 <?php echo $content; ?>
 </div>
 <div style='margin-top: 40px;width: 100%'>
@@ -35,6 +19,5 @@ else echo '&nbsp;';
 <?php if (isset($bookData['site'])):?><a href='http://<?php echo $bookData['site']; ?>'><?php echo $bookData['site']; ?></a><br/><?php endif; ?>
 </p>
 </div>
-
 </body>
 </html>

@@ -19,6 +19,13 @@ lib/bulldoc/messages/(варианты сообщений дл€ разных €зыков)
 <cls:php>
 class docTemplateSet
 {
+  //свойства класса
+  protected $structureHolder; //ссылка на объект структуры
+  protected $pathBuilder;     //манипул€тор пути к странице
+  protected $singlePageMode;  //»стинно, если экспорт
+                              // в один монолитный html-файл
+
+  //конструктор
   //$filename -- путь до файла
   //$params=array(
   //  'path'=>$path, //путь до страницы внутри оглавлени€, 
@@ -27,6 +34,7 @@ class docTemplateSet
   //                           //Ќапример вот так можно получить 
   //                           //Ќазвание раздела по ссылке:
   //                           //$structure->getSectionTitleByPath('layout/theme.html')
+  //                           //сохран€етс€ в свойстве $this->structureHolder
   //  )
   string public function parseFile($filename,$params);
 }

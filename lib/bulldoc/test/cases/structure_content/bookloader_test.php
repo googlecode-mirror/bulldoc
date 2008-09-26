@@ -29,19 +29,34 @@ class BookLoaderTestCase extends colesoBaseTest
     
     $this->assertEqual($myBookLoader->getBookTitle('bulldoc_book'),'Bull Doc','Correct book title obtained');
     
-    //print_r($myBookLoader->getBooks());
     $this->assertEqual($myBookLoader->getBooks(),
-      array ('bulldoc_book' => array ('source'=>$workshopPath.'source/bulldoc_book/','title'=>'Bull Doc'),
-             'bulldoc_chm' => array ('title'=> 'BullDoc CHM',
+      array ('bulldoc_book' => array ('source'=>$workshopPath.'source/bulldoc_book/',
+                                      'title'=>'Bull Doc',
+                                      'author' => 'Dmitry Smirnov',
+                                      'copyright' => 'H-type, 2008',
+                                      'site' => 'www.bulldoc.ru',
+                                      'bookShelfTitle' => 'Bull Doc'                                      
+                                      ),
+             'bulldoc_chm' => array ('title'=> 'Bull Doc',
                                       'rootIndexLevel' => -1, 
                                       'source' => $workshopPath.'source/bulldoc_book/',
                                       'dest' => 'bulldoc_chm',
                                       'theme' => 'blueprint_chm',
-                                      'buildChm' => 1),
-             'bulldoc_site' => array ('title' => 'BullDoc for Web-Site',
+                                      'buildChm' => 1,
+                                      'author' => 'Dmitry Smirnov',
+                                      'copyright' => 'H-type, 2008',
+                                      'site' => 'www.bulldoc.ru',
+                                      'bookShelfTitle' => 'BullDoc CHM'                                      
+                                      ),
+             'bulldoc_site' => array ('title' => 'Bull Doc',
                                       'source' => $workshopPath.'source/bulldoc_book/',
                                       'dest' => '../../../doc',
-                                      'theme' => 'blueprint_site' )
+                                      'theme' => 'blueprint_site',
+                                      'author' => 'Dmitry Smirnov',
+                                      'copyright' => 'H-type, 2008',
+                                      'site' => 'www.bulldoc.ru',
+                                      'bookShelfTitle' => 'BullDoc for Web-Site'                                      
+                                      )
              ),
         'Correct Book list obtained'
       );
@@ -55,10 +70,16 @@ class BookLoaderTestCase extends colesoBaseTest
     $myBook=$myBookLoader->getBook('bulldoc_book');
     
     $this->assertEqual($myBook->getBookDest(),$workshopPath.'output/bulldoc_book/','Correct Output Dest obtained');
-    $this->assertEqual($myBook->getBookName(),'bulldoc_book','Book name Ok');
+    $this->assertEqual($myBook->getBookKey(),'bulldoc_book','Book key Ok');
     
     $this->assertEqual($myBook->getBookData(),
-     array ('source' => $workshopPath.'source/bulldoc_book/','title' => 'Bull Doc' ),
+     array ('source' => $workshopPath.'source/bulldoc_book/',
+      'title' => 'Bull Doc',
+      'author' => 'Dmitry Smirnov',
+      'copyright' => 'H-type, 2008',
+      'site' => 'www.bulldoc.ru',
+      'bookShelfTitle' => 'Bull Doc'                                      
+       ),
      'Correct book data array obtained');
     
     $this->assertEqual($myBook->getBookTitle(),'Bull Doc','Book title Ok');

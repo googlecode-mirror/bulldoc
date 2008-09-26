@@ -4,9 +4,12 @@ SET DISTRIB_PATH=..\download\%RELEASE%\
 mkdir %DISTRIB_PATH%
 
 svn export http://bulldoc.googlecode.com/svn/branches/branch_%BRANCH% %DISTRIB_PATH%distrib
-del ..\download\%RELEASE%\distrib\build_release.bat
-mkdir ..\download\%RELEASE%\distrib\cache
-mkdir ..\download\%RELEASE%\distrib\workshop\output
+del %DISTRIB_PATH%distrib\build_release.bat
+mkdir %DISTRIB_PATH%distrib\cache
+mkdir %DISTRIB_PATH%distrib\workshop\output
+rmdir %DISTRIB_PATH%distrib\lib\simpletest /Q /S
+rmdir %DISTRIB_PATH%distrib\lib\simpletest_extensions /Q /S
+rmdir %DISTRIB_PATH%distrib\lib\bulldoc\test /Q /S
 
 CALL bulldoc bulldoc_site
 @echo on
