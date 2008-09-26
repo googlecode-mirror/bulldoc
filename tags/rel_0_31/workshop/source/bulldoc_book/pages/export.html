@@ -1,0 +1,20 @@
+<cls:keywords data='экспорт, HTML, CHM' />
+<h3>HTML</h3>
+<p>Экспорт в статический html выполняется из командной строки</p>
+<code class='commandline'>
+bulldoc bulldoc
+</code>
+<p>Для экспорта книги в один большой html-файл, добавьте строку в запись файл книжной полки&nbsp;(<span style='color: maroon; white-space: nowrap'>config/bookshelf.yml</span>):</p>
+<pre>
+singlePageExport: 1
+</pre>
+<p>Для генерации монолитного файла, лучше использовать темы и макеты без левого меню, и специальными выражениями для ссылок, например blue_print_single.</p>
+
+<h3>CHM</h3>
+<p>Если в настройках книги на книжной полке была включена опция <b>buildChm</b>, то рядом с html-статикой будут созданы файлы my_book_key.hhp, my_book_key.hhс и my_book_key.hhk. Для сборки chm нужно только скачать <a href='http://msdn2.microsoft.com/en-us/library/ms669985.aspx'>SDK</a> и запустить компилятор</p>
+<code class='commandline'>
+hhc my_book_key.hhp
+</code>
+<p>Для генерации chm, лучше использовать темы и макеты без левого меню, как, например blueprint_chm.</p>
+
+<p><b>Будьте внимательны, насколько нам известно, формат CHM, не имеет поддержки utf-8</b>. Пользуйтесь 8-битными кодировками для создания CHM.</p>

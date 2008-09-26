@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+<link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/screen.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/print.css" type="text/css" media="print"/>
+<link rel="stylesheet" media="screen" type="text/css" href="<?php echo $assetsURL; ?>style.css" />
+<title><?php echo $bookData['title']; ?></title>
+</head>
+<body style='margin: 10px'>
+<div style='margin-left: 40px;margin-right: 40px'>
+<h1><?php echo $bookData['title']; ?></h1>
+<?php echo $content; ?>
+</div>
+<div style='margin-top: 40px;width: 100%'>
+<hr/>
+<p style='color: #ccc'>
+<?php if (isset($bookData['copyright'])):?>&copy; <?php echo $bookData['copyright']; ?><br/><?php endif; ?>
+<?php if (isset($bookData['site'])):?><a href='http://<?php echo $bookData['site']; ?>'><?php echo $bookData['site']; ?></a><br/><?php endif; ?>
+</p>
+</div>
+</body>
+</html>

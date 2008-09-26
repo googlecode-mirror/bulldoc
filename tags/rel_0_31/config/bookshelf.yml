@@ -1,0 +1,36 @@
+general_title:
+  separatorTitle: Основной раздел
+  
+bulldoc_book:
+
+variants_title:
+  separatorTitle: Варианты конфигураций
+
+bulldoc_chm:
+  title: BullDoc CHM
+  rootIndexLevel: -1
+  source: bulldoc_book
+  dest: bulldoc_chm
+  theme: blueprint_chm
+  buildChm: 1
+
+bulldoc_single_page:
+  title: BullDoc Single Page
+  rootIndexLevel: -1
+  source: bulldoc_book
+  theme: blue_print_single
+  singlePageExport: 1
+
+bulldoc_site:
+  title: BullDoc for Web-Site
+  source: bulldoc_book
+  dest: ../../../doc
+  theme: blueprint_site
+  
+bulldoc_emptytheme:
+  title: Empty theme sample
+  source: bulldoc_book
+  theme: empty
+
+newbooks_title:
+  separatorTitle: Новые книги
