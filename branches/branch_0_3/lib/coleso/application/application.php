@@ -14,7 +14,8 @@ class colesoApplication {
   private static $dataStack=array();
   
   private static $Environment=NULL;
-  private static $Messages;    //Sys message array
+//  private static $Messages;    //Sys message array
+  public static $Messages;    //Sys message array
   private static $configVar;     //Application Config var
 
 //-----------------------------------------------------------
@@ -87,6 +88,7 @@ class colesoApplication {
     if (is_null($locale)) $locale=colesoApplication::getMessage('system','default_locale');
     $localeData=parse_ini_file('coleso/locales/'.$locale.'.ini');
     colesoApplication::setConfigVal('/system/lngEncoding',$localeData['encoding']);
+    colesoApplication::setConfigVal('/system/localeData',$localeData);
     if (isset($localeData['locale_name'])) setlocale(LC_ALL, $localeData['locale_name']);
   }
 //------------------------------------------------------------------------------

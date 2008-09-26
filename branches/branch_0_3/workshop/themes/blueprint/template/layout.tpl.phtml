@@ -30,7 +30,7 @@
 <div class="column span-12 last" style='text-align: right;'>
 <div style='margin-right: 7px'>
 <?php if ($mode=='server'): ?>
-<a href='<?php echo $bookShelfURL; ?>'><?php echo colesoApplication::getMessage('bulldoc','bookshelf');?></a> : <a href='<?php echo $editTocURL; ?>'><?php echo strtolower(colesoApplication::getMessage('navigation','edit'));?> TOC</a> : <a href='<?php echo $rootPath."_index_rebuild?path=".urlencode($path); ?>'><?php echo colesoApplication::getMessage('bulldoc','build_index');?></a>
+<a href='<?php echo $bookShelfURL; ?>'><?php echo colesoApplication::getMessage('bulldoc','bookshelf');?></a> : <a href='<?php echo $editTocURL; ?>'><?php echo colesoStrToLower(colesoApplication::getMessage('navigation','edit'));?> TOC</a> : <a href='<?php echo $rootPath."_index_rebuild?path=".urlencode($path); ?>'><?php echo colesoApplication::getMessage('bulldoc','build_index');?></a>
 <?php endif; ?>
 </div>
 </div>
@@ -67,7 +67,7 @@ else echo '&nbsp;';
 <?php
 if ($mode=='server' && !$editMode && $pageData['type']!='index') {
   $editLink="<span style='font-size: x-small'><a href='$editURL'>".
-  strtolower(colesoApplication::getMessage('navigation','edit')).
+  colesoStrToLower(colesoApplication::getMessage('navigation','edit')).
   "</a> &raquo;</span>";
 } else {
   $editLink='';

@@ -15,15 +15,14 @@ class docgenBuilder extends bookLoader
       $this->createBook($key);
       echo 'New book created';
     } else {
-      if (file_exists(bulldocGetIndexCacheFileName($key))) unlink (bulldocGetIndexCacheFileName($key));
-      $render=$this->getBook($key)->getBookRenderer();
-      $render->setMode('static');
-      $generator= new outputGenerator($render,$this->getBook($key)->getBookDest());
+      $generator= new outputGenerator($this->getBook($key));
       $generator->build();
+      /*
       if ($this->getBook($key)->needChm()) {
         $this->buildCHMToc($key);
         $this->buildCHMIndex($key);
       }
+      */
     }
   }
 //---------------------------------------------------
@@ -49,7 +48,6 @@ class docgenBuilder extends bookLoader
     file_put_contents($outputPath.$key.'.hhp',$proj);
     echo "\nchm structure built\n";
   }
-  
 //---------------------------------------------------
   private function buildCHMIndex($key)
   {

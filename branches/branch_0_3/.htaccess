@@ -1,5 +1,5 @@
 DirectoryIndex index.php
-AddDefaultCharset windows-1251
+#AddDefaultCharset windows-1251
 
 Options -Indexes
 Options FollowSymLinks
