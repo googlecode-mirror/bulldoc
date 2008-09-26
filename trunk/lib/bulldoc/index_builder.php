@@ -71,7 +71,7 @@ class IndexRender
     
     $curLetter=$html=$buffer='';
     foreach ($indexArray as $word=>$pagesSet){
-      $letter=substr($word,0,1);
+      $letter=colesoSubstr($word,0,1);
       if ($letter!=$curLetter) {
         if ($buffer) $html.=$indexTemplate->parseItem('indexSection',array('curLetter' => $curLetter, 'buffer' => $buffer));
         $buffer='';
@@ -100,7 +100,6 @@ class IndexRender
 //-----------------------------------------------------
   public function renderCHMIndex()
   {
-    //$indexTemplateFile=$this->themeManager->getFile('template/index_chm.tset.phtml');
     $indexTemplateFile=colesoApplication::getConfigVal('/bulldoc/systemTemplates').'index_chm.tset.phtml';
 
     $indexTemplate= new colesoPHPTemplateSet($indexTemplateFile);

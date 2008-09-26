@@ -17,10 +17,12 @@ class renderDocPage  extends buildOnToc
   private $sourcePath;
   private $mode='server'; //static | server
                           //generate static version or serverside rendering on the fly (server)
+                          
+  protected $singlePageMode=false;
   
-  function __construct($contentFile,$bookKey,$themeManager=null)
+  function __construct($book,$themeManager=null)
   {
-    parent::__construct($contentFile,$bookKey);
+    parent::__construct($book);
     if ($themeManager) $this->themeManager=$themeManager;
     else $this->themeManager=new bulldocDecoThemes();
     
@@ -29,12 +31,17 @@ class renderDocPage  extends buildOnToc
     
     $this->layoutTemplateFile=$this->themeManager->getFile('template/layout.tpl.phtml');
 
-    $this->sourcePath=dirname($contentFile).'/pages/';
+    $this->sourcePath=$this->book->getPagesSourcePath();
   }
 //---------------------------------------------------------------------------
   public function setMode($mode)
   {
     $this->mode=$mode;
+  }
+//---------------------------------------------------------------------------
+  public function setSinglePageMode($mode)
+  {
+    $this->singlePageMode=$mode;
   }
 //---------------------------------------------------------------------------
   public function getThemeManager()
@@ -174,6 +181,7 @@ class renderDocPage  extends buildOnToc
   {
     $templateClass=colesoApplication::getConfigVal('/bulldoc/textProcessingClass');
     $t=new $templateClass;
+    $t->setSinglePageMode($this->singlePageMode);
     $fileName=$this->sourcePath.$pathBuilder;
     $params=array('root'=>$pathBuilder->getRootPath(),'path'=>$pathBuilder,'structure'=>$this->structureHolder);
     
@@ -197,6 +205,10 @@ class renderDocPage  extends buildOnToc
 //---------------------------------------------------------------------------
   private function buildIndex($pathBuilder)
   {
+    $basePath=dirname((string) $pathBuilder);
+    if ($basePath=='.') $basePath='';
+    else $basePath.='/';
+    
     $sectionData=$this->structureHolder->getPageSection($pathBuilder,'current');
     $section=$sectionData['curSection'];
     $level=$sectionData['level'];
@@ -206,6 +218,7 @@ class renderDocPage  extends buildOnToc
       if ($level!=-1 && $iterator->getDepth() > $level-1) continue;
       $topic['href']=ltrim($iterator->getPath().'/'.$topic['href'],'\\/');
       $topic['level']=$iterator->getDepth();
+      $topic['path']= $basePath.$topic['href'];
       $html.=$this->navTemplate->parseItem('toc_topic',$topic);
     }
     return $html;

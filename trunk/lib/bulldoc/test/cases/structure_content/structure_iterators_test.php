@@ -128,9 +128,9 @@ class StructureIteratorsTestCase extends colesoBaseTest
 //-------------------------------------------
   function getTestStructure()
   {
-    $bookToc=colesoApplication::getConfigVal('/bulldoc/workshopDir').'source/bulldoc_book/toc.yml';
-    $loader=new structureHolderLoader($bookToc,'myBook');
-    $struct=$loader->getHolder();
+    $myBookLoader=new bookLoader();
+    $myBook=$myBookLoader->getBook('bulldoc_book');
+    $struct=$myBook->getStructureHolder();
     return $struct;
   }
 }
