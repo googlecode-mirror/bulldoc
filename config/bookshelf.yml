@@ -3,9 +3,6 @@ general_title:
   
 bulldoc_book:
 
-variants_title:
-  separatorTitle: Варианты конфигураций
-
 bulldoc_chm:
   title: BullDoc CHM
   rootIndexLevel: -1
@@ -20,12 +17,14 @@ bulldoc_single_page:
   source: bulldoc_book
   theme: blue_print_single
   singlePageExport: 1
+  hideOnBookShelf: 1
 
 bulldoc_site:
   title: BullDoc for Web-Site
   source: bulldoc_book
   dest: ../../../doc
   theme: blueprint_site
+  hideOnBookShelf: 1
   
 bulldoc_emptytheme:
   title: Empty theme sample
