@@ -4,10 +4,10 @@
 <ol>
 <li>Дистрибутив Bulldoc, см. раздел <cls:link page='installation.html'/></li>
 <li>Какой-нибудь сайт на локальной машине, под управлением Apache</li>
-<li>Договоримся, что файлы сайта лежат в <span style='white-space: nowrap;color: maroon'>/home/bulldoc</span>, а сам сайт доступен по <span style='white-space: nowrap;color: maroon'>http://bulldoc</span>. Располагать Bulldoc в корне сайта не обязательно, подойдет любая директория.</li>
+<li>Договоримся, что файлы сайта лежат в <span class='filepath'>/home/bulldoc</span>, а сам сайт доступен по <span class='filepath'>http://bulldoc</span>. Располагать Bulldoc в корне сайта не обязательно, подойдет любая директория.</li>
 </ol>
 
-<p>Распакуйте дистрибутив в <span style='white-space: nowrap;color: maroon'>/home/bulldoc</span></p>
+<p>Распакуйте дистрибутив в <span class='filepath'>/home/bulldoc</span></p>
 
 <h3>Примерный план книги</h3>
 <p>Наша книга будет очень простой. В ней будет "Предисловие". Раздел "Браузеры" и две страницы в нем: "Opera" и "Firefox". Называться будет "Снусмумрики в Интернете". Удобно будет сделать заготовку в текстовом редакторе такого содержания:</p>
@@ -22,28 +22,28 @@
 </pre>
 
 <h3>Создаем новый проект</h3>
-<p>В командной строке из <span style='white-space: nowrap;color: maroon'>/home/bulldoc</span> запускаем:</p>
+<p>В командной строке из <span class='filepath'>/home/bulldoc</span> запускаем:</p>
 <code class='commandline'>
 bulldoc snusmumrik
 </code>
 
 <p>Эта команда создаст 2 папки:<br/>
-<span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik</span><br/>
-<span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/pages</span><br/>
+<span class='filepath'>/home/bulldoc/workshop/source/snusmumrik</span><br/>
+<span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/pages</span><br/>
 </p>
 
 <p>И два файла:<br/>
-пустой <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span><br/>
-и <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/book_data.yml</span><br/>
+пустой <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span><br/>
+и <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/book_data.yml</span><br/>
 </p>
 
 <p>
-Также в конец файла <span style='white-space: nowrap;color: maroon'>/home/bulldoc/config/bookshelf.yml</span>, допишется строчка:</p>
+Также в конец файла <span class='filepath'>/home/bulldoc/config/bookshelf.yml</span>, допишется строчка:</p>
 <pre>
 snusmumrik:
 </pre>
 
-<p>Отредактируйте файл <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/book_data.yml</span>, вписав туда название книги, и по желанию изменив другие параметры:</p>
+<p>Отредактируйте файл <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/book_data.yml</span>, вписав туда название книги, и по желанию изменив другие параметры:</p>
 <pre>
 title: Снусмумрики в Сети
 author: Юный Сказочник
@@ -52,10 +52,10 @@ copyright: Юный Сказочник, 2008
 site: www.snusmumrik.ru
 </pre>
 
-<p>Система может уже распознать нашу пустую книгу. Зайдите браузером по адресу <span style='white-space: nowrap;color: maroon'>http://bulldoc</span>, в списке доступных книг появилась и наша. Перейдите по ссылке и увидите страницу книги. Пока на ней ничего нет. Сейчас мы этим займемся.</p>
+<p>Система может уже распознать нашу пустую книгу. Зайдите браузером по адресу <span class='filepath'>http://bulldoc</span>, в списке доступных книг появилась и наша. Перейдите по ссылке и увидите страницу книги. Пока на ней ничего нет. Сейчас мы этим займемся.</p>
 
 <h3>Файл структуры</h3>
-<p>Наполните файл структуры <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> вот так (можете воспользоваться веб-интерфейсом, для этого нажмите в верхнем меню ссылку "правка TOC"):</p>
+<p>Наполните файл структуры <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> вот так (можете воспользоваться веб-интерфейсом, для этого нажмите в верхнем меню ссылку "правка TOC"):</p>
 <pre>
 introduction.html: Введение
 browsers:
@@ -65,10 +65,10 @@ browsers:
     firefox.html: Firefox
     opera.html: Opera
 </pre>
-<p>Посмотрите книгу в бруазере <span style='white-space: nowrap;color: maroon'>http://bulldoc/snusmumrik</span>. Появились оглавление, навигация, меню и вместо содержимого страниц скупая фраза "Наполняется". Переходим к страницам.</p>
+<p>Посмотрите книгу в бруазере <span class='filepath'>http://bulldoc/snusmumrik</span>. Появились оглавление, навигация, меню и вместо содержимого страниц скупая фраза "Наполняется". Переходим к страницам.</p>
 
 <h3>Контент</h3>
-<p>Создайте файл <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>. Впишите туда такое содержимое:</p>
+<p>Создайте файл <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>. Впишите туда такое содержимое:</p>
 <div class='file'>
 &lt;cls:keywords data='браузер' />
 <p>&lt;p><br/>
@@ -81,7 +81,7 @@ browsers:
 Браузеры постоянно развивались со времён зарождения Всемирной паутины, и с её ростом становились всё более важной программой типичного персонального компьютера. Ныне браузер — комплексное приложение для обработки и вывода разных составляющих веб-страницы, и для предоставления интерфейса между веб-сайтом и его посетителем. Практически все популярные браузеры распространяются бесплатно или «в комплекте» с другим приложением: Internet Explorer (как неотъемлемая часть &lt;a href='http://ru.wikipedia.org/wiki/Microsoft_Windows'>Microsoft Windows&lt;/a>), Mozilla Firefox (бесплатно, свободное ПО), Opera (бесплатно, начиная с версии 8.50), Safari (совместно с Mac OS или бесплатно для Windows NT).<br/>&lt;/p></p>
 </div>
 
-<p>Попробуйте посмотреть что получилось: <span style='white-space: nowrap;color: maroon'>http://bulldoc/snusmumrik/introduction.html</span></p>
+<p>Попробуйте посмотреть что получилось: <span class='filepath'>http://bulldoc/snusmumrik/introduction.html</span></p>
 
 <p>Создайте файлы про браузеры и наполните их (можете воспользоваться веб-интерфейсом, для этого зайдите на страницу через оглавление и нажмите ссылку "правка"):</p>
 <div><b>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</b></div>
@@ -111,12 +111,12 @@ Opera - веб-браузер и программный пакет для работы в Интернете, выпускаемый комп
 </div>
 
 <p>Пройдитесь по страницам, посмотрите, что получилось.</p>
-<p>Положите вот <a href='firefox.png'>этот</a> логотип в <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.png</span> и отредактируйте <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</span> добавив в начало файла</p>
+<p>Положите вот <a href='firefox.png'>этот</a> логотип в <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.png</span> и отредактируйте <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</span> добавив в начало файла</p>
 <pre>
 &lt;img src='firefox.png'>
 </pre>
 <p>Посмотрите, что получилось.</p>
-<p>Отредактируйте <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>, заменив название Opera на</p>
+<p>Отредактируйте <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>, заменив название Opera на</p>
 <pre>
 &lt;cls:link page='browsers/opera.html' />
 </pre>
@@ -140,7 +140,7 @@ Opera - веб-браузер и программный пакет для работы в Интернете, выпускаемый комп
 <p>Должна появиться подсветка.</p>
 
 <h3>Предметный указатель</h3>
-<p>Добавьте в файл структуры <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> страницу предметного указателя (также можно воспользоваться веб-интерфейсом, нажав сверху на ссылку "Правка TOC"):</p>
+<p>Добавьте в файл структуры <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> страницу предметного указателя (также можно воспользоваться веб-интерфейсом, нажав сверху на ссылку "Правка TOC"):</p>
 <pre>
 introduction.html: Введение
 browsers:
@@ -160,6 +160,6 @@ topic_index.html: {type: index, title: Предметный указатель}
 cd /home/bulldoc
 bulldoc snusmumrik
 </code>
-<p>Посмотрите, что получилось в папке <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/output/snusmumrik</span></p>
+<p>Посмотрите, что получилось в папке <span class='filepath'>/home/bulldoc/workshop/output/snusmumrik</span></p>
 
 

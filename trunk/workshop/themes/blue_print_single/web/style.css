@@ -43,3 +43,8 @@ div.file {
   padding: 7px;
   margin: 12px 0
 }
+
+span.filepath {
+  white-space: nowrap;
+  color: maroon;
+}
