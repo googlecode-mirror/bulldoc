@@ -74,7 +74,7 @@ class outputGenerator
       $this->singlePageContent.=$content;
     } else {
       $dirname=dirname($this->getDestPath($path));
-      if (!file_exists($dirname)) mkdir ($dirname,0666,true);
+      if (!file_exists($dirname)) mkdir ($dirname,0777,true);
       file_put_contents ($this->getDestPath($path), $content);
     }
   }

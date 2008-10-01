@@ -27,7 +27,7 @@ class bookLoader
     }else {
       $this->books = Spyc::YAMLLoad($file);
       $cacheDir=dirname($cacheFile);
-      if (!file_exists($cacheDir)) mkdir ($cacheDir,0666,true);
+      if (!file_exists($cacheDir)) mkdir ($cacheDir,0777,true);
       file_put_contents ($cacheFile, serialize($this->books));
     }
     

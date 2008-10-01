@@ -32,7 +32,7 @@ function directoryClear($path)
 function directoryCopy($source,$dest)
 {
   $dest=rtrim($dest,'\\/').'/';
-  if (!file_exists($dest)) mkdir($dest,0666,true);
+  if (!file_exists($dest)) mkdir($dest,0777,true);
   $it=new RecursiveDirectoryIterator($source);
   foreach(new RecursiveIteratorIterator($it, RecursiveIteratorIterator::SELF_FIRST) as $file) {
     $filePath=(string) $file;
@@ -41,7 +41,7 @@ function directoryCopy($source,$dest)
       $relativePath=ltrim(substr($filePath,$baseLength),'\\/');
       $toPath=$dest.$relativePath;
       if($file->isDir()) {
-        if (!file_exists($toPath)) mkdir($toPath,0666,true);
+        if (!file_exists($toPath)) mkdir($toPath,0777,true);
       } else {
         copy($filePath,$toPath);
       }
