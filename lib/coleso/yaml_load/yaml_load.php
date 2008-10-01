@@ -18,7 +18,7 @@ class colesoYMLLoader
     }else {
       $result = Spyc::YAMLLoad($file);
       $cacheDir=dirname($cacheFile);
-      if (!file_exists($cacheDir)) mkdir ($cacheDir,0666,true);
+      if (!file_exists($cacheDir)) mkdir ($cacheDir,0777,true);
       file_put_contents ($cacheFile, serialize($result));
     }
     return $result;

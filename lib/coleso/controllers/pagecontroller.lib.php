@@ -36,9 +36,9 @@ class colesoControllerRedirect extends colesoControllerExecResult
 class colesoGeneralController
 {
   protected $Environment;
-  protected $parameters;
-  protected $callingLevel=0;
-  protected $applicationPath='/';
+  public $parameters;
+  public $callingLevel=0;
+  public $applicationPath='/';
 
   function __construct()
   {

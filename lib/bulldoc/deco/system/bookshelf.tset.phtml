@@ -1,5 +1,9 @@
 <!-- #item# -->
-<li><a href='<?php echo $key ?>/index.html'><?php echo $title; ?></a></li>
+<?php if (!isset($hideOnBookShelf) || !$hideOnBookShelf):?>
+<p style='margin-top: 5px;margin-bottom: 5px;font-size: x-small;'><a href='<?php echo $key ?>/index.html'><?php echo $bookShelfTitle; ?></a></p>
+<?php endif; ?>
+<!-- #separator# -->
+<h2 style='color: #666666;font-size: small;margin-top: 30px;margin-bottom: 5px'><?php echo $title; ?></h2>
 <!-- #layout# -->
 <html>
 <head>

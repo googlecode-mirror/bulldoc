@@ -1,6 +1,6 @@
 <cls:keywords data='книжная полка, организация хранилища, файлы и папки, кодировки, язык' />
 <h3>Файлы и папки</h3>
-<p>У каждой книги должна быть папка с ее исходниками. Предлагается держать исходники книг в папках вида <span style='white-space: nowrap'>workshop/source/mybook</span>. Однако можно настроить любой другой путь. Если Вы используете  Bulldoc, на сайте, то ваши папки с исходниками должны быть доступны веб-серверу.</p>
+<p>У каждой книги должна быть папка с ее исходниками. Предлагается держать исходники книг в папках вида <span class='filepath'>workshop/source/mybook</span>. Однако можно настроить любой другой путь. Если Вы используете  Bulldoc, на сайте, то ваши папки с исходниками должны быть доступны веб-серверу.</p>
 <p>
 Папка с исходниками книги имеет следующую структуру:
 </p>
@@ -20,26 +20,26 @@ bulldoc mybook
 </code>
 
 <p>Эта команда создаст 2 папки:<br/>
-<span style='white-space: nowrap;color: maroon'>workshop/source/mybook</span><br/>
-<span style='white-space: nowrap;color: maroon'>workshop/source/mybook/pages</span><br/>
+<span class='filepath'>workshop/source/mybook</span><br/>
+<span class='filepath'>workshop/source/mybook/pages</span><br/>
 </p>
 
 <p>И два файла:<br/>
-пустой <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/mybook/toc.yml</span><br/>
-и <span style='white-space: nowrap;color: maroon'>/home/bulldoc/workshop/source/mybook/book_data.yml</span><br/>
+пустой <span class='filepath'>/home/bulldoc/workshop/source/mybook/toc.yml</span><br/>
+и <span class='filepath'>/home/bulldoc/workshop/source/mybook/book_data.yml</span><br/>
 </p>
 
 <p>
-Также в конец файла <span style='white-space: nowrap;color: maroon'>config/bookshelf.yml</span>, допишется строчка:</p>
+Также в конец файла <span class='filepath'>config/bookshelf.yml</span>, допишется строчка:</p>
 <pre>
 mybook:
 </pre>
 
-<p>Отредактируйте файл <span style='white-space: nowrap;color: maroon'>workshop/source/mybook/book_data.yml</span>, вписав туда название книги, и по желанию изменив другие параметры.</p>
+<p>Отредактируйте файл <span class='filepath'>workshop/source/mybook/book_data.yml</span>, вписав туда название книги, и по желанию изменив другие параметры.</p>
 
 <h3>Настройка книжной полки</h3>
 <p>Для того, чтобы программа находила файлы исходников Вашей книги, книгу нужно прописать в настройки книжной полки</p>
-<p>Файл настроек находится в <span style='color: maroon; white-space: nowrap'>config/bookshelf.yml</span></p>
+<p>Файл настроек находится в <span class='filepath'>config/bookshelf.yml</span></p>
 <p>Изначально там уже есть одна книга. Вот эта, которую Вы читаете.</p>
 
 <p>Книги на полке &mdash; это совокупность исходников и настроек экспорта. Каждой такой группе назначается ID, который называется ключевым словом и может содержать буквы и цифры. В случае, когда используются настройки по умолчанию, достаточно в файле книжной полки просто упомянуть ключ книги:</p>
@@ -58,7 +58,8 @@ mybook:
   dest:   mybook_special
   theme: blueprint_chm
   buildChm: 1
-  singlePageExport: 1
+  singlePageExport: 0
+  hideOnBookShelf: 0
   language: rus
 </pre>
 
@@ -70,11 +71,13 @@ mybook:
 
 <p><b>rootIndexLevel</b> Регулирует число уровней оглавления на самой первой странице (обложке) книги. Для подразделов можно задать другой уровень. Если у подраздела не задан уровень, используется <b>rootIndexLevel</b>. Значение -1 выключает ограничение и дерево оглавления выводится полностью.</p>
 
-<p><b>theme</b>. Имеется одна готовая тема <b>blueprint</b>. Вы можете скопировать эту тему под другим названием и отредактировать. Темы хранятся в <span style='color: maroon; white-space: nowrap'>workshop/themes</span>. Значение параметра <b>theme</b> определяет имя папки, в которой тема хранится. Подробнее см. раздел <cls:link page='layout/index.html'/>. Тему можно вообще не указывать &mdash; тогда будет использована тема blueprint.</p>
+<p><b>theme</b>. Имеется одна готовая тема <b>blueprint</b>. Вы можете скопировать эту тему под другим названием и отредактировать. Темы хранятся в <span class='filepath'>workshop/themes</span>. Значение параметра <b>theme</b> определяет имя папки, в которой тема хранится. Подробнее см. раздел <cls:link page='layout/index.html'/>. Тему можно вообще не указывать &mdash; тогда будет использована тема blueprint.</p>
 
-<p><b>singlePageExport</b> если установлен, то при экспорте будет создан один большой html-файл.</p>
+<p><b>singlePageExport</b> если установлен и истинен, то при экспорте будет создан один большой html-файл.</p>
 
-<p><b>buildChm</b> если установлен, то при генерации статических файлов будут созданы файла проекта для компиляции chm.</p>
+<p><b>hideOnBookShelf</b> если установлен и истинен, запись не будет отображаться на книжной полке.</p>
+
+<p><b>buildChm</b> если установлен и истинен, то при генерации статических файлов будут созданы файла проекта для компиляции chm.</p>
 
 <p><b>language</b> задает язык интерфейса и служебных элементов. Если Ваша книга написана не на языке, установленном в настройках, то следует явно указать язык. В настоящее время поддерживаются языки: русский-windows1251 (rus), русский-utf8 (utf8_rus) и английский (eng). Если локаль не совпадает с локалью по умолчанию для выбранного языка, то ее можно задать с помощью параметра <b>locale</b>. См. также раздел <cls:link page='layout/language.html' />.</p>
 
