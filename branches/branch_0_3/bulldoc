@@ -29,8 +29,8 @@ class docgenBuilder extends bookLoader
   private function createBook($key)
   {
     $bookDir=colesoApplication::getConfigVal('/bulldoc/workshopDir')."source/$key/";
-    mkdir ($bookDir,0666);
-    mkdir ($bookDir.'pages',0666);
+    mkdir ($bookDir,0777);
+    mkdir ($bookDir.'pages',0777);
     file_put_contents($bookDir.'toc.yml','');
     file_put_contents($bookDir.'book_data.yml',"title: $key\nauthor: Incognito\ncopyright: Me, 2008\nsite: www.mysite.ru");
     
