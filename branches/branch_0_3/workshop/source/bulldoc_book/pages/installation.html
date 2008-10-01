@@ -1,6 +1,25 @@
 <cls:keywords data='установка, настройка' />
 <h3>Скачать и распаковать</h3>
-<p>Вам потребуется php 5.2+ (обратите внимание, что для работы из командной строки, нужна консольная версия php. Например, в Linux (K)Ubuntu необходимо поставить пакет php5-cli). <a href='http://bulldoc.ru/download.html'>Скачайте программу с сайта</a>. Распакуйте архив.</p>
+<p>Вам потребуется php 5.2+ (обратите внимание, что для работы из командной строки, нужна консольная версия php. Например, в Linux (K)Ubuntu необходимо поставить пакет php5-cli).</p>
+
+<p>Если Вы собираетесь использовать режим веб-сервера, то у Apache должен быть подключен mod_rewrite. Это делается прописыванием в httpd.conf строки</p>
+
+<pre>
+LoadModule rewrite_module modules/mod_rewrite.so
+</pre>
+
+<p>В Linux (K)Ubuntu модуль можно подключить командой</p>
+<pre>
+a2enmod rewrite.load
+</pre>
+
+<p>Ваш виртуальный сервер должен понимать файл .htaccess. Для этого в конфигурационный блок для Вашего сайта (либо он внутри httpd.conf, либо отдельным файлом, например в (K)Ubuntu это <span class='filepath'>/etc/apache2/sites-available</span>) надо вписать строку:
+
+<pre>
+LoadModule rewrite_module modules/mod_rewrite.so
+</pre>
+
+<p><a href='http://bulldoc.ru/download.html'>Скачайте программу с сайта</a>. Распакуйте архив.</p>
 
 <h3>Настроить</h3>
 <p>После распаковки система готова к работе. Позаботьтесь, чтобы у программы были права на запись в папку <span class='filepath'>workshop</span> и папку <span class='filepath'>cache</span>. Для работы из командной строки под Unix, дайте права на исполнение файлу <span class='filepath'>/bulldoc</span></p>
