@@ -14,6 +14,7 @@ class pathBuilder
   public function __construct($path,$mode='server')
   {
     $this->mode=$mode;
+    $path=(string) $path;
     $path=ltrim($path,'\\/');
     if ($path=='') $path='index.html';
     $this->path=$path;

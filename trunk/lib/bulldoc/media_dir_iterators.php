@@ -20,7 +20,7 @@ class mediaItem
   public function copy()
   {
     $dirname=dirname($this->toPath);
-    if (!file_exists($dirname)) mkdir ($dirname,0666,true);
+    if (!file_exists($dirname)) mkdir ($dirname,0777,true);
     copy($this->fromPath,$this->toPath);
   }
 //--------------------------------------------
