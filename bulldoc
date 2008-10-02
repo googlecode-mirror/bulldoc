@@ -74,7 +74,9 @@ class docgenBuilder extends bookLoader
     }
   }
 }
-
+$old = umask(0);
 $builder=new docgenBuilder();
 $builder->run();
+echo "\n";
+umask($old);
 ?>
