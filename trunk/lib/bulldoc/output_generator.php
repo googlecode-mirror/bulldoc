@@ -132,7 +132,7 @@ class outputGenerator
       );
     $content=colesoPHPTemplate::parseFile($mainLayout, $data);
     
-    if (!file_exists($this->outputPath)) mkdir($this->outputPath,0666,true);
+    if (!file_exists($this->outputPath)) mkdir($this->outputPath,0777,true);
     file_put_contents ($this->outputPath.'single.html', $content);
   }
 //---------------------------------------------------
