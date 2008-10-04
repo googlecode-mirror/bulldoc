@@ -102,12 +102,12 @@ class colesoDataset implements ArrayAccess,Countable,Iterator
     return $array;
   }
 //---------------------------------------------------------------------------
-  protected function __isset($name)
+  public function __isset($name)
   {
     return isset($this->_data[$name]);
   }
 //---------------------------------------------------------------------------
-  protected function __unset($name)
+  public function __unset($name)
   {
     unset($this->_data[$name]);
   }

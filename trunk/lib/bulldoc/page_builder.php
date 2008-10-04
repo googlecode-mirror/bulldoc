@@ -81,7 +81,7 @@ class renderDocPage  extends buildOnToc
       $data=array(
         'path'=>$path,
         'bookTitle'=>$this->bookTitle,
-        'bookData'=>$this->bookData,
+        'bookData'=>$this->book->getBookData(),
         'level'=>$pathBuilder->getLevel(),
         'content' => $content,
         'pageData'=>$this->structureHolder->getPage($pathBuilder),
@@ -118,6 +118,12 @@ class renderDocPage  extends buildOnToc
     $data['upLevelLink']=$pathBuilder->isIndex()? '../index.html':'index.html';
     $data['editURL']=$pathBuilder->isIndex()? 'index.html.edit' : $pathBuilder->getPageName().'.edit';
     $data['editTocURL']=str_replace('index.html','',$pathBuilder->getRootUrl()).'.edit';
+    $this->buildCustomStyleUrl($data);
+  }
+//---------------------------------------------------------------------------
+  private function buildCustomStyleUrl(&$data)
+  {
+    if ($this->book->getBookStyle()) $data['customStyleUrl']=$data['rootPath'].'book_style.css';
   }
 //---------------------------------------------------------------------------
   private function getAssetsUrl($pathBuilder)

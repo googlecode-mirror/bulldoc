@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/screen.css" type="text/css" media="screen, projection"/>
 <link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/print.css" type="text/css" media="print"/>
 <link rel="stylesheet" media="screen" type="text/css" href="<?php echo $assetsURL; ?>style.css" />
+<?php if (isset($customStyleUrl) && $customStyleUrl): ?>
+<link rel="stylesheet" media="screen" type="text/css" href="<?php echo $customStyleUrl; ?>" />
+<?php endif; ?>
 <title><?php echo $bookData['title']; ?></title>
 </head>
 <body style='margin: 10px'>

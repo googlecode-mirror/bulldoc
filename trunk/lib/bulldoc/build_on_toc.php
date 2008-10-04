@@ -8,14 +8,14 @@ abstract class buildOnToc
   protected $structureHolder;
   protected $bookKey=null;
   protected $bookTitle='';
-  protected $bookData=null;
+  //protected $bookData=null;
   
   function __construct($book)
   {
     $this->book=$book;
     
     $this->bookKey=$book->getBookKey();
-    $this->bookData=$book->getBookData();
+    //$this->bookData=$book->getBookData();
     $this->bookTitle=$book->getBookTitle();
     $this->structureHolder=$book->getStructureHolder();
   }
