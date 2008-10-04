@@ -130,6 +130,9 @@ class outputGenerator
       'content'=>$this->singlePageContent,
       'bookData'=>$this->book->getBookData()
       );
+    
+    if ($this->book->getBookStyle()) $data['customStyleUrl']='images/book_style.css';
+    
     $content=colesoPHPTemplate::parseFile($mainLayout, $data);
     
     if (!file_exists($this->outputPath)) mkdir($this->outputPath,0777,true);

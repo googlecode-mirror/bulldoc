@@ -7,7 +7,7 @@ class bulldocFrontController extends colesoFrontController
 {
   private $url;
   private $bookLoader;
-  private $media_ext=array('jpg','jpeg','gif','png','txt');
+  private $media_ext=array('jpg','jpeg','gif','png','txt','css');
 
 //-----------------------------------------------------
   public function __construct()
@@ -181,7 +181,8 @@ class bookMediaController extends bookController
                             'jpeg'=>'image/jpeg',
                             'gif'=>'image/gif',
                             'png'=>'image/png',
-                            'txt'=>'text/plain');
+                            'txt'=>'text/plain',
+                            'css'=>'text/css');
   
   public function run()
   {

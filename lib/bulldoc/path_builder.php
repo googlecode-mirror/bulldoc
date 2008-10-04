@@ -29,9 +29,9 @@ class pathBuilder
     if (count($this->pathParts) > 1) $this->parentName=$this->pathParts[count($this->pathParts)-2];
   }
 //---------------------------------------------------------------------------
-  public function getStaticAssetsUrl()
+  public function getStaticAssetsUrl($fileName='')
   {
-    return $this->rootPath.'_assets/';
+    return $this->rootPath.'_assets/'.$fileName;
   }
 //---------------------------------------------------------------------------
   public function getRootPath()

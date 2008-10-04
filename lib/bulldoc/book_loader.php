@@ -150,6 +150,13 @@ class book
     return $this->bookData['source'];
   }
 //-----------------------------------------------------------
+  public function getBookStyle()
+  {
+    $styleFilePath=$this->bookData['source'].'pages/book_style.css';
+    if (file_exists($styleFilePath)) return $styleFilePath;
+    return '';
+  }
+//-----------------------------------------------------------
   public function getBookTheme()
   {
     $workshopThemeDir=colesoApplication::getConfigVal('/bulldoc/workshopDir').'themes/';
@@ -209,7 +216,6 @@ class book
   public function getBookRenderer()
   {
     $manager=new bulldocDecoThemes($this->getBookTheme());
-    //$render=new renderDocPage($this->tocFileName,$this->bookKey,$manager);
     $render=new renderDocPage($this,$manager);
     $rootIndexLevel=$this->getBookRootIndexLevel();
     if ($rootIndexLevel) $render->setRootIndexLevel($rootIndexLevel);

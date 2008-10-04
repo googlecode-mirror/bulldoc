@@ -21,6 +21,7 @@ class colesoDecoThemes
   public function getFile($path)
   {
     $realPath=$this->getRealPath($path);
+
     if (file_exists($this->themePath.$path)) return $this->themePath.$realPath;
     else return colesoApplication::getConfigVal('/system/docRoot').'lib/'.$this->libPath.'deco/'.$path;
   }
