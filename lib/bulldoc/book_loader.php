@@ -19,7 +19,7 @@ class bookLoader
 //---------------------------------------------------------------------------
   private function loadBookShelf()
   {
-    $file=colesoApplication::getConfigVal('/bulldoc/bookshelfConfig').'bookshelf.yml';
+    $file=colesoApplication::getConfigVal('/bulldoc/bookshelfConfig');
     $cacheFile=colesoApplication::getConfigVal('/system/cacheDir')."bulldoc/bookshelf.cache";
     if (file_exists($cacheFile) && (filemtime ($cacheFile) > filemtime ($file))){
       $rawdata=file_get_contents ($cacheFile);
@@ -41,11 +41,11 @@ class bookLoader
   public function getBookSource($key)
   {
     if (!isset($this->books[$key]['source']) || $this->books[$key]['source']=='') {
-      return colesoApplication::getConfigVal('/bulldoc/workshopDir')."source/$key/";
+      return colesoApplication::getConfigVal('/bulldoc/source')."$key/";
     }
     $source=$this->books[$key]['source'];
     if (detectAbsolutePath($source)) return $source;
-    $source=colesoApplication::getConfigVal('/bulldoc/workshopDir')."source/$source";
+    $source=colesoApplication::getConfigVal('/bulldoc/source').$source;
     $source=rtrim($source,'\\/').'/';
     return $source;
   }
@@ -62,6 +62,8 @@ class bookLoader
     
     $this->books[$key]=array_merge($this->books[$key],$DATA);
     $this->books[$key]['bookShelfTitle']=$bookShelfTitle;
+    
+    if (!isset($this->books[$key]['outputMode'])) $this->books[$key]['outputMode']='html';
   }
 //-----------------------------------------------------------
   public function getBooks()
@@ -101,11 +103,11 @@ class book
   public function getBookDest()
   {
     if (!isset($this->bookData['dest'])) 
-      return colesoApplication::getConfigVal('/bulldoc/workshopDir')."output/{$this->bookKey}/";
+      return colesoApplication::getConfigVal('/bulldoc/output')."{$this->bookKey}/";
 
     $dest=$this->bookData['dest'];
     if (detectAbsolutePath($dest)) return $dest;
-    $dest=colesoApplication::getConfigVal('/bulldoc/workshopDir')."output/$dest";
+    $dest=colesoApplication::getConfigVal('/bulldoc/output')."$dest";
     $dest=rtrim($dest.'\\/').'/';
     return $dest;
   }
@@ -134,15 +136,11 @@ class book
   {
     return isset($this->bookData['locale'])? $this->bookData['locale']:null; 
   }
+
 //-----------------------------------------------------------
-  public function needChm()
+  public function getOutputMode()
   {
-    return isset($this->bookData['buildChm'])? $this->bookData['buildChm']:false; 
-  }
-//-----------------------------------------------------------
-  public function needSinglePageExport()
-  {
-    return isset($this->bookData['singlePageExport'])? $this->bookData['singlePageExport']:false; 
+    return $this->bookData['outputMode'];
   }
 //-----------------------------------------------------------
   public function getBookSource()
@@ -159,8 +157,8 @@ class book
 //-----------------------------------------------------------
   public function getBookTheme()
   {
-    $workshopThemeDir=colesoApplication::getConfigVal('/bulldoc/workshopDir').'themes/';
-    $workshopThemeUrl=colesoApplication::getConfigVal('/bulldoc/workshopUrl').'themes/';
+    $workshopThemeDir=colesoApplication::getConfigVal('/bulldoc/themeDir');
+    $workshopThemeUrl=colesoApplication::getConfigVal('/bulldoc/themeUrl');
     if(isset($this->bookData['theme'])){
       $theme=$this->bookData['theme'];
       if (is_array($theme)) {

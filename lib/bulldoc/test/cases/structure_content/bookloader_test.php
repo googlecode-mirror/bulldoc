@@ -20,42 +20,44 @@ class BookLoaderTestCase extends colesoBaseTest
 //-------------------------------------------
   function testBookLoad() 
   {
-    $workshopPath=colesoApplication::getConfigVal('/bulldoc/workshopDir');
+    $sourcePath=colesoApplication::getConfigVal('/bulldoc/source');
     $myBookLoader=new bookLoader();
     
     $this->assertEqual($myBookLoader->getBookSource('bulldoc_book'),
-                        colesoApplication::getConfigVal('/bulldoc/workshopDir').'source/bulldoc_book/',
+                        $sourcePath.'bulldoc_book/',
                         'Book source is correct');
     
     $this->assertEqual($myBookLoader->getBookTitle('bulldoc_book'),'Bull Doc','Correct book title obtained');
     
     $this->assertEqual($myBookLoader->getBooks(),
-      array ('bulldoc_book' => array ('source'=>$workshopPath.'source/bulldoc_book/',
+      array ('bulldoc_book' => array ('source'=>$sourcePath.'bulldoc_book/',
                                       'title'=>'Bull Doc',
                                       'author' => 'Dmitry Smirnov',
                                       'copyright' => 'H-type, 2008',
                                       'site' => 'www.bulldoc.ru',
-                                      'bookShelfTitle' => 'Bull Doc'                                      
+                                      'bookShelfTitle' => 'Bull Doc',
+                                      'outputMode'=> 'html'
                                       ),
              'bulldoc_chm' => array ('title'=> 'Bull Doc',
                                       'rootIndexLevel' => -1, 
-                                      'source' => $workshopPath.'source/bulldoc_book/',
+                                      'source' => $sourcePath.'bulldoc_book/',
                                       'dest' => 'bulldoc_chm',
-                                      'theme' => 'blueprint_chm',
-                                      'buildChm' => 1,
+                                      'theme' => 'blueprint',
+                                      'outputMode' => 'chm',
                                       'author' => 'Dmitry Smirnov',
                                       'copyright' => 'H-type, 2008',
                                       'site' => 'www.bulldoc.ru',
                                       'bookShelfTitle' => 'BullDoc CHM'                                      
                                       ),
              'bulldoc_site' => array ('title' => 'Bull Doc',
-                                      'source' => $workshopPath.'source/bulldoc_book/',
+                                      'source' => $sourcePath.'bulldoc_book/',
                                       'dest' => '../../../doc',
                                       'theme' => 'blueprint_site',
                                       'author' => 'Dmitry Smirnov',
                                       'copyright' => 'H-type, 2008',
                                       'site' => 'www.bulldoc.ru',
-                                      'bookShelfTitle' => 'BullDoc for Web-Site'                                      
+                                      'bookShelfTitle' => 'BullDoc for Web-Site',                                      
+                                      'outputMode'=> 'html'
                                       )
              ),
         'Correct Book list obtained'
@@ -64,32 +66,36 @@ class BookLoaderTestCase extends colesoBaseTest
 //-------------------------------------------
   function testBook()
   {
-    $workshopPath=colesoApplication::getConfigVal('/bulldoc/workshopDir');
+    $sourcePath=colesoApplication::getConfigVal('/bulldoc/source');
+    $outputPath=colesoApplication::getConfigVal('/bulldoc/output');
+    $themesPath=colesoApplication::getConfigVal('/bulldoc/themeDir');
+    
     $myBookLoader=new bookLoader();
     
     $myBook=$myBookLoader->getBook('bulldoc_book');
     
-    $this->assertEqual($myBook->getBookDest(),$workshopPath.'output/bulldoc_book/','Correct Output Dest obtained');
+    $this->assertEqual($myBook->getBookDest(),$outputPath.'bulldoc_book/','Correct Output Dest obtained');
     $this->assertEqual($myBook->getBookKey(),'bulldoc_book','Book key Ok');
     
     $this->assertEqual($myBook->getBookData(),
-     array ('source' => $workshopPath.'source/bulldoc_book/',
+     array ('source' => $sourcePath.'bulldoc_book/',
       'title' => 'Bull Doc',
       'author' => 'Dmitry Smirnov',
       'copyright' => 'H-type, 2008',
       'site' => 'www.bulldoc.ru',
-      'bookShelfTitle' => 'Bull Doc'                                      
+      'bookShelfTitle' => 'Bull Doc',
+      'outputMode' => 'html'
        ),
      'Correct book data array obtained');
     
     $this->assertEqual($myBook->getBookTitle(),'Bull Doc','Book title Ok');
-    $this->assertEqual($myBook->getBookSource(),$workshopPath.'source/bulldoc_book/','Book source Ok');
+    $this->assertEqual($myBook->getBookSource(),$sourcePath.'bulldoc_book/','Book source Ok');
     $this->assertEqual($myBook->getBookTheme(),
-     array('themePath' =>$workshopPath.'themes/blueprint','themeUrl' => 'support/workshop/themes/blueprint'),
+     array('themePath' => $themesPath.'blueprint','themeUrl' => 'support/workshop/themes/blueprint'),
      'Correct Theme data obtained'
      );
     
-    $this->assertEqual($myBook->getTocFileName(),$workshopPath.'source/bulldoc_book/toc.yml','Correct TOC filename obtained');
+    $this->assertEqual($myBook->getTocFileName(),$sourcePath.'bulldoc_book/toc.yml','Correct TOC filename obtained');
     
     $this->assertIsA($myBook->getBookRenderer(),'renderDocPage','book rendrer obtained');
   }

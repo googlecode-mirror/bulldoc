@@ -5,8 +5,8 @@ bulldoc_chm:
   rootIndexLevel: -1
   source: bulldoc_book
   dest: bulldoc_chm
-  theme: blueprint_chm
-  buildChm: 1
+  theme: blueprint
+  outputMode: chm
   
 bulldoc_site:
   title: BullDoc for Web-Site

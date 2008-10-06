@@ -107,7 +107,7 @@ class IndexBuilderTestCase extends colesoBaseTest
 
     $examinator=$this->getContentExaminator($html);
     echo $examinator->display();
-    $this->assertEqual($examinator->getMD5(),'916eac6a450d7a6ac329f0939ca06070','Index rendered');
+    $this->assertEqual($examinator->getMD5(),'49532f66be514aeb4436b8418a1fda49','Index rendered');
 
     $this->assertTrue(file_exists($this->getCacheFileName()),'Cache file exists');
 
@@ -117,7 +117,7 @@ class IndexBuilderTestCase extends colesoBaseTest
 
     $examinator=$this->getContentExaminator($html);
     echo $examinator->display();
-    $this->assertEqual($examinator->getMD5(),'b6da63a4c5191beafdc2b4dc050228b7','Index loaded from CACHE');
+    $this->assertEqual($examinator->getMD5(),'f1a5b0bf8b5cbab2df8ec4ca0a2063a0','Index loaded from CACHE');
   }
 //-------------------------------------------
   function testRenderCHMIndexPage()
@@ -134,7 +134,7 @@ class IndexBuilderTestCase extends colesoBaseTest
   {
     $myBookLoader=new bookLoader();
     $theme=new bulldocDecoThemes($myBookLoader->getBook('bulldoc_book')->getBookTheme());
-    $myIndexRender=new IndexRender($this->getIndexBuilder(),'bulldoc_book',$theme);
+    $myIndexRender=new IndexRender($this->getIndexBuilder(),$myBookLoader->getBook('bulldoc_book'),$theme);
     return $myIndexRender;
   }
 //-------------------------------------------

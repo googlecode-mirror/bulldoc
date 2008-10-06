@@ -5,7 +5,7 @@
 * Released under the MIT license (http://www.opensource.org/licenses/mit-license.html)
 ***********************************************************************************
 *
-* $Id: data_fixture.lib.php 32 2006-04-16 19:43:23Z hamster $
+* $Id$
 ***********************************************************************************/
 
 register_shutdown_function ('shutdownexit');

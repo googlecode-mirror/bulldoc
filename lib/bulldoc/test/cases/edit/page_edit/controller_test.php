@@ -16,12 +16,15 @@ class EditControllerTestCase extends colesoBaseTest
     parent::__construct('Edit controller');
 
     colesoApplication::setConfigVal('/bulldoc/systemTemplates',dirname(__FILE__).'/support/templates/system/');
-    colesoApplication::setConfigVal('/bulldoc/workshopDir',$this->fullCachePath.'workshop/');
-    colesoApplication::setConfigVal('/bulldoc/workshopUrl','support/workshop/');
-    colesoApplication::setConfigVal('/bulldoc/bookshelfConfig',dirname(__FILE__).'/support/');
-    
+    colesoApplication::setConfigVal('/bulldoc/bookshelfConfig',dirname(__FILE__).'/support/bookshelf.yml');
     colesoApplication::setConfigVal('/bulldoc/textProcessingClass','docTemplateSet');
     colesoApplication::setConfigVal('/bulldoc/rootIndexLevel',2);
+
+    colesoApplication::setConfigVal('/bulldoc/themeDir',dirname(__FILE__).'/support/workshop/themes/');
+    colesoApplication::setConfigVal('/bulldoc/themeUrl','support/workshop/themes/');
+    colesoApplication::setConfigVal('/bulldoc/output',dirname(__FILE__).'/support/workshop/output/');
+    
+    colesoApplication::setConfigVal('/bulldoc/source',$this->fullCachePath.'workshop/source/');
   }
 //-------------------------------------------
   function testShowForm() 
@@ -40,7 +43,7 @@ class EditControllerTestCase extends colesoBaseTest
     
     $examinator=$this->getContentExaminator($result->content);
     echo $examinator->display();
-    $this->assertEqual($examinator->getMD5(),'6624e48a145d0c2cf4ae45f7b880b9fd','Edit form rendered');
+    $this->assertEqual($examinator->getMD5(),'775d7a5093e502c39fb794f12240a059','Edit form rendered');
   }
 //-------------------------------------------
   function testSaveForm() 
@@ -84,7 +87,7 @@ class EditControllerTestCase extends colesoBaseTest
 
     $examinator=$this->getContentExaminator($result->content);
     echo $examinator->display();
-    $this->assertEqual($examinator->getMD5(),'532cebde66c4d86dea9f43512fd745d9','TOC Edit form rendered');
+    $this->assertEqual($examinator->getMD5(),'299e680e2c64e630be8a0ffe97f7b8cb','TOC Edit form rendered');
   }
 }
 
