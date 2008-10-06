@@ -12,7 +12,6 @@ class outputGenerator
   public $mediaExt;
   private $themeManager;
   
-  private $singlePageMode=false;
   private $singlePageContent='';
   
   private $textConvPageDir;
@@ -23,8 +22,6 @@ class outputGenerator
     $this->render->setMode('static');
     $this->book=$book;
     $this->booKey=$book->getBookKey();
-    $this->singlePageMode=$book->needSinglePageExport();
-    $this->render->setSinglePageMode($this->singlePageMode);
     
     $this->toc=$this->render->getToc();
     $this->outputPath=rtrim($book->getBookDest(),'\\/').'/';
@@ -35,7 +32,7 @@ class outputGenerator
   private function copyMediaContent()
   {
     $outputPath=$this->outputPath;
-    if ($this->singlePageMode) {
+    if ($this->book->getOutputMode()=='html_single') {
       $outputPath.='images';
       mkdir($outputPath);
     }
@@ -66,7 +63,7 @@ class outputGenerator
 //------------------------------------------------------------------
   function saveDestFile($path,$content)
   {
-    if ($this->singlePageMode) {
+    if ($this->book->getOutputMode()=='html_single') {
       $path_parts = pathinfo($path);
       $this->textConvPageDir=($path_parts['dirname']=='.')? '':$path_parts['dirname'].'/';
       $content=preg_replace_callback('/<(a|img)(.*?)(src|href)=["\'](.*?)["\'](.*?)>/i',
@@ -118,25 +115,32 @@ class outputGenerator
     $this->saveDestFile('index.html',$rootContent);
     $this->buildSection($this->toc,'/');
     
-    if ($this->singlePageMode) $this->buildSinglePage();
-    if ($this->book->needChm()) $this->buildCHM();
+    if ($this->book->getOutputMode()=='html_single') $this->buildSinglePage();
+    if ($this->book->getOutputMode()=='chm') $this->buildCHM();
   }
 //---------------------------------------------------
   private function buildSinglePage()
   {
-    $mainLayout=$this->themeManager->getFile('template/main_singlepage_layout.tpl.phtml');
+    $mainLayout=$this->themeManager->getFile('template/singlepage_layout.tpl.phtml');
     $data=array(
-      'assetsURL'=>'_assets/',
       'content'=>$this->singlePageContent,
       'bookData'=>$this->book->getBookData()
       );
     
-    if ($this->book->getBookStyle()) $data['customStyleUrl']='images/book_style.css';
+    $bodyContent=colesoPHPTemplate::parseFile($mainLayout, $data);
     
-    $content=colesoPHPTemplate::parseFile($mainLayout, $data);
+    $masterData=array(
+      'assetsURL'=>'_assets/',
+      'bookTitle'=>$this->book->getBookTitle(),
+      'outputMode'=>$this->book->getOutputMode(),
+      'content' => $bodyContent
+      );
+    if ($this->book->getBookStyle()) $data['customStyleUrl']='images/book_style.css';
+    $masterLayout=$this->themeManager->getFile('template/master_layout.tpl.phtml');
+    $result=colesoPHPTemplate::parseFile($masterLayout, $masterData);
     
     if (!file_exists($this->outputPath)) mkdir($this->outputPath,0777,true);
-    file_put_contents ($this->outputPath.'single.html', $content);
+    file_put_contents ($this->outputPath.'single.html', $result);
   }
 //---------------------------------------------------
   private function buildCHM()
@@ -160,7 +164,7 @@ class outputGenerator
     $sourcePath=$this->book->getPagesSourcePath();
     $toc=$this->book->getStructureHolder()->getToc();
     $indexBuilder=new IndexBuilder($sourcePath,$toc);
-    $myIndexRender=new IndexRender($indexBuilder,$this->booKey,null);
+    $myIndexRender=new IndexRender($indexBuilder,$this->book,null);
     $content=$myIndexRender->renderCHMIndex();
 
     file_put_contents($this->outputPath.$this->booKey.'.hhk',$content);

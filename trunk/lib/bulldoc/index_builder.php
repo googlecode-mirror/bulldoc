@@ -51,12 +51,14 @@ class IndexRender
 {
   private $indexBuilder;
   private $bookKey;
+  protected $book;
   private $themeManager;
   
-  function __construct($indexBuilder,$bookKey,$themeManager)
+  function __construct($indexBuilder,$book,$themeManager)
   {
     $this->indexBuilder=$indexBuilder;
-    $this->bookKey=$bookKey;
+    $this->book=$book;
+    $this->bookKey=$book->getBookKey();
     $this->themeManager=$themeManager;
   }
 //-----------------------------------------------------
@@ -64,6 +66,8 @@ class IndexRender
   {
     $indexTemplateFile=$this->themeManager->getFile('template/index.tset.phtml');
     $indexTemplate= new colesoPHPTemplateSet($indexTemplateFile);
+    $indexTemplate->setGlobalVar('outputMode',$this->book->getOutputMode());
+    
     $myPathBuilder=new pathBuilder($indexPagePath);
     $rootPath=$myPathBuilder->getRootPath();
     

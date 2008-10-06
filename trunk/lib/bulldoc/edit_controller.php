@@ -43,7 +43,7 @@ class pageEditController extends bulldocFileEditController
   {
     $this->pathBuilder=new pathBuilder($this->parameters->url);
     $this->title=colesoApplication::getMessage('bulldoc','page_edit_title');
-    $this->bakToViewLink=$this->pathBuilder->isIndex()? 'index.html' : $this->pathBuilder->getPageName();
+    $this->backToViewLink=$this->pathBuilder->isIndex()? 'index.html' : $this->pathBuilder->getPageName();
     return parent::run();
   }
 //------------------------------------------------
@@ -58,6 +58,14 @@ class pageEditController extends bulldocFileEditController
   {
     return $this->parameters->book->getBookSource().'pages/'.$this->pathBuilder;
   }
+//------------------------------------------------
+  public function buildRedirectAfterSaveURL()
+  {
+    if ($this->Environment->getPostVar('save_view')){
+      return $this->backToViewLink;
+    }
+    return parent::buildRedirectAfterSaveURL();
+  }
 }
 
 //===========================================================================================================================
@@ -67,7 +75,7 @@ class tocEditController extends bulldocFileEditController
   public function run()
   {
     $this->title=colesoApplication::getMessage('bulldoc','toc_edit_title');
-    $this->bakToViewLink='index.html';
+    $this->backToViewLink='index.html';
     return parent::run();
   }
 //------------------------------------------------

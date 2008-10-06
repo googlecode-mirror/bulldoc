@@ -14,12 +14,11 @@ class renderDocPage  extends buildOnToc
   private $themeManager;
   private $navTemplate;
   private $layoutTemplateFile;
+  private $masterLayoutTemplateFile;
   private $sourcePath;
   private $mode='server'; //static | server
                           //generate static version or serverside rendering on the fly (server)
                           
-  protected $singlePageMode=false;
-  
   function __construct($book,$themeManager=null)
   {
     parent::__construct($book);
@@ -28,20 +27,28 @@ class renderDocPage  extends buildOnToc
     
     $navTemplateFile=$this->themeManager->getFile('template/navigation.tset.phtml');
     $this->navTemplate=new colesoPHPTemplateSet($navTemplateFile);
+    $this->navTemplate->setGlobalVar('outputMode',$this->book->getOutputMode());
     
-    $this->layoutTemplateFile=$this->themeManager->getFile('template/layout.tpl.phtml');
-
+    $this->obtainLayoutTemplateFile();
+    $this->masterLayoutTemplateFile=$this->themeManager->getFile('template/master_layout.tpl.phtml');
     $this->sourcePath=$this->book->getPagesSourcePath();
+  }
+//---------------------------------------------------------------------------
+  protected function obtainLayoutTemplateFile()
+  {
+    $outputMode=$this->book->getOutputMode();
+    if ($outputMode=='html_single') {
+      $this->layoutTemplateFile=$this->themeManager->getFile('template/singlepage_content.tpl.phtml');
+    } elseif ($outputMode=='html') { 
+      $this->layoutTemplateFile=$this->themeManager->getFile('template/html_layout.tpl.phtml');
+    } elseif ($outputMode=='chm') {
+      $this->layoutTemplateFile=$this->themeManager->getFile('template/chm_layout.tpl.phtml');
+    } else colesoErrDie('Invalid Output Mode:'.$outputMode);
   }
 //---------------------------------------------------------------------------
   public function setMode($mode)
   {
     $this->mode=$mode;
-  }
-//---------------------------------------------------------------------------
-  public function setSinglePageMode($mode)
-  {
-    $this->singlePageMode=$mode;
   }
 //---------------------------------------------------------------------------
   public function getThemeManager()
@@ -72,28 +79,45 @@ class renderDocPage  extends buildOnToc
   public function renderPage($path, $content=null)
   {
     try {
-      $pathBuilder=new pathBuilder($path,$this->mode);
+      $pathBuilder=new pathBuilder($path);
       if (is_null($content)) {
         $content=$this->getContent($pathBuilder);
         $editMode=false;
       } else $editMode=true;
       
       $data=array(
-        'path'=>$path,
-        'bookTitle'=>$this->bookTitle,
-        'bookData'=>$this->book->getBookData(),
-        'level'=>$pathBuilder->getLevel(),
         'content' => $content,
-        'pageData'=>$this->structureHolder->getPage($pathBuilder),
-        'mode' => $this->mode,
         'editMode' => $editMode
         );
+      $this->buildGeneralData($pathBuilder,$data);
       $this->buildMenuData($pathBuilder,$data);
       $this->buildUrlData($pathBuilder,$data);
-      return colesoPHPTemplate::parseFile($this->layoutTemplateFile, $data);
+      return $this->renderPageData($data);
     } catch (pageNotFoundException $e){
       colesoErrDie($e->getMessage());
     }
+  }
+//---------------------------------------------------------------------------
+  protected function renderPageData($data)
+  {
+    $bodyContent=colesoPHPTemplate::parseFile($this->layoutTemplateFile, $data);
+    if ($this->book->getOutputMode()!='html_single'){
+      $data['content']=$bodyContent;
+      return colesoPHPTemplate::parseFile($this->masterLayoutTemplateFile, $data);
+    } else {
+      return $bodyContent;
+    }
+  }
+//---------------------------------------------------------------------------
+  private function buildGeneralData($pathBuilder,&$data)
+  {
+    $data['path']=(string) $pathBuilder;
+    $data['bookTitle']=$this->bookTitle;
+    $data['bookData']=$this->book->getBookData();
+    $data['level']=$pathBuilder->getLevel();
+    $data['pageData']=$this->structureHolder->getPage($pathBuilder);
+    $data['mode'] = $this->mode;
+    $data['outputMode'] = $this->book->getOutputMode();
   }
 //---------------------------------------------------------------------------
   private function buildMenuData($pathBuilder,&$data)
@@ -187,7 +211,7 @@ class renderDocPage  extends buildOnToc
   {
     $templateClass=colesoApplication::getConfigVal('/bulldoc/textProcessingClass');
     $t=new $templateClass;
-    $t->setSinglePageMode($this->singlePageMode);
+    $t->setOutputMode($this->book->getOutputMode());
     $fileName=$this->sourcePath.$pathBuilder;
     $params=array('root'=>$pathBuilder->getRootPath(),'path'=>$pathBuilder,'structure'=>$this->structureHolder);
     
@@ -200,7 +224,7 @@ class renderDocPage  extends buildOnToc
       return $content;
     } elseif ($pageData['type']=='index'){
       $myIndexBuilder=new IndexBuilder($this->sourcePath,$this->structureHolder->getToc());
-      $myIndexRender=new IndexRender($myIndexBuilder, $this->bookKey, $this->themeManager);
+      $myIndexRender=new IndexRender($myIndexBuilder, $this->book, $this->themeManager);
       return $myIndexRender->render($pathBuilder);
     } elseif (file_exists($fileName)){
       return $t->parseFile($fileName,$params);

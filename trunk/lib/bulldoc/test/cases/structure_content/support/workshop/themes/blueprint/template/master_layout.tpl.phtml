@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/screen.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/print.css" type="text/css" media="print"/>
+<link rel="stylesheet" media="screen" type="text/css" href="<?php echo $assetsURL; ?>style.css" />
+<?php if (isset($customStyleUrl) && $customStyleUrl): ?>
+<link rel="stylesheet" media="screen" type="text/css" href="<?php echo $customStyleUrl; ?>" />
+<?php endif; ?>
+
+  <style type='text/css'>
+    ul.toc li {
+      background-image: url(<?php echo $assetsURL; ?>bullet.gif);
+    }
+    ul.toc li.up {
+      background-image: url(<?php echo $assetsURL; ?>caret_up.gif);
+    }
+    ul.toc li.home {
+      background-image: url(<?php echo $assetsURL; ?>caret_home.gif);
+    }
+    ul.toc li.active {
+      background-image: url(<?php echo $assetsURL; ?>bullet_active.gif);
+    }
+  
+  </style>
+
+<?php echo $content; ?>
+

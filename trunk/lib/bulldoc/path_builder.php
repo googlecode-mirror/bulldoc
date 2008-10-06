@@ -8,12 +8,10 @@ class pathBuilder
   private $rootPath;
   private $rootUrl;
   private $pathParts;
-  private $mode;
   private $parentName='';
   
-  public function __construct($path,$mode='server')
+  public function __construct($path)
   {
-    $this->mode=$mode;
     $path=(string) $path;
     $path=ltrim($path,'\\/');
     if ($path=='') $path='index.html';
