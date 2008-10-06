@@ -5,7 +5,7 @@
 * Released under the MIT license (http://www.opensource.org/licenses/mit-license.html)
 ***********************************************************************************
 *
-* $Id: pagecontroller.lib.php 201 2007-05-24 12:01:58Z hamster $
+* $Id$
 ***********************************************************************************/
 
 

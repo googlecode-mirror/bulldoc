@@ -5,7 +5,7 @@
 * Released under the MIT license (http://www.opensource.org/licenses/mit-license.html)
 ***********************************************************************************
 *
-* $Id: dataset.lib.php 186 2007-05-07 15:24:32Z hamster $
+* $Id$
 ***********************************************************************************/
 
 class colesoDataset implements ArrayAccess,Countable,Iterator

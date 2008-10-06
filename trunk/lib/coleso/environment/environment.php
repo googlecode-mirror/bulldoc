@@ -5,7 +5,7 @@
 * Released under the MIT license (http://www.opensource.org/licenses/mit-license.html)
 ***********************************************************************************
 *
-* $Id: environment.lib.php 207 2007-05-28 16:01:27Z hamster $
+* $Id$
 ***********************************************************************************/
 
 

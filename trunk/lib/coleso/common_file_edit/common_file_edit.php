@@ -5,7 +5,7 @@ abstract class colesoTextFileEditController extends colesoGeneralController
   protected $action;
   protected $title;
   protected $encoding;
-  protected $bakToViewLink='#';
+  protected $backToViewLink='#';
   
   protected $useToken=true;
   
@@ -56,7 +56,7 @@ abstract class colesoTextFileEditController extends colesoGeneralController
     if ($messageStatus=='ok') $data['message']=$this->getSuccessSaveMessage();
     $data['content']=htmlspecialchars($this->getPageContent(),ENT_COMPAT,$this->encoding);
     $data['title']=$this->title;
-    $data['bakToViewLink']=$this->bakToViewLink;
+    $data['backToViewLink']=$this->backToViewLink;
     
     $data['tokenFieldName']=colesoToken::getTokenKey();
     $data['tokenValue']=colesoToken::getToken();
@@ -78,12 +78,17 @@ abstract class colesoTextFileEditController extends colesoGeneralController
     }
     $content=$this->Environment->getPostVar('content');
     $this->savePageContent($content);
-    
+
+    return new colesoControllerRedirect($this->buildRedirectAfterSaveURL());
+  }
+//------------------------------------------------
+  public function buildRedirectAfterSaveURL()
+  {
     $curURL=$this->Environment->getRequestURL();
     $urlManipulator=new colesoUrlManipulator($curURL);
     $urlManipulator->setVariable('message','ok');
     $redirect=$urlManipulator->buildUrl();
-    return new colesoControllerRedirect($redirect);
+    return $redirect;
   }
 //------------------------------------------------
   public function run()

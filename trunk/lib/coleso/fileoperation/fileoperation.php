@@ -5,7 +5,7 @@
 * Released under the MIT license (http://www.opensource.org/licenses/mit-license.html)
 ***********************************************************************************
 *
-* $Id: fileoperation.lib.php 239 2007-08-17 05:53:02Z hamster $
+* $Id$
 ***********************************************************************************/
 
 class colesoFileOperation

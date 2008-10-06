@@ -5,7 +5,7 @@
 * Released under the MIT license (http://www.opensource.org/licenses/mit-license.html)
 ***********************************************************************************
 *
-* $Id: application.lib.php 242 2007-09-11 14:33:22Z hamster $
+* $Id$
 ***********************************************************************************/
 require_once ('coleso/dataset/dataset.php');
 require_once ('coleso/environment/environment.php');

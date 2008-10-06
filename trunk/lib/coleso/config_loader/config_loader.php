@@ -42,6 +42,7 @@ class colesoConfigLoader
     date_default_timezone_set('UTC');
     $this->CONFIG=new colesoDataSet($CONFIG);
 
+    colesoApplication::setConfigVal('/system/localConfig',$this->CONFIG);
     $this->setCorePaths($docRoot);
     $this->loadCoreMessages();
     $this->setUpToken();
@@ -49,14 +50,23 @@ class colesoConfigLoader
     $this->setUpError();
   }
 //-------------------------------------------
+  protected function autodetectRootUrl($docRoot)
+  {
+    if ($this->CONFIG['urlRoot']) return $this->CONFIG['urlRoot'];
+    $rootUrl=substr($docRoot,strlen($_SERVER['DOCUMENT_ROOT']));
+    $rootUrl='/'.ltrim($rootUrl,'/\\');
+    return $rootUrl;
+  }
+//-------------------------------------------
   protected function setCorePaths($docRoot)
   {
+    $urlRoot=$this->autodetectRootUrl($docRoot);
     colesoApplication::setConfigVal('/system/docRoot',$docRoot);
-    colesoApplication::setConfigVal('/system/urlRoot',$this->CONFIG['urlRoot']);
-    colesoApplication::setConfigVal('/system/libUrlRoot',$this->CONFIG['urlRoot'].'lib/');
+    colesoApplication::setConfigVal('/system/urlRoot',$urlRoot);
+    colesoApplication::setConfigVal('/system/libUrlRoot',$urlRoot.'lib/');
 
     colesoApplication::setConfigVal('/system/media/upload',$docRoot.'data/media/');
-    colesoApplication::setConfigVal('/system/media/url',$this->CONFIG['urlRoot'].'data/media/');
+    colesoApplication::setConfigVal('/system/media/url',$urlRoot.'data/media/');
     colesoApplication::setConfigVal('/system/config',$docRoot.'config/');
     colesoApplication::setConfigVal('/system/cacheDir',$docRoot.'cache/');
   }
@@ -65,10 +75,14 @@ class colesoConfigLoader
   {
     if ($this->CONFIG->get('language')) {
       colesoApplication::setConfigVal('/system/language',$this->CONFIG->get('language'));
+    } else {
+      colesoApplication::setConfigVal('/system/language',$this->language);
     }
     
     if (isset($this->CONFIG['supportedLanguages'])){
       colesoApplication::setConfigVal('/system/language_list', $this->CONFIG['supportedLanguages']); 
+    } else {
+      colesoApplication::setConfigVal('/system/language_list', array('rus','utf8_rus','eng')); 
     }
   }
 //-------------------------------------------
@@ -123,12 +137,12 @@ class colesoConfigLoader
 //-------------------------------------------
   function setUpDB()
   {
-    colesoApplication::setConfigVal('/system/db/dbHost',$this->CONFIG['dbHost']);
-    colesoApplication::setConfigVal('/system/db/dbLogin',$this->CONFIG['dbLogin']);
-    colesoApplication::setConfigVal('/system/db/dbPassword',$this->CONFIG['dbPassword']);
-    colesoApplication::setConfigVal('/system/db/dbBaseName',$this->CONFIG['dbBaseName']);
-    colesoApplication::setConfigVal('/system/db/DBType',$this->CONFIG['DBType']);
-    colesoApplication::setConfigVal('/system/db/Encoding',$this->locale['db_encoding']);
-    colesoApplication::setConfigVal('/system/db/tablePrefix',$this->CONFIG['tablePrefix']);
+    colesoApplication::setConfigVal('/system/db/default/dbHost',$this->CONFIG['dbHost']);
+    colesoApplication::setConfigVal('/system/db/default/dbLogin',$this->CONFIG['dbLogin']);
+    colesoApplication::setConfigVal('/system/db/default/dbPassword',$this->CONFIG['dbPassword']);
+    colesoApplication::setConfigVal('/system/db/default/dbBaseName',$this->CONFIG['dbBaseName']);
+    colesoApplication::setConfigVal('/system/db/default/DBType',$this->CONFIG['DBType']);
+    colesoApplication::setConfigVal('/system/db/default/Encoding',$this->locale['db_encoding']);
+    colesoApplication::setConfigVal('/system/db/default/tablePrefix',$this->CONFIG->get('tablePrefix','htp_'));
   }
 }

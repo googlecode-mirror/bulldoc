@@ -5,7 +5,7 @@
 * Released under the MIT license (http://www.opensource.org/licenses/mit-license.html)
 ***********************************************************************************
 *
-* $Id: login.lib.php 233 2007-07-13 05:59:56Z hamster $
+* $Id$
 ***********************************************************************************/
 
 require_once (colesoLibrarian::lib_lname("db"));
