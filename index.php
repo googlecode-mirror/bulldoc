@@ -6,7 +6,7 @@ require_once('bulldoc/controller.php');
 function exception_handler($exception) {
   echo "Sorry, page not found, or error occured";
 }
-set_exception_handler('exception_handler');
+//set_exception_handler('exception_handler');
 
 //============================================================================
 umask(0);

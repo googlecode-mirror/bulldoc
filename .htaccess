@@ -7,7 +7,7 @@ Options FollowSymLinks
 php_flag register_globals off
 php_flag magic_quotes_gpc off
 
-#php_value error_reporting 0
+#php_value error_reporting 8191
 #php_flag display_errors Off
 
 RewriteEngine On

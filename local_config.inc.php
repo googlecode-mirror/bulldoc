@@ -4,8 +4,6 @@
 //-----------------------------------------------------------------
 // You can tune your environment settings here
 
-  $CONFIG['urlRoot']=rtrim(dirname($_SERVER['SCRIPT_NAME']),'\\/').'/';
+//System
   $CONFIG['language']='rus';
-  $CONFIG['locale']='cp1251';
-  $CONFIG['supportedLanguages']=array('rus','eng');
 ?>
