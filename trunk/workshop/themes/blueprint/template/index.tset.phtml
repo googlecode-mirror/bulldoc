@@ -2,7 +2,16 @@
 <p style='margin: 0'>
 <?php echo $word; ?> <span style='font-size: x-small'>
 <?php foreach ($pages as $page): ?>
-[<?php echo "<a href='$rootPath{$page['path']}'>".$page['title']."</a>" ?>] 
+
+[<?php 
+
+echo "<a href='";
+if ($outputMode=='html_single') echo '#';
+else echo $rootPath;
+
+echo $page['path']."'>{$page['title']}</a>";
+?>] 
+
 <?php endforeach; ?>
 </span>
 </p>

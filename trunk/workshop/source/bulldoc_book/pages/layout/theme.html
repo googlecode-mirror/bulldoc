@@ -4,22 +4,27 @@
 <pre>
 /templates -- тут шаблоны для генерации страниц
   navigation.tset.phtml -- шаблон для построения меню
-  layout.tpl.phtml -- общий макет
   index.tset.phtml -- макет для предметного указателя
   message.tpl.phtml -- макет для информационных сообщений системы
-  
+  master_layout.tpl.phtml -- содержит head секцию, общую для всех html файлов
+  html_layout.tpl.phtml -- макет для стандартного отображения в html
+  singlepage_content.tpl.phtml -- макет для страницы внутри монолитного html-файла
+  singlepage_layout.tpl.phtml -- макет монолитного html-файла
+  chm_layout.tpl.phtml -- макет страницы для вывода в chm
+
 /web -- тут картинки, иконки, css, javasript
 </pre>
 
 <h3>Общий макет</h3>
-<p>
-Общий макет расположен в файле <span class='filepath'>layout.tpl.phtml</span> и представляет из себя фрагмент html-текста со вставками переменных в виде:
+<p>Макет представляет из себя фрагмент html-текста со вставками переменных в виде:
 </p>
 
 <p>
 <strong>&lt;?php echo $content; ?&gt;</strong>
 </p>
-<p>Доступны следующие переменные:</p>
+
+<p>
+В макетах <span class='filepath'>master_layout.tpl.phtml</span>, <span class='filepath'>html_layout.tpl.phtml</span>, <span class='filepath'>singlepage_content.tpl.phtml</span>, <span class='filepath'>chm_layout.tpl.phtml</span> доступны следующие переменные:</p>
 <dl>
 <dt>path</dt>
 <dd>Путь до текущей страницы. Например, <span class='filepath'>layout/teme.html</span></dd>
@@ -35,7 +40,7 @@
 <dd>Ссылка на корневую директорию книги. По адресу $rootPath.'index.html' расположена обложка</dd>
 
 <dt>rootURL</dt>
-<dd>Ссылка на обложку книги: $rootPath.'index.html'</dd>
+<dd>Ссылка на страницу обложки книги: $rootPath.'index.html'</dd>
 
 <dt>bookShelfURL</dt>
 <dd>Ссылка на страницу книжной полки</dd>
@@ -70,6 +75,18 @@
 
 <dt>editMode</dt>
 <dd>Истинно, если отображается окно редактирования текста</dd>
+
+<dt>outputMode</dt>
+<dd>Режим вывода html (стандартный), html_single (в один большой файл), chm (в проект chm)</dd>
+</dl>
+
+<p>Для вывода в один html-файл нужен еще один макет, &mdash; <span class='filepath'>singlepage_layout.tpl.phtml</span>. Внутри него доступны переменные</p>
+
+<dl>
+<dt>content</dt>
+<dd>Отформатированное содержимое всех страниц книги</dd>
+<dt>bookData</dt>
+<dd>Содержит массив из параметров, заданных в <span class='filepath'>book_data.yml</span></dd>
 </dl>
 
 <h3>Макет навигации</h3>
