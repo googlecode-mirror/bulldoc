@@ -1,7 +1,7 @@
 <?php
 /**
  *	extension file for SimpleTest
- *	@version	$Id: jquery.php 1582 2007-11-02 04:47:05Z maetl_ $
+ *	@version	$Id$
  */
 require_once dirname(__FILE__) . '/../treemap_reporter.php';
 

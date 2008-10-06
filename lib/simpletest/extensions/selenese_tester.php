@@ -2,7 +2,7 @@
 /**
  *	@package	SeleneseTestCase
  *	@subpackage	UnitTester
- *	@version	$Id: selenese_tester.php 1534 2007-06-06 16:58:53Z pp11 $
+ *	@version	$Id$
  */
 
 /**#@+

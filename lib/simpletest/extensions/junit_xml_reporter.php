@@ -2,7 +2,7 @@
 /**
  *	@package	JunitXMLReporter
  *	@subpackage	Reporter
- *	@version	$Id: junit_xml_reporter.php 1716 2008-04-04 10:17:54Z pp11 $
+ *	@version	$Id$
  *  @author Patrice Neff - mailinglists@patrice.ch (original code)
  *  */
 

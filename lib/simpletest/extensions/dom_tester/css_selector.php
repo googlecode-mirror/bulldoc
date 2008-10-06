@@ -4,7 +4,7 @@
  *	@package	SimpleTest
  *	@subpackage	DomTestCase
  *  @author     Perrick Penet <perrick@noparking.net>
- *	@version	$Id: css_selector.php 1753 2008-04-14 15:41:02Z pp11 $
+ *	@version	$Id$
  */
 
 /**
