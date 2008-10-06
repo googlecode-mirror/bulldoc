@@ -1,7 +1,7 @@
 <?php
 /**
  *	extension file for SimpleTest
- *	@version	$Id: treemap_recorder.php 1579 2007-11-02 04:17:44Z maetl_ $
+ *	@version	$Id$
  */
 require_once(dirname(__FILE__) . '/../../scorer.php');
 

@@ -61,8 +61,8 @@ class colesoContentDebug
 //===================================================================================
 function colesoEchoDebugHeader()
 {
-    $sysImgPath=colesoApplication::getConfigVal('/coleso_cms/imgURL');
-    $jsPath=colesoApplication::getConfigVal('/coleso_cms/jsURL');
+    $sysImgPath=colesoApplication::getConfigVal('/system/urlRoot').'lib/coleso/web/img/';
+    $jsPath=colesoApplication::getConfigVal('/system/urlRoot').'lib/coleso/web/js/';
     $richeditPath=colesoApplication::getConfigVal('/system/richedit/url');
     ?>
 <script type='text/javascript' language='JavaScript'>

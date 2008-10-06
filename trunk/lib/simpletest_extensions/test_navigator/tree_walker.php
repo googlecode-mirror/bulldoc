@@ -5,7 +5,7 @@
 * Released under the MIT license (http://www.opensource.org/licenses/mit-license.html)
 ***********************************************************************************
 *
-* $Id: tree_walker.php 32 2006-04-16 19:43:23Z hamster $
+* $Id$
 ***********************************************************************************/
 
 require_once ('lib/coleso/fileoperation/fileoperation.php');
