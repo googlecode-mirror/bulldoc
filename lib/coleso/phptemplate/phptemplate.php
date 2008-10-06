@@ -1,7 +1,7 @@
 <?php
 /*
 
-$Id: phptemplate.lib.php 219 2007-06-13 08:37:00Z hamster $
+$Id$
 */
 
 class colesoPHPTemplate

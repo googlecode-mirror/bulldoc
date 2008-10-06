@@ -5,7 +5,7 @@
 * Released under the MIT license (http://www.opensource.org/licenses/mit-license.html)
 ***********************************************************************************
 *
-* $Id: frontcontroller.lib.php 241 2007-08-28 14:19:21Z hamster $
+* $Id$
 ***********************************************************************************/
 
 require_once ('lib/coleso/controllers/pagecontroller.lib.php');
