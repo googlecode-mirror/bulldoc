@@ -1,5 +1,5 @@
 general_title:
-  separatorTitle: Основной раздел
+  separatorTitle: BullDoc
   
 bulldoc_book:
 
@@ -8,15 +8,15 @@ bulldoc_chm:
   rootIndexLevel: -1
   source: bulldoc_book
   dest: bulldoc_chm
-  theme: blueprint_chm
-  buildChm: 1
+  theme: blueprint
+  outputMode: chm
 
 bulldoc_single_page:
   title: BullDoc Single Page
   rootIndexLevel: -1
   source: bulldoc_book
-  theme: blue_print_single
-  singlePageExport: 1
+  theme: blueprint
+  outputMode: html_single
   hideOnBookShelf: 1
 
 bulldoc_site:
@@ -31,5 +31,29 @@ bulldoc_emptytheme:
   source: bulldoc_book
   theme: empty
 
+colseo_title:
+  separatorTitle: Компоненты ColESO
+
+coleso_core:
+  title: ColESO Core
+  source: d:\www\users\coleso\www\lib\coleso\_dev\doc\
+  dest: d:\www\users\coleso\www\lib\coleso\_dev\compiled_doc
+  theme: blueprint
+
+coleso_forms:
+  title: ColESO Forms
+  source: d:\www\users\coleso\www\lib\coleso_forms\_dev\doc\
+  dest: d:\www\users\coleso\www\lib\coleso_forms\_dev\compiled_doc
+  theme: blueprint
+
+storm:
+  title: stORM
+  source: d:\www\users\coleso\www\lib\storm\_dev\doc\
+  dest: d:\www\users\coleso\www\lib\storm\_dev\compiled_doc
+  theme: blueprint
+
 newbooks_title:
   separatorTitle: Новые книги
+test:
+test2:
+bulldoc_single:
