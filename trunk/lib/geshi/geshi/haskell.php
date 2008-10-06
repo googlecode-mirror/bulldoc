@@ -5,9 +5,9 @@
  * Author: Jason Dagit (dagit@codersbase.com) based on ocaml.php by Flaie (fireflaie@gmail.com) 
  * Copyright: (c) 2005 Flaie, Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.7.20
- * CVS Revision Version: $Revision: 1.6 $
+ * CVS Revision Version: $Revision$
  * Date Started: 2005/08/27
- * Last Modified: $Date: 2006/02/25 00:46:33 $
+ * Last Modified: $Date$
  *
  * Haskell language file for GeSHi.
  *
