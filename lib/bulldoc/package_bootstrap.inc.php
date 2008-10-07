@@ -8,13 +8,7 @@ require_once('bulldoc/path_builder.php');
 require_once('bulldoc/page_builder.php');
 require_once('bulldoc/book_loader.php');
 
-
-if (file_exists('config/bulldoc_config.inc.php')){ 
-  require_once('config/bulldoc_config.inc.php');
-  $configSet=new colesoDataSet($CONFIG);
-} else {
-  $configSet=new colesoDataSet();
-}
+$configSet=colesoApplication::getConfigVal('/system/localConfig');
 
 colesoApplication::setConfigVal('/bulldoc/themeDir',colesoApplication::getConfigVal('/system/docRoot').'workshop/themes/');
 colesoApplication::setConfigVal('/bulldoc/themeUrl',colesoApplication::getConfigVal('/system/urlRoot').'workshop/themes/');
@@ -28,7 +22,8 @@ $customSource=$configSet->get('bulldoc::source',colesoApplication::getConfigVal(
 colesoApplication::setConfigVal('/bulldoc/source',rtrim($customSource,'\\/').'/');
 
 //---------------------------------------------------------------------------------------------------
-$customBookShelf=$configSet->get('bulldoc::bookshelf',colesoApplication::getConfigVal('/system/config').'bookshelf.yml');
+$customBookShelf=$configSet->get('bulldoc::bookshelf',
+                                  colesoApplication::getConfigVal('/system/docRoot').'workshop/source/bookshelf.yml');
 colesoApplication::setConfigVal('/bulldoc/bookshelfConfig',$customBookShelf);
 
 //---------------------------------------------------------------------------------------------------
