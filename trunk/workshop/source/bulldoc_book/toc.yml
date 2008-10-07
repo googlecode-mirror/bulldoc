@@ -16,6 +16,7 @@ layout:
   title: Оформление и настройки
   topics:
     theme.html:  Темы
+    book_style.html: Стиль книги
     language.html:  Язык интерфейса
     system_settings.html: Системные настройки
 

@@ -1,29 +1,31 @@
-<cls:keywords data='настройки системные' />
+<bdc:keywords data='настройки системные' />
 <h3>Настройки</h3>
 
-<p>Настройки оформления, которые влияют на систему целиком находятся в двух файлах:</p>
-<pre>
-local_config.inc.php
-config/bulldoc_config.ini.php
-lib/bulldoc/messages/(варианты сообщений для разных языков)
-</pre>
+<p>Настройки оформления, которые влияют на систему целиком находятся в файле <span class='filepath'>/local_config.inc.php</span>, вот список доступных настроек:</p>
 
-<p>В файле <b>local_config.inc.php</b> содержатся настройки путей и кодировок. Единственная настройка, которую имеет смысл менять, это язык интерфейса $CONFIG['language'].</p>
+<bdc:php>
+<?php
+//system settings
+  $CONFIG['language']='rus';  //язык интерфейса и кодировки
 
-<p>В файле <b>bulldoc_config.inc.php</b> задается путь к шаблону оформления списка книг, который можно видеть зайдя в корень проекта, и к файлу помощи для утилиты построения статического html. Также здесь задается название класса, который пропускает через себя содержимое страницы, осуществляя в частности подсветку кода. Интерфейс этого класса см. ниже</p>
+//настройки bulldoc. они не обязательны
+  $CONFIG['bulldoc::bookshelf']='/home/me/docs/bookshelf.yml'; // путь к файлу книжной полки
+  $CONFIG['bulldoc::source']='/home/me/docs/source';  //путь к папке с исходниками книг
+  $CONFIG['bulldoc::defaultTextProcessingClass']='docTemplateSet';  //парсер текста
+?>
+</bdc:php>
 
 <p>В файлах папки <span class='filepath'>lib/bulldoc/messages</span> содержатся строковые константы для заголовка страницы обложки и для текста страниц, которые еще не созданы. Эти файлы пользователям менять не рекомендуется.</p>
 
 
 <h3>Интерфейс класса парсера страниц</h3>
-<cls:php>
+<bdc:php>
 class docTemplateSet
 {
   //свойства класса
   protected $structureHolder; //ссылка на объект структуры
   protected $pathBuilder;     //манипулятор пути к странице
-  protected $singlePageMode;  //Истинно, если экспорт
-                              // в один монолитный html-файл
+  protected $outputMode;      //режим вывода
 
   //конструктор
   //$filename -- путь до файла
@@ -38,4 +40,4 @@ class docTemplateSet
   //  )
   string public function parseFile($filename,$params);
 }
-</cls:php>
+</bdc:php>

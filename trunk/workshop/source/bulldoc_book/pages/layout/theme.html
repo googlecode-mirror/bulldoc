@@ -1,9 +1,9 @@
-<cls:keywords data='темы, оформление, макет' />
+<bdc:keywords data='темы, оформление, макет, стиль книги' />
 <h3>Структура папок темы</h3>
 <p>Тема состоит из следующих папок и файлов</p>
 <pre>
 /templates -- тут шаблоны для генерации страниц
-  navigation.tset.phtml -- шаблон для построения меню
+  navigation.tset.phtml -- макет для построения меню
   index.tset.phtml -- макет для предметного указателя
   message.tpl.phtml -- макет для информационных сообщений системы
   master_layout.tpl.phtml -- содержит head секцию, общую для всех html файлов
@@ -15,13 +15,14 @@
 /web -- тут картинки, иконки, css, javasript
 </pre>
 
-<h3>Общий макет</h3>
 <p>Макет представляет из себя фрагмент html-текста со вставками переменных в виде:
 </p>
 
 <p>
 <strong>&lt;?php echo $content; ?&gt;</strong>
 </p>
+
+<h3>Макеты для стандартного вывода (html) и CHM</h3>
 
 <p>
 В макетах <span class='filepath'>master_layout.tpl.phtml</span>, <span class='filepath'>html_layout.tpl.phtml</span>, <span class='filepath'>singlepage_content.tpl.phtml</span>, <span class='filepath'>chm_layout.tpl.phtml</span> доступны следующие переменные:</p>
@@ -77,16 +78,30 @@
 <dd>Истинно, если отображается окно редактирования текста</dd>
 
 <dt>outputMode</dt>
-<dd>Режим вывода html (стандартный), html_single (в один большой файл), chm (в проект chm)</dd>
+<dd>Режим вывода: html (стандартный), html_single (в один большой файл), chm (в проект chm)</dd>
 </dl>
 
-<p>Для вывода в один html-файл нужен еще один макет, &mdash; <span class='filepath'>singlepage_layout.tpl.phtml</span>. Внутри него доступны переменные</p>
+<h3>Особенности вывода в один html-файл</h3>
+<p>Для вывода в один html-файл нужен еще один макет, &mdash; <span class='filepath'>singlepage_layout.tpl.phtml</span>. Внутри него доступны переменные:</p>
 
 <dl>
 <dt>content</dt>
 <dd>Отформатированное содержимое всех страниц книги</dd>
 <dt>bookData</dt>
 <dd>Содержит массив из параметров, заданных в <span class='filepath'>book_data.yml</span></dd>
+</dl>
+
+<p>Кроме того, в макете <span class='filepath'>master_layout.tpl.phtml</span>, доступны только:</p>
+
+<dl>
+<dt>assetsURL</dt>
+<dd>Ссылка на директорию с картинками, стилями и js</dd>
+<dt>bookTitle</dt>
+<dd>Название книги</dd>
+<dt>outputMode</dt>
+<dd>Режим вывода: html (стандартный), html_single (в один большой файл), chm (в проект chm)</dd>
+<dt>content</dt>
+<dd>Отформатированное содержимое</dd>
 </dl>
 
 <h3>Макет навигации</h3>
@@ -107,6 +122,7 @@
 &lt;div style='margin-top: 0px;margin-left: 40px'>&lt;?php echo $content; ?>&lt;/div>
 </pre>
 
+<p>Во всех секциях доступна переменная <b>outputMode</b> &mdash; режим вывода (html, html_single, chm)</p>
 <p>В секциях пунктов меню и пунктов оглавления (menu_topic, active_menu_topic, toc_topic) доступны ссылка ($href) и название пункта меню ($title). В секции макета оглавления (toc) доступно содержимое оглавления ($content). В этой секции задаются блоки, которые окружают оглавление.</p>
 
 <h3>Макет предметного указателя</h3>
@@ -128,6 +144,7 @@
 &lt;/div>
 </pre>
 
+<p>Во всех секциях доступна переменная <b>outputMode</b> &mdash; режим вывода (html, html_single, chm)</p>
 <p>В разделе indexTopic доступны переменные:</p>
 
 <dl>

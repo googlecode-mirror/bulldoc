@@ -1,8 +1,8 @@
-<cls:keywords data='новый проект, пример проекта, быстрый старт' />
+<bdc:keywords data='новый проект, пример проекта, быстрый старт' />
 <h3>Приготовления</h3>
 <p>Для нашего примера нам понадобятся:</p>
 <ol>
-<li>Дистрибутив Bulldoc, см. раздел <cls:link page='installation.html'/></li>
+<li>Дистрибутив Bulldoc, см. раздел <bdc:link page='installation.html'/></li>
 <li>Какой-нибудь сайт на локальной машине, под управлением Apache</li>
 <li>Договоримся, что файлы сайта лежат в <span class='filepath'>/home/bulldoc</span>, а сам сайт доступен по <span class='filepath'>http://bulldoc</span>. Располагать Bulldoc в корне сайта не обязательно, подойдет любая директория.</li>
 </ol>
@@ -38,7 +38,7 @@ bulldoc snusmumrik
 </p>
 
 <p>
-Также в конец файла <span class='filepath'>/home/bulldoc/config/bookshelf.yml</span>, допишется строчка:</p>
+Также в конец файла <span class='filepath'>/home/bulldoc/workshop/source/bookshelf.yml</span>, допишется строчка:</p>
 <pre>
 snusmumrik:
 </pre>
@@ -70,7 +70,7 @@ browsers:
 <h3>Контент</h3>
 <p>Создайте файл <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>. Впишите туда такое содержимое:</p>
 <div class='file'>
-&lt;cls:keywords data='браузер' />
+&lt;bdc:keywords data='браузер' />
 <p>&lt;p><br/>
 &lt;b>Веб-обозреватель&lt;/b> или &lt;b>браузер&lt;/b> (из англ. Web browser, бро узер — неправильно) — это программное обеспечение для поиска, просмотра веб-сайтов, то есть для запроса вебстраниц (преимущественно из Сети), для их обработки, вывода и перехода от одной страницы к другой.<br/>
 &lt;/p></p>
@@ -86,7 +86,7 @@ browsers:
 <p>Создайте файлы про браузеры и наполните их (можете воспользоваться веб-интерфейсом, для этого зайдите на страницу через оглавление и нажмите ссылку "правка"):</p>
 <div><b>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</b></div>
 <div  class='file'>
-&lt;cls:keywords data='netscape, mozilla, firefox' />
+&lt;bdc:keywords data='netscape, mozilla, firefox' />
 <p>&lt;p><br/>
 Mozilla Firefox - свободно распространяемый браузер. Является вторым по популярности после Internet Explorer.
 <br/>&lt;/p></p>
@@ -99,7 +99,7 @@ Mozilla Firefox использует открытый кросс-платформенный движок Gecko, разработан
 </div>
 <div><b>/home/bulldoc/workshop/source/snusmumrik/browsers/opera.html</b></div>
 <div class='file'>
-&lt;cls:keywords data='opera, opera mini' />
+&lt;bdc:keywords data='opera, opera mini' />
 <p>&lt;p><br/>
 Opera - веб-браузер и программный пакет для работы в Интернете, выпускаемый компанией Opera Software ASA. Разработан в 1994 году группой исследователей из норвежской компании Televerket.<br/>&lt;/p></p>
 <p>&lt;p><br/>
@@ -118,12 +118,12 @@ Opera - веб-браузер и программный пакет для работы в Интернете, выпускаемый комп
 <p>Посмотрите, что получилось.</p>
 <p>Отредактируйте <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>, заменив название Opera на</p>
 <pre>
-&lt;cls:link page='browsers/opera.html' />
+&lt;bdc:link page='browsers/opera.html' />
 </pre>
 <p>Посмотрите результат.</p>
 
 <p>Добавьте в текст любой страницы код PHP:</p>
-<pre class="php">&lt;cls:php>&nbsp;
+<pre class="php">&lt;bdc:php>&nbsp;
 <span style="color: #000000; font-weight: bold;">function</span> _yamlizeArray<span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$array</span>,<span style="color: #0000ff;">$indent</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
     <span style="color: #b1b100;">if</span> <span style="color: #66cc66;">&#40;</span><a href="http://www.php.net/is_array"><span style="color: #000066;">is_array</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$array</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
       <span style="color: #0000ff;">$string</span> = <span style="color: #ff0000;">''</span>;
@@ -135,7 +135,7 @@ Opera - веб-браузер и программный пакет для работы в Интернете, выпускаемый комп
       <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">false</span>;
     <span style="color: #66cc66;">&#125;</span>
   <span style="color: #66cc66;">&#125;</span>
-&lt;/cls:php>  
+&lt;/bdc:php>  
 </pre>
 <p>Должна появиться подсветка.</p>
 

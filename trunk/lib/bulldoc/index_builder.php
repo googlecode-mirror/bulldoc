@@ -20,7 +20,7 @@ class IndexBuilder
     $fileName=$this->sourcePath.$pathBuilder;
     if (file_exists($fileName)) {
       $content=file_get_contents($fileName);
-      if (preg_match('/<cls:keywords\s+data=[\'"](.*?)[\'"]\s*\/>/',$content,$matches)){
+      if (preg_match('/<(?:cls|bdc):keywords\s+data=[\'"](.*?)[\'"]\s*\/>/',$content,$matches)){
         $words=array_unique(split(',', $matches[1]));
         foreach ($words as $word) $this->index[trim($word)][]=array('path' => $path,'title' => $title);
       }
