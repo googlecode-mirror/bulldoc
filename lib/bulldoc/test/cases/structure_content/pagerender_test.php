@@ -28,7 +28,7 @@ class PageRenderTestCase extends colesoBaseTest
     
     $examinator=$this->getContentExaminator($html);
     echo $examinator->display();
-    $this->assertEqual($examinator->getMD5(),'7537a3b865459a23672f726a79d5badf','Page rendered');
+    $this->assertEqual($examinator->getMD5(),'12dbe6c0fd4d4c4a46f865e29354d601','Page rendered');
   }
 //-------------------------------------------
   function testIndexRender() 
@@ -41,7 +41,7 @@ class PageRenderTestCase extends colesoBaseTest
 
     $examinator=$this->getContentExaminator($html);
     echo $examinator->display();
-    $this->assertEqual($examinator->getMD5(),'309e6496c9e3dbe6e838233464325e7e','Index rendered');
+    $this->assertEqual($examinator->getMD5(),'51783ae06f4f83baeaa6c2485aed4217','Index rendered');
   }
 }
 

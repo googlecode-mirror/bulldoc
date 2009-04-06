@@ -12,14 +12,13 @@ if "%OS%"=="Windows_NT" @setlocal
 
 rem %~dp0 is expanded pathname of the current script under NT
 set SCRIPT_DIR=%~dp0
-
 goto init
 
 :init
 
 if "%PHP_COMMAND%" == "" goto no_phpcommand
 
-%PHP_COMMAND% -d html_errors=off -d open_basedir= -q "bulldoc" %1 %2 %3 %4 %5 %6 %7 %8 %9
+%PHP_COMMAND% -d html_errors=off -d open_basedir= -q "%SCRIPT_DIR%\bulldoc" %1 %2 %3 %4 %5 %6 %7 %8 %9
 
 goto cleanup
 

@@ -137,7 +137,7 @@ class renderDocPage  extends buildOnToc
   {
     $data['rootURL']=$pathBuilder->getRootUrl();
     $data['rootPath']=$pathBuilder->getRootPath();
-    $data['bookShelfURL']=colesoApplication::getConfigVal('/system/urlRoot');
+    $data['bookShelfURL']='../'.$pathBuilder->getRootPath();
     $data['assetsURL']=$this->getAssetsUrl($pathBuilder);
     $data['upLevelLink']=$pathBuilder->isIndex()? '../index.html':'index.html';
     $data['editURL']=$pathBuilder->isIndex()? 'index.html.edit' : $pathBuilder->getPageName().'.edit';

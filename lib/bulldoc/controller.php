@@ -24,6 +24,9 @@ class bulldocFrontController extends colesoFrontController
     $this->addCommand('edit_page',__FILE__,'pageEditController');
     $this->addCommand('edit_toc',__FILE__,'tocEditController');
     $this->addCommand('index_rebuild',__FILE__,'inexRebuild');
+
+    $this->addCommand('book_edit','bulldoc/bookshelf_edit_controller.php','bookshelfPositionEditController');
+    $this->addCommand('bookshelf_edit',__FILE__,'bookshelfEditController');
   }
 //-----------------------------------------------------
   protected function getAction()
@@ -34,13 +37,19 @@ class bulldocFrontController extends colesoFrontController
     if (preg_match('/\.edit$/',$this->url)) $this->action='edit_page';
     if (preg_match('/\/\.edit$/',$this->url)) $this->action='edit_toc';
     if (preg_match('/[^\w]_index_rebuild$/',$this->url)) $this->action='index_rebuild';
+    if (preg_match('/[^\w]?_book_edit$/',$this->url)) $this->action='book_edit';
+    if (preg_match('/[^\w]?_bookshelf_edit$/',$this->url)) $this->action='bookshelf_edit';
   }
 //-----------------------------------------------------
   protected function checkRedirectToIndex()
   {
     $path_parts = pathinfo($this->url);
     $ext=isset($path_parts['extension'])? $path_parts['extension']:'';
-    return ($ext=='' && $this->url!='' && $this->url!='/' && $path_parts['basename']!='_index_rebuild');
+    return ($ext=='' && $this->url!='' && $this->url!='/' && 
+      $path_parts['basename']!='_index_rebuild' &&
+      $path_parts['basename']!='_book_edit' &&
+      $path_parts['basename']!='_bookshelf_edit'
+      );
   }
 //-----------------------------------------------------------
   private function isMedia()
@@ -82,7 +91,7 @@ class bulldocFrontController extends colesoFrontController
      'url' => $this->getPageUrl()
      );
        
-    if ($this->action!='bookshelf') {
+    if ($this->action!='bookshelf' && $this->action!='book_edit' && $this->action!='bookshelf_edit') {
       $bookKey=$this->getBookKey();
       $this->parameters['bookKey']=$bookKey;
       $book=$this->bookLoader->getBook($bookKey);
@@ -128,7 +137,7 @@ class inexRebuild extends colesoGeneralController
 //==============================================================================================
 class bookController extends colesoGeneralController
 {
-  //assumed the following parameters:
+  //the following parameters are expected:
   //'bookKey' -- book name
   //'book' -- book object
   //'bookLoader' -- book factory object

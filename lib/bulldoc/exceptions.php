@@ -23,4 +23,8 @@ class pageNotFoundException extends Exception
 class configFileNotFoundException extends Exception
 {
 }
+//==================================================================================
+class bookCreationException extends Exception
+{
+}
 ?>
