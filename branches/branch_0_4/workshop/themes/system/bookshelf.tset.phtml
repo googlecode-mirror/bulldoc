@@ -1,0 +1,29 @@
+<!-- #item# -->
+<?php if (!isset($hideOnBookShelf) || !$hideOnBookShelf):?>
+<p style='margin-top: 5px;margin-bottom: 5px;font-size: x-small;'><a href='<?php echo $key ?>/index.html'><?php echo $bookShelfTitle; ?></a></p>
+<?php endif; ?>
+<!-- #separator# -->
+<h2 style='color: #666666;font-size: small;margin-top: 30px;margin-bottom: 5px'><?php echo $title; ?></h2>
+<!-- #layout# -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo colesoApplication::getConfigVal('/system/lngEncoding');?>">
+</head>
+<body>
+<table  style='width: 900px;background-color: #cdcdcd;border: 0'>
+<tr>
+<td style='padding: 3px;font-size: 32px;'>Bulldoc</td>
+<td style='font-size: small;vertical-align: top;text-align: right;padding-right: 5px'>
+<a href='./'><?php echo colesoApplication::getMessage('bulldoc','bookshelf');?></a> | <a href='./_book_edit'><?php echo colesoApplication::getMessage('bulldoc','create_book');?></a> | <a href='./_bookshelf_edit'><?php echo colesoApplication::getMessage('bulldoc','edit_bookshelf');?></a>
+</td>
+</tr>
+</table>
+<div style='padding-left: 30px'>
+<?php if (!isset($skipTitle)):?><h1 style='color: #666666;font-size: medium'><?php echo colesoApplication::getMessage('bulldoc','available_books');?></h1><?php endif; ?>
+<?php echo $content; ?>
+</div>
+</body>
+</html>

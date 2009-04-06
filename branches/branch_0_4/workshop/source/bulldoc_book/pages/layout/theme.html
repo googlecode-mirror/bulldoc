@@ -1,0 +1,195 @@
+<bdc:keywords data='темы, оформление, макет, стиль книги' />
+<h3>Структура папок темы</h3>
+<p>Тема состоит из следующих папок и файлов</p>
+<pre>
+/templates -- тут шаблоны для генерации страниц
+  navigation.tset.phtml -- макет для построения меню
+  index.tset.phtml -- макет для предметного указателя
+  message.tpl.phtml -- макет для информационных сообщений системы
+  master_layout.tpl.phtml -- содержит head секцию, общую для всех html файлов
+  html_layout.tpl.phtml -- макет для стандартного отображения в html
+  singlepage_content.tpl.phtml -- макет для страницы внутри монолитного html-файла
+  singlepage_layout.tpl.phtml -- макет монолитного html-файла
+  chm_layout.tpl.phtml -- макет страницы для вывода в chm
+
+/web -- тут картинки, иконки, css, javasript
+</pre>
+
+<p>Макет представляет из себя фрагмент html-текста со вставками переменных в виде:
+</p>
+
+<p>
+<strong>&lt;?php echo $content; ?&gt;</strong>
+</p>
+
+<h3>Макеты для стандартного вывода (html) и CHM</h3>
+
+<p>
+В макетах <span class='filepath'>master_layout.tpl.phtml</span>, <span class='filepath'>html_layout.tpl.phtml</span>, <span class='filepath'>singlepage_content.tpl.phtml</span>, <span class='filepath'>chm_layout.tpl.phtml</span> доступны следующие переменные:</p>
+<dl>
+<dt>path</dt>
+<dd>Путь до текущей страницы. Например, <span class='filepath'>layout/teme.html</span></dd>
+<dt>bookTitle</dt>
+<dd>Название книги</dd>
+<dt>bookData</dt>
+<dd>Содержит массив из параметров, заданных в <span class='filepath'>book_data.yml</span></dd>
+
+<dt>pageData</dt>
+<dd>Содержит массив из параметров страницы в структуре книги</dd>
+
+<dt>rootPath</dt>
+<dd>Ссылка на корневую директорию книги. По адресу $rootPath.'index.html' расположена обложка</dd>
+
+<dt>rootURL</dt>
+<dd>Ссылка на страницу обложки книги: $rootPath.'index.html'</dd>
+
+<dt>bookShelfURL</dt>
+<dd>Ссылка на страницу книжной полки</dd>
+
+<dt>editURL</dt>
+<dd>Ссылка на интерфейс правки текущей страницы</dd>
+
+<dt>editTocURL</dt>
+<dd>Ссылка на интерфейс правки структуры книги</dd>
+
+<dt>assetsURL</dt>
+<dd>Ссылка на директорию с картинками, стилями и js</dd>
+<dt>level</dt>
+<dd>Уровень страницы в дереве. 0 -- корневой уровень</dd>
+<dt>next</dt>
+<dd>Массив, содержащий название и ссылку на следующую страницу. Элементы массива: title, href. Имеет значение null, если следующей страницы нет</dd>
+<dt>prev</dt>
+<dd>Массив, содержащий название и ссылку на предыдущую страницу. Элементы массива: title, href. Имеет значение null, если предыдущей страницы нет</dd>
+<dt>menu</dt>
+<dd>Меню текущего уровня</dd>
+<dt>upLevelLink</dt>
+<dd>Ссылка на родительский раздел</dd>
+<dt>upTitle</dt>
+<dd>Массив, названий родительских разделов</dd>
+<dt>curTitle</dt>
+<dd>Заголовок текущей страницы</dd>
+<dt>content</dt>
+<dd>Обработанное содержимое страницы</dd>
+
+<dt>mode</dt>
+<dd>Режим работы системы: экспорт в статику (static) или веб-сервер (server)</dd>
+
+<dt>editMode</dt>
+<dd>Истинно, если отображается окно редактирования текста</dd>
+
+<dt>outputMode</dt>
+<dd>Режим вывода: html (стандартный), html_single (в один большой файл), chm (в проект chm)</dd>
+</dl>
+
+<h3>Особенности вывода в один html-файл</h3>
+<p>Для вывода в один html-файл нужен еще один макет, &mdash; <span class='filepath'>singlepage_layout.tpl.phtml</span>. Внутри него доступны переменные:</p>
+
+<dl>
+<dt>content</dt>
+<dd>Отформатированное содержимое всех страниц книги</dd>
+<dt>bookData</dt>
+<dd>Содержит массив из параметров, заданных в <span class='filepath'>book_data.yml</span></dd>
+</dl>
+
+<p>Кроме того, в макете <span class='filepath'>master_layout.tpl.phtml</span>, доступны только:</p>
+
+<dl>
+<dt>assetsURL</dt>
+<dd>Ссылка на директорию с картинками, стилями и js</dd>
+<dt>bookTitle</dt>
+<dd>Название книги</dd>
+<dt>outputMode</dt>
+<dd>Режим вывода: html (стандартный), html_single (в один большой файл), chm (в проект chm)</dd>
+<dt>content</dt>
+<dd>Отформатированное содержимое</dd>
+</dl>
+
+<h3>Макет навигации</h3>
+<p>
+Макет навигации расположен в файле navigation.tset.phtml, и представляет из себя шаблон с секциями. Система обращается к секциям при построении навигационных фрагментов. Макет имеет вид:
+</p>
+
+<pre>
+<span style='color: blue'>&lt;!-- #menu_topic# --></span>
+&lt;li>&lt;a href='&lt;?php echo $href ?>'>&lt;?php echo $title; ?>&lt;/a>&lt;/li>
+<span style='color: blue'>&lt;!-- #active_menu_topic# --></span>
+&lt;li class='active'>&lt;?php echo $title ?>&lt;/li>
+<span style='color: blue'>&lt;!-- #toc_topic# --></span>
+&lt;div style='margin-top: 7px;margin-left: &lt;?php echo 20*$level; ?>px'>
+&lt;a href='&lt;?php echo $href ?>'>&lt;?php echo $title; ?>&lt;/a>
+&lt;/div>
+<span style='color: blue'>&lt;!-- #toc# --></span>
+&lt;div style='margin-top: 0px;margin-left: 40px'>&lt;?php echo $content; ?>&lt;/div>
+</pre>
+
+<p>Во всех секциях доступна переменная <b>outputMode</b> &mdash; режим вывода (html, html_single, chm)</p>
+<p>В секциях пунктов меню и пунктов оглавления (menu_topic, active_menu_topic, toc_topic) доступны ссылка ($href) и название пункта меню ($title). В секции макета оглавления (toc) доступно содержимое оглавления ($content). В этой секции задаются блоки, которые окружают оглавление.</p>
+
+<h3>Макет предметного указателя</h3>
+<p>Макет содержится в файле index.tset.phtml, который имеет вид:</p>
+<pre>
+<span style='color: blue'>&lt;!-- #indexTopic# --&gt;</span>
+&lt;p style='margin: 0'>
+&lt;?php echo $word; ?> &lt;span style='font-size: x-small'>
+&lt;?php foreach ($pages as $page): ?>
+[&lt;?php echo "&lt;a href='$rootPath{$page['path']}'>".$page['title']."&lt;/a>" ?>] 
+&lt;?php endforeach; ?>
+&lt;/span>
+&lt;/p>
+
+<span style='color: blue'>&lt;!-- #indexSection# --></span>
+&lt;div style="margin-top: 30px">
+&lt;p style="font-weight: bold;margin-bottom: 5px">&lt;?php echo strtoupper($curLetter); ?>&lt;/p>
+&lt;?php echo $buffer; ?>
+&lt;/div>
+</pre>
+
+<p>Во всех секциях доступна переменная <b>outputMode</b> &mdash; режим вывода (html, html_single, chm)</p>
+<p>В разделе indexTopic доступны переменные:</p>
+
+<dl>
+<dt>word</dt>
+<dd>ключевое слово</dd>
+
+<dt>pages</dt>
+<dd>массив страниц, соответствующих ключевому слову. Каждая элемент содержит заголовок страницы (title) и путь к ней (path)</dd>
+
+<dt>rootPath</dt>
+<dd>URL начала книги, таким образом полный URL страницы формируется так: <span style='white-space: nowrap'>$rootPath.$page['path']</span></dd>
+</dl>
+
+<p>В разделе indexSection доступны переменные $curLetter (буква, на которую начинаются ключевые слова) и $buffer, содержащая сформированный блок из ключевых слов.</p>
+
+<h3>Макет для информационных сообщений</h3>
+<p>Этот макет предназначен для того, чтобы вывести сообщение вроде "Индекс успешно построен" и кнопку "Назад". В макете доступны переменные:</p>
+
+<dl>
+<dt>assetsURL</dt>
+<dd>URL папки, где находятся иконки, стили, javascript темы</dd>
+
+<dt>bookTitle</dt>
+<dd>Название книги</dd>
+
+<dt>errstatus</dt>
+<dd>Статус сообщения: error, notice или success</dd>
+
+<dt>message</dt>
+<dd>Само сообщение</dd>
+
+<dt>backLink</dt>
+<dd>Адрес страницы, выдавшей данное сообщение</dd>
+</dl>
+
+<h3>Обертки для строковых функций</h3>
+<p>Для того, чтобы Ваша тема поддерживала обычные кодировки и utf-8, для преобразования строк пользуйтесь функциями-обертками</p>
+<cls:php>
+//перевод в нижний регистр
+function colesoStrToLower($str);
+
+//перевод в верхний регистр
+function colesoStrToUpper($str);
+
+//подстрока, 
+//если length==null, то будет взята подстрока до конца строки
+function colesoSubstr($str, $start,$length=null);
+</cls:php>

@@ -1,0 +1,19 @@
+DirectoryIndex index.php
+#AddDefaultCharset windows-1251
+
+Options -Indexes
+Options FollowSymLinks
+
+php_flag register_globals off
+php_flag magic_quotes_gpc off
+
+#php_value error_reporting 8191
+#php_flag display_errors Off
+
+RewriteEngine On
+
+#General config
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?colesoRequestPath=$1 [L,QSA]

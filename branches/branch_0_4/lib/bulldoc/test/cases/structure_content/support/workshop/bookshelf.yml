@@ -1,0 +1,15 @@
+bulldoc_book:
+
+bulldoc_chm:
+  title: BullDoc CHM
+  rootIndexLevel: -1
+  source: bulldoc_book
+  dest: bulldoc_chm
+  theme: blueprint
+  outputMode: chm
+  
+bulldoc_site:
+  title: BullDoc for Web-Site
+  source: bulldoc_book
+  dest: ../../../doc
+  theme: blueprint_site
