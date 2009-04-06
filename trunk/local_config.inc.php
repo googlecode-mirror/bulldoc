@@ -10,4 +10,6 @@
   //$CONFIG['bulldoc::bookshelf']='/home/me/docs/bookshelf.yml';
   //$CONFIG['bulldoc::source']='/home/me/docs/source';
   //$CONFIG['bulldoc::defaultTextProcessingClass']='docTemplateSet';  
+  
+  //Look into lib/bulldoc/package_bootstrap.inc.ph for more details
 ?>

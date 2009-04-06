@@ -31,26 +31,5 @@ bulldoc_emptytheme:
   source: bulldoc_book
   theme: empty
 
-colseo_title:
-  separatorTitle: Компоненты ColESO
-
-coleso_core:
-  title: ColESO Core
-  source: d:\www\users\coleso\www\lib\coleso\_dev\doc\
-  dest: d:\www\users\coleso\www\lib\coleso\_dev\compiled_doc
-  theme: blueprint
-
-coleso_forms:
-  title: ColESO Forms
-  source: d:\www\users\coleso\www\lib\coleso_forms\_dev\doc\
-  dest: d:\www\users\coleso\www\lib\coleso_forms\_dev\compiled_doc
-  theme: blueprint
-
-storm:
-  title: stORM
-  source: d:\www\users\coleso\www\lib\storm\_dev\doc\
-  dest: d:\www\users\coleso\www\lib\storm\_dev\compiled_doc
-  theme: blueprint
-
 newbooks_title:
   separatorTitle: Новые книги

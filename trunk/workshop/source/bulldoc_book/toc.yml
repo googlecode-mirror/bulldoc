@@ -24,6 +24,8 @@ export.html: Экспорт
 
 web_interface.html: Веб-интерфейс
 
+outside.html: Bulldoc вне родной директории
+
 appendix:
   type: chapter
   title: Приложения

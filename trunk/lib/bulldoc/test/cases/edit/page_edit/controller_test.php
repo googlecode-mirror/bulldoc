@@ -43,7 +43,7 @@ class EditControllerTestCase extends colesoBaseTest
     
     $examinator=$this->getContentExaminator($result->content);
     echo $examinator->display();
-    $this->assertEqual($examinator->getMD5(),'775d7a5093e502c39fb794f12240a059','Edit form rendered');
+    $this->assertEqual($examinator->getMD5(),'5c46a5060f666954e7b7bc4e7a937657','Edit form rendered');
   }
 //-------------------------------------------
   function testSaveForm() 
@@ -87,7 +87,7 @@ class EditControllerTestCase extends colesoBaseTest
 
     $examinator=$this->getContentExaminator($result->content);
     echo $examinator->display();
-    $this->assertEqual($examinator->getMD5(),'299e680e2c64e630be8a0ffe97f7b8cb','TOC Edit form rendered');
+    $this->assertEqual($examinator->getMD5(),'d9d5461896709de200ad36613e63f7d0','TOC Edit form rendered');
   }
 }
 

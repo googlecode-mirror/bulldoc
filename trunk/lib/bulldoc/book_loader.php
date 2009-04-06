@@ -12,25 +12,32 @@ class bookLoader
 {
   protected $books;
   
-  public function __construct()
+  public function __construct($bookshelfFile=null)
   {
+    $this->loadLocalBookshelf($bookshelfFile);
     $this->loadBookShelf();
+  }
+//---------------------------------------------------------------------------
+  private function loadLocalBookshelf($bookshelfFile)
+  {
+    if (is_null($bookshelfFile)) {
+      if (file_exists('bookshelf.yml')) $bookshelfFile='bookshelf.yml';
+      else return;
+    }
+    if (!detectAbsolutePath($bookshelfFile)) $bookshelfFile=getcwd()."/$bookshelfFile";
+    colesoApplication::setConfigVal('/bulldoc/bookshelfConfig',$bookshelfFile);
+    colesoApplication::setConfigVal('/bulldoc/source',dirname($bookshelfFile).'/');
+    colesoApplication::setConfigVal('/bulldoc/output',dirname($bookshelfFile).'/compiled/');
+    colesoApplication::setConfigVal('/bulldoc/rootUrl',rtrim(dirname($_SERVER['SCRIPT_NAME']),'\\/').'/');
   }
 //---------------------------------------------------------------------------
   private function loadBookShelf()
   {
     $file=colesoApplication::getConfigVal('/bulldoc/bookshelfConfig');
-    $cacheFile=colesoApplication::getConfigVal('/system/cacheDir')."bulldoc/bookshelf.cache";
-    if (file_exists($cacheFile) && (filemtime ($cacheFile) > filemtime ($file))){
-      $rawdata=file_get_contents ($cacheFile);
-      $this->books=unserialize($rawdata);
-    }else {
-      $this->books = Spyc::YAMLLoad($file);
-      $cacheDir=dirname($cacheFile);
-      if (!file_exists($cacheDir)) mkdir($cacheDir,0777,true);
-      file_put_contents ($cacheFile, serialize($this->books));
-    }
-    
+    $cacheSalt=md5($file);
+    $cacheFile=colesoApplication::getConfigVal('/system/cacheDir')."bulldoc/bookshelf/$cacheSalt";
+    $this->books=colesoYMLLoader::load($file,$cacheFile);
+
     foreach ($this->books as $key=>$book){
       if (!is_array($this->books[$key])) $this->books[$key]=array('source'=>$book);
       $this->books[$key]['source']=$this->getBookSource($key);

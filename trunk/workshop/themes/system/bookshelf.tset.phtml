@@ -13,9 +13,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo colesoApplication::getConfigVal('/system/lngEncoding');?>">
 </head>
 <body>
-<div style='width: 900px;background-color: #cdcdcd;padding: 10px;font-weight: bold;font-size: 14px'>BullDoc</div>
+<table  style='width: 900px;background-color: #cdcdcd;border: 0'>
+<tr>
+<td style='padding: 3px;font-size: 32px;'>Bulldoc</td>
+<td style='font-size: small;vertical-align: top;text-align: right;padding-right: 5px'>
+<a href='./'><?php echo colesoApplication::getMessage('bulldoc','bookshelf');?></a> | <a href='./_book_edit'><?php echo colesoApplication::getMessage('bulldoc','create_book');?></a> | <a href='./_bookshelf_edit'><?php echo colesoApplication::getMessage('bulldoc','edit_bookshelf');?></a>
+</td>
+</tr>
+</table>
 <div style='padding-left: 30px'>
-<h1 style='color: #666666;font-size: medium'>Доступные книги</h1>
+<?php if (!isset($skipTitle)):?><h1 style='color: #666666;font-size: medium'><?php echo colesoApplication::getMessage('bulldoc','available_books');?></h1><?php endif; ?>
 <?php echo $content; ?>
 </div>
 </body>

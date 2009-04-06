@@ -32,6 +32,14 @@ abstract class bulldocFileEditController extends colesoTextFileEditController
   }
 //------------------------------------------------
   abstract protected function applyLayout($content);
+//------------------------------------------------
+  public function buildRedirectAfterSaveURL()
+  {
+    if ($this->Environment->getPostVar('save_view')){
+      return $this->backToViewLink;
+    }
+    return parent::buildRedirectAfterSaveURL();
+  }
 }
 
 //===========================================================================================================================
@@ -58,14 +66,6 @@ class pageEditController extends bulldocFileEditController
   {
     return $this->parameters->book->getBookSource().'pages/'.$this->pathBuilder;
   }
-//------------------------------------------------
-  public function buildRedirectAfterSaveURL()
-  {
-    if ($this->Environment->getPostVar('save_view')){
-      return $this->backToViewLink;
-    }
-    return parent::buildRedirectAfterSaveURL();
-  }
 }
 
 //===========================================================================================================================
@@ -91,4 +91,30 @@ class tocEditController extends bulldocFileEditController
     return $this->parameters->book->getTocFileName();
   }
 }
+
+//===========================================================================================================================
+class bookshelfEditController extends bulldocFileEditController
+{
+//------------------------------------------------
+  public function run()
+  {
+    $this->title=colesoApplication::getMessage('bulldoc','bookshelf_edit_title');
+    $this->backToViewLink='./';
+    return parent::run();
+  }
+//------------------------------------------------
+  protected function applyLayout($content)
+  {
+    $shelfTemplateFile=colesoApplication::getConfigVal('/bulldoc/systemTemplates').'bookshelf.tset.phtml';
+    $template=new colesoPHPTemplateSet($shelfTemplateFile);
+    $html=$template->parseItem('layout',array('content'=>$content,'skipTitle'=>true));
+    return $html;    
+  }
+//------------------------------------------------
+  function getPageFileName()
+  {
+    return colesoApplication::getConfigVal('/bulldoc/bookshelfConfig');
+  }
+}
+
 ?>

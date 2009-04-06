@@ -3,11 +3,11 @@
 require_once('bootstrap.php');
 require_once('bulldoc/output_generator.php');
 require_once('bulldoc/chm_generator.php');
-
+require_once('getopt/getopt.php');
 
 class docgenBuilder extends bookLoader
 {
-  
+  private $loader;
 //---------------------------------------------------
   private function buildBook($key)
   {
@@ -22,14 +22,20 @@ class docgenBuilder extends bookLoader
 //---------------------------------------------------
   private function createBook($key)
   {
-    $bookDir=colesoApplication::getConfigVal('/bulldoc/source')."$key/";
-    mkdir ($bookDir,0777);
-    mkdir ($bookDir.'pages',0777);
-    file_put_contents($bookDir.'toc.yml','');
-    file_put_contents($bookDir.'book_data.yml',"title: $key\nauthor: Incognito\ncopyright: Me, 2008\nsite: www.mysite.ru");
-    
-    $bookshelfFile=colesoApplication::getConfigVal('/bulldoc/bookshelfConfig');
-    file_put_contents($bookshelfFile,"\n$key:",FILE_APPEND);
+    $books=$this->loader->getBooks();
+    if (!isset($books[$key])) {
+      $bookDir=colesoApplication::getConfigVal('/bulldoc/source')."$key/";
+      mkdir ($bookDir,0777);
+      mkdir ($bookDir.'pages',0777);
+      file_put_contents($bookDir.'toc.yml','');
+      file_put_contents($bookDir.'book_data.yml',"title: $key\nauthor: Incognito\ncopyright: Me, 2008\nsite: www.mysite.ru");
+      
+      $bookshelfFile=colesoApplication::getConfigVal('/bulldoc/bookshelfConfig');
+      file_put_contents($bookshelfFile,"\n$key:",FILE_APPEND);
+      echo 'New book created';
+    } else {
+      echo 'This book allready exists';
+    }
   }
 //---------------------------------------------------
   public function run()
@@ -38,11 +44,23 @@ class docgenBuilder extends bookLoader
     if ($argc < 2 || in_array($argv[1], array('--help', '-help', '-h', '-?'))) {
       require (colesoApplication::getConfigVal('/bulldoc/systemTemplates').'help.tpl.phtml');
     } else {
-      $key=$argv[1];
-      $this->buildBook($key);
+      $parsedRequest=Console_Getopt::getopt($argv, 'f:c:');
+      $bookshelfFile=isset($parsedRequest[0]['f'])? $parsedRequest[0]['f']:null; 
+      $this->loader = new bookLoader($bookshelfFile);
+      
+      if (isset($parsedRequest[0]['c'])) {
+        $this->createBook($parsedRequest[0]['c']);
+        return;
+      } else {
+        if (!isset($parsedRequest[1][0])) die('Error. Bookname should be specified.');
+        $generator= new outputGenerator($this->loader->getBook($parsedRequest[1][0]));
+        $generator->build();
+      }
     }
   }
 }
+
+//=====================================================================================
 $old = umask(0);
 $builder=new docgenBuilder();
 $builder->run();

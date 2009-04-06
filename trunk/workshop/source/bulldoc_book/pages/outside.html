@@ -1,0 +1,82 @@
+<bdc:keywords data='вне родной директории, вне папки проекта' />
+<p>Обычно в процессе разработки исходники документации лежат в репозитории проекта рядом с кодом. Можно было бы работать с этими файлами, добавив книгу в файл основной книжной полки</p>
+
+<pre>
+/workshop/source/booshelf.yml
+</pre>
+
+<p>однако в таком случае количество книжек на нашей основной полке со временем станет слишком большим, а учитывая всякие вариации вывода, вообще может превратить полку в помойку.</p>
+
+<p>
+Bulldoc дает возможность работать с файлами документации из директорий проектов.
+</p>
+
+<p>Рассмотрим структуру папок документации, в абстрактном проекте:</p>
+
+<pre>
+/snusmumrik/doc
+  /snusmumrik_user_guide
+  /snusmumrik_developer_guide
+  /compiled
+    /snusmumrik_user_guide
+    /snusmumrik_developer_guide
+
+  .htaccess
+  index.php
+  bookshelf.yml
+</pre>
+
+<p>
+<span class='filepath'>snusmumrik_user_guide</span> &mdash; это папка с исходниками книги, а в <span class='filepath'>compiled/snusmumrik_user_guide</span> будут складываться результаты экспорта. <span class='filepath'>.htaccess</span> содержит перенаправление запросов на <span class='filepath'>index.php</span>, который, в свою очередь, состоит из одной строчки:
+</p>
+
+<bdc:php>
+require('/path/to/bulldoc/index.php');
+</bdc:php> 
+
+<p>
+<span class='filepath'>bookshelf.yml</span> &mdash; локальная книжная полка
+</p>
+
+<p>
+фйл <span class='filepath'>.htaccess</span> должен выглядеть так:
+</p>
+
+<bdc:apache>
+Options FollowSymLinks
+
+RewriteEngine On
+
+#General config
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?colesoRequestPath=$1 [L,QSA]
+</bdc:apache>
+
+<p>
+Если Вы собрались писать документацию к Вашему проекту, то можно проделать следующие действия:
+</p>
+
+<p>
+Чтобы не указывать полный путь к программе, добавьте путь к bulldoc к переменной окружения PATH (<a href='http://yandex.ru/yandsearch?text=windows+%E8%E7%EC%E5%ED%E8%F2%FC+PATH&rpt=rad'>windows</a>, <a href='http://yandex.ru/yandsearch?text=linux+%E7%E0%E4%E0%F2%FC+PATH&rpt=rad'>linux</a>).
+Создайте папку <span class='filepath'>doc</span> внутри проекта. Поместите туда файлы <span class='filepath'>.htaccess</span> и <span class='filepath'>index.php</span>, если хотите пользоваться веб-интерфейсом. Добавьте пустой файл <span class='filepath'>bookshelf.yml</span>. В командной строке из папки <span class='filepath'>doc</span> запустите
+</p>
+
+<code class='commandline'>
+bulldoc -c snusmumrik_user_guide
+</code>
+
+<p>
+Будут созданы заготовки для книги и запись в книжной полке. Можно начинать писать.
+</p>
+
+<p>
+Чтобы сделать экспорт в статику запустите
+</p>
+
+<code class='commandline'>
+bulldoc snusmimrik_user_guide
+</code>
+
+<p>Будет создана папка <span class='filepath'>compiled</span>, куда программа поместит результат.</p>
