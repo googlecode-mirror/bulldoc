@@ -1,0 +1,37 @@
+introduction.html: Introduction
+installation.html: Installation
+quickstart.html:  Quick start
+    
+content:
+  type: chapter
+  title: Book
+  topics:
+    bookshelf.html: Bookshelf
+    toc.html: Table of contents
+    text.html: Text syntax
+    topic_index.html: Automatic index
+
+layout:
+  type: chapter
+  title: Layout and style
+  topics:
+    theme.html:  Themes
+    book_style.html: Book's css style
+    language.html:  Interface language
+    system_settings.html: System settings
+
+export.html: Export
+
+web_interface.html: Web-interface
+
+outside.html: Bulldoc outside home directory
+
+appendix:
+  type: chapter
+  title: Appendixes
+  topics:
+    topic_index.html: {type: index, title: Index}
+    authors.html: Authors
+    license.html: License
+    similar.html: Analogues
+

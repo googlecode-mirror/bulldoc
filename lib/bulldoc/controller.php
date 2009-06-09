@@ -175,6 +175,9 @@ class bookShelfController extends bookController
         $res.=$template->parseItem('separator',array('title'=>$data['separatorTitle']));
       } else {
         $data['key']=$book;
+        if (file_exists($data['source'].'pages/cover.png')) $data['cover']='cover.png';
+        elseif (file_exists($data['source'].'pages/cover.jpg')) $data['cover']='cover.jpg';
+        else $data['cover']=false;
         $res.=$template->parseItem('item',$data);
       }
     }

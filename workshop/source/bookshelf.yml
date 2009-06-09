@@ -31,5 +31,11 @@ bulldoc_emptytheme:
   source: bulldoc_book
   theme: empty
 
+bulldoc_eng_title:
+  separatorTitle: Bulldoc in English
+
+bulldoc_book_eng:
+  language: eng
+
 newbooks_title:
   separatorTitle: Новые книги

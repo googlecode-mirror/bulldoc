@@ -1,0 +1,199 @@
+<bdc:keywords data='theme, appearance, layout, style' />
+<h3>Theme's folder's structure</h3>
+<p>Theme consists of the following folders and files</p>
+<pre>
+/templates -- templates for page's generation
+  navigation.tset.phtml -- template for menu
+  index.tset.phtml -- template for index
+  message.tpl.phtml -- template for system's messages
+  master_layout.tpl.phtml -- header for all templates, contains
+                             head section, common for all html files
+  html_layout.tpl.phtml -- template for standard view in html
+  singlepage_content.tpl.phtml -- template for page inside the single html-file
+  singlepage_layout.tpl.phtml -- template for single html file
+  chm_layout.tpl.phtml -- template for CHM output
+
+/web -- images, icons, css, javasript
+</pre>
+
+<p>Template is an HTML text with special variables like:
+</p>
+
+<p>
+<strong>&lt;?php echo $content; ?&gt;</strong>
+</p>
+
+<h3>Templates for standard view (html) and CHM</h3>
+
+<p>
+The following variables are available in templates <span class='filepath'>master_layout.tpl.phtml</span>, <span class='filepath'>html_layout.tpl.phtml</span>, <span class='filepath'>singlepage_content.tpl.phtml</span>, <span class='filepath'>chm_layout.tpl.phtml</span>:</p>
+<dl>
+<dt>path</dt>
+<dd>Path to the current page, i.e., <span class='filepath'>layout/teme.html</span></dd>
+<dt>bookTitle</dt>
+<dd>Book's title</dd>
+<dt>bookData</dt>
+<dd>Array with options from <span class='filepath'>book_data.yml</span></dd>
+
+<dt>pageData</dt>
+<dd>Page's options array from table of contents</dd>
+
+<dt>rootPath</dt>
+<dd>Path to the book's directory. There is title page in $rootPath.'index.html' file.</dd>
+
+<dt>rootURL</dt>
+<dd>Link to the book's title page: $rootPath.'index.html'</dd>
+
+<dt>bookShelfURL</dt>
+<dd>Link to the bookshelf</dd>
+
+<dt>editURL</dt>
+<dd>Link to the current page's edit interface</dd>
+
+<dt>editTocURL</dt>
+<dd>Link to the table's of contents edit interface</dd>
+
+<dt>assetsURL</dt>
+<dd>Link to the folder with the assets: images, css and js</dd>
+<dt>level</dt>
+<dd>The level of current page in the table of contents. 0 -- is the root level</dd>
+<dt>next</dt>
+<dd>Array, containing next page's title ('title') and link ('href'). It could be <b>null</b> if there is no next page (i.e. current page is the last one).</dd>
+<dt>prev</dt>
+<dd>Array, containing previous page's title ('title') and link ('href'). Could be <b>null</b> if there is no previous page (i.e. the current page is the first one)</dd>
+<dt>menu</dt>
+<dd>Curent level's menu</dd>
+<dt>upLevelLink</dt>
+<dd>Link to the parent chapter</dd>
+<dt>upTitle</dt>
+<dd>Array with parent chapters titles</dd>
+<dt>curTitle</dt>
+<dd>The title of the current pages</dd>
+<dt>content</dt>
+<dd>Processed page's content</dd>
+
+<dt>mode</dt>
+<dd>System's mode: export to the html-static or the web-server(default)</dd>
+
+<dt>editMode</dt>
+<dd>Allows page's edition through the web-interface if true</dd>
+
+<dt>outputMode</dt>
+<dd>Output mode: html (default), html_single (to one big file), chm (to the chm project)</dd>
+</dl>
+
+<h3>Export to the single html-file</h3>
+<p>There is special template for this output, &mdash; <span class='filepath'>singlepage_layout.tpl.phtml</span>. The following variables are available:</p>
+
+<dl>
+<dt>content</dt>
+<dd>Page's content processed</dd>
+<dt>bookData</dt>
+<dd>Book's parameters array from <span class='filepath'>book_data.yml</span></dd>
+</dl>
+
+<p>Another template, you need is <span class='filepath'>master_layout.tpl.phtml</span>, where the following variables could be used:</p>
+
+<dl>
+<dt>assetsURL</dt>
+<dd>Link to the assets folder (images, css, js)</dd>
+<dt>bookTitle</dt>
+<dd>Book's title</dd>
+<dt>outputMode</dt>
+<dd>Output mode: html (default), html_single (single html file), chm (chm project)</dd>
+<dt>content</dt>
+<dd>All book's pages content in one variable</dd>
+</dl>
+
+<h3>Navigation</h3>
+<p>
+Navigation's template is located in <span class='filepath'>navigation.tset.phtml file</span>, and is <i>sectioned template</i>. System calls sections while building menu's fragments. Example template:
+</p>
+
+<pre>
+<span style='color: blue'>&lt;!-- #menu_topic# --></span>
+&lt;li>&lt;a href='&lt;?php echo $href ?>'>&lt;?php echo $title; ?>&lt;/a>&lt;/li>
+<span style='color: blue'>&lt;!-- #active_menu_topic# --></span>
+&lt;li class='active'>&lt;?php echo $title ?>&lt;/li>
+<span style='color: blue'>&lt;!-- #toc_topic# --></span>
+&lt;div style='margin-top: 7px;margin-left: &lt;?php echo 20*$level; ?>px'>
+&lt;a href='&lt;?php echo $href ?>'>&lt;?php echo $title; ?>&lt;/a>
+&lt;/div>
+<span style='color: blue'>&lt;!-- #toc# --></span>
+&lt;div style='margin-top: 0px;margin-left: 40px'>&lt;?php echo $content; ?>&lt;/div>
+</pre>
+
+<p>Variable <b>outputMode</b> (html, html_single, chm) is available from any section.</p>
+
+<p>In menu topic's and TOC topic's sections (menu_topic, active_menu_topic, toc_topic) variables link ($href) and menu topic's title ($title) are available. In the TOC section (toc) the TOC's content is contained in $content variable.</p>
+
+<h3>Index's template</h3>
+<p>The template is located in <span class='filepath'>index.tset.phtml</span> and looks like the following:</p>
+<pre>
+<span style='color: blue'>&lt;!-- #indexTopic# --&gt;</span>
+&lt;p style='margin: 0'>
+&lt;?php echo $word; ?> &lt;span style='font-size: x-small'>
+&lt;?php foreach ($pages as $page): ?>
+[&lt;?php echo "&lt;a href='$rootPath{$page['path']}'>".$page['title']."&lt;/a>" ?>] 
+&lt;?php endforeach; ?>
+&lt;/span>
+&lt;/p>
+
+<span style='color: blue'>&lt;!-- #indexSection# --></span>
+&lt;div style="margin-top: 30px">
+&lt;p style="font-weight: bold;margin-bottom: 5px">&lt;?php echo strtoupper($curLetter); ?>&lt;/p>
+&lt;?php echo $buffer; ?>
+&lt;/div>
+</pre>
+
+<p>As usual <b>outputMode</b> variable (html, html_single, chm) could be accesed from all sections</p>
+
+<p>In indexTopic section one can use variables:</p>
+
+<dl>
+<dt>word</dt>
+<dd>word for index</dd>
+
+<dt>pages</dt>
+<dd>paegs, corresponding to the word in array form. Each array element contains page's title (title) and the page's path (path)</dd>
+
+<dt>rootPath</dt>
+<dd>URL of the books folder, i.e. full page's URL is built like this: <span style='white-space: nowrap'>$rootPath.$page['path']</span></dd>
+</dl>
+
+<p>In indexSection part $curLetter (The ferst letter of the words is currently groupped) and $buffer, which contains block of words, groupped by the first letter</p>
+
+<h3>System message's template</h3>
+<p>This template is for displaing messages like "index is successfully rebuilt" with "Back" button. The following variables are available:</p>
+
+<dl>
+<dt>assetsURL</dt>
+<dd>Assets folder's URL</dd>
+
+<dt>bookTitle</dt>
+<dd>Book's title</dd>
+
+<dt>errstatus</dt>
+<dd>Error status: error, notice or success</dd>
+
+<dt>message</dt>
+<dd>Message</dd>
+
+<dt>backLink</dt>
+<dd>Link to the page, which calls this message</dd>
+</dl>
+
+<h3>String functions</h3>
+<p>If you're plan to use your theme with both singe and multibyte encodings use special string functions instead of standard ones:</p>
+<cls:php>
+//to lower case
+function colesoStrToLower($str);
+
+//to upper case
+function colesoStrToUpper($str);
+
+//substring, 
+//if length==null, then substring to the end of original string
+//will be obtained
+function colesoSubstr($str, $start,$length=null);
+</cls:php>
