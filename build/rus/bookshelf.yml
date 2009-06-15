@@ -26,6 +26,10 @@ bulldoc_site:
   theme: blueprint_site
   hideOnBookShelf: 1
   
+bulldoc_emptytheme:
+  title: Empty theme sample
+  source: bulldoc_book
+  theme: empty
 
 bulldoc_eng_title:
   separatorTitle: Bulldoc in English
@@ -33,23 +37,5 @@ bulldoc_eng_title:
 bulldoc_book_eng:
   language: eng
 
-bulldoc_chm_eng:
-  title: BullDoc CHM
-  rootIndexLevel: -1
-  source: bulldoc_book_eng
-  dest: bulldoc_chm_eng
-  theme: blueprint
-  outputMode: chm
-  language: eng
-
-bulldoc_site:
-  title: BullDoc for Web-Site
-  source: bulldoc_book_eng
-  dest: ../../../en/doc
-  theme: blueprint_site
-  hideOnBookShelf: 1
-  language: eng
-  
-  
 newbooks_title:
   separatorTitle: Новые книги
