@@ -1,0 +1,42 @@
+<bdc:keywords data='system settings' />
+<h3>Settings</h3>
+
+<p>System wide settings are located in <span class='filepath'>/local_config.inc.php</span> file. The options available are the following:</p>
+
+<bdc:php>
+<?php
+//system settings
+  $CONFIG['language']='rus';  //interface language and encodings
+
+//bulldoc's setings (optional)
+  $CONFIG['bulldoc::bookshelf']='/home/me/docs/bookshelf.yml'; // path to the bookshelf
+  $CONFIG['bulldoc::source']='/home/me/docs/source';  //path to te source
+  $CONFIG['bulldoc::defaultTextProcessingClass']='docTemplateSet';  //text's parser
+?>
+</bdc:php>
+
+<p>In the files inside <span class='filepath'>lib/bulldoc/messages</span> folder language files are contained.</p>
+
+
+<h3>Syntax's parser interface</h3>
+<bdc:php>
+class docTemplateSet
+{
+  protected $structureHolder; //ref to the TOC holder object
+  protected $pathBuilder;     //page path's object
+  protected $outputMode;      //output mode
+
+  //parse method
+  //$filename -- filepath
+  //$params=array(
+  //  'path'=>$path, //TOC's page's path
+  //                 //i.e. layout/theme.html
+  //  'structure'=>$structure  //TOC manipulation object
+  //                           //One can obtain chapter's title
+  //                           //this way:
+  //                           //$structure->getSectionTitleByPath('layout/theme.html')
+  //                           //this parameter is stored in $this->structureHolder
+  //  )
+  string public function parseFile($filename,$params);
+}
+</bdc:php>

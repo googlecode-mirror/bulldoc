@@ -1,0 +1,23 @@
+<bdc:keywords data='index' />
+<p>The index is built on keywords, assigned to the pages.</p>
+
+<p>Keywords are assigned by the following syntax:</p>
+
+<pre>
+&lt;bdc:keywords data='installation, setting up' />
+</pre>
+
+<p>The index can be added in any place inside table of contents. The "index" type should be applied to such a page.</p>
+
+<pre>
+....
+appendix:
+  type: chapter
+  title: Appendix
+  topics:
+    topic_index.html: {type: index, title: Index}
+    similar.html:  Similar applications
+    roadmap.html:  The roadmap
+</pre>
+
+<p>The system caches index for performance. Therefore you should reset index by click "build index" link in the upper right after new keywords addition. There is no need to reset index if you are using command line interface.</p>
