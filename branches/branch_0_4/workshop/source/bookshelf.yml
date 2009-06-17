@@ -42,12 +42,12 @@ bulldoc_chm_eng:
   outputMode: chm
   language: eng
 
-bulldoc_site:
+bulldoc_site_eng:
   title: BullDoc for Web-Site
   source: bulldoc_book_eng
   dest: ../../../en/doc
   theme: blueprint_site
-  hideOnBookShelf: 1
+  hideOnBookShelf: 0
   language: eng
   
   

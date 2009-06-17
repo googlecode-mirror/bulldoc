@@ -26,9 +26,9 @@
 <body>
 <div class="container">
 <div class="column span-24 first last" style='background-color: #dddddd;margin-bottom: 40px'>
-<div class="column span-12 first"><h1><a href='/' style='color: #333333;text-decoration: none'><?php echo $bookTitle; ?></a></h1></div>
+<div class="column span-12 first"><h1><a href='<?php echo $rootPath; ?>../' style='color: #333333;text-decoration: none'><?php echo $bookTitle; ?></a></h1></div>
 <div class="column span-12 last" style='text-align: right;'>
-<div style='margin-right: 7px'><a href='/'><?php echo colesoApplication::getMessage('navigation','home');?></a> : <a href='/download.html'><?php echo colesoApplication::getMessage('bulldoc','download');?></a> : <a href='/doc/appendix/authors.html'><?php echo colesoApplication::getMessage('bulldoc','authorPlural');?></a> : <a href='/doc/appendix/license.html'><?php echo colesoApplication::getMessage('bulldoc','license');?></a></div>
+<div style='margin-right: 7px'><a href='<?php echo $rootPath; ?>../'><?php echo colesoApplication::getMessage('navigation','home');?></a> : <a href='<?php echo $rootPath; ?>../download.html'><?php echo colesoApplication::getMessage('bulldoc','download');?></a> : <a href='<?php echo $rootPath; ?>appendix/authors.html'><?php echo colesoApplication::getMessage('bulldoc','authorPlural');?></a> : <a href='<?php echo $rootPath; ?>appendix/license.html'><?php echo colesoApplication::getMessage('bulldoc','license');?></a></div>
 </div>
 </div>
 <div class="column span-4 first" style='width: 140px'>

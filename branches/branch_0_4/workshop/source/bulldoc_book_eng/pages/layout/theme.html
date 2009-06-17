@@ -62,7 +62,7 @@ The following variables are available in templates <span class='filepath'>master
 <dt>prev</dt>
 <dd>Array, containing previous page's title ('title') and link ('href'). Could be <b>null</b> if there is no previous page (i.e. the current page is the first one)</dd>
 <dt>menu</dt>
-<dd>Curent level's menu</dd>
+<dd>Current level's menu</dd>
 <dt>upLevelLink</dt>
 <dd>Link to the parent chapter</dd>
 <dt>upTitle</dt>
@@ -146,7 +146,7 @@ Navigation's template is located in <span class='filepath'>navigation.tset.phtml
 &lt;/div>
 </pre>
 
-<p>As usual <b>outputMode</b> variable (html, html_single, chm) could be accesed from all sections</p>
+<p>As usual <b>outputMode</b> variable (html, html_single, chm) could be accessed from all sections</p>
 
 <p>In indexTopic section one can use variables:</p>
 
@@ -161,10 +161,10 @@ Navigation's template is located in <span class='filepath'>navigation.tset.phtml
 <dd>URL of the books folder, i.e. full page's URL is built like this: <span style='white-space: nowrap'>$rootPath.$page['path']</span></dd>
 </dl>
 
-<p>In indexSection part $curLetter (The ferst letter of the words is currently groupped) and $buffer, which contains block of words, groupped by the first letter</p>
+<p>In indexSection part $curLetter (The first letter of the words is currently grouped) and $buffer, which contains block of words, grouped by the first letter</p>
 
 <h3>System message's template</h3>
-<p>This template is for displaing messages like "index is successfully rebuilt" with "Back" button. The following variables are available:</p>
+<p>This template is for displaying messages like "index is successfully rebuilt" with "Back" button. The following variables are available:</p>
 
 <dl>
 <dt>assetsURL</dt>

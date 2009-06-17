@@ -22,7 +22,10 @@ class outputGenerator
     $this->render->setMode('static');
     $this->book=$book;
     $this->booKey=$book->getBookKey();
-    
+    if ($this->book->getBookLanguage()) {
+      colesoApplication::setLanguage($this->book->getBookLanguage(),$this->book->getBookLocale());
+      colesoApplication::loadMessages('bulldoc/messages');
+    }    
     $this->toc=$this->render->getToc();
     $this->outputPath=rtrim($book->getBookDest(),'\\/').'/';
     $this->mediaExt='gif,jpg,jpeg,png,pdf,zip,gz,tgz,css,js';
