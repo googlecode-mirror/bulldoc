@@ -1,5 +1,5 @@
 SET BRANCH=0_4
-SET RELEASE=0_4
+SET RELEASE=0_41
 SET DISTRIB_PATH=..\download\%RELEASE%\
 mkdir %DISTRIB_PATH%
 
@@ -40,7 +40,7 @@ rmdir %DISTRIB_PATH%distrib /Q /S
 
 rem ------------------------------------------------------------------------------------------
 
-SET DISTRIB_PATH=..\en\download\%RELEASE%\
+SET DISTRIB_PATH=..\eng\download\%RELEASE%\
 mkdir %DISTRIB_PATH%
 
 svn export http://bulldoc.googlecode.com/svn/branches/branch_%BRANCH% %DISTRIB_PATH%distrib

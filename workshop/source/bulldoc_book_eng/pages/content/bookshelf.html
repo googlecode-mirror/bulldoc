@@ -1,6 +1,6 @@
 <bdc:keywords data='bookshelf, storage structure, files and folders, encoding, language' />
 <h3>Files and folders</h3>
-<p>Every book has the source folder. Sources are located in folders like <span class='filepath'>workshop/source/mybook</span>. If you use Bulldoc, through the web server, then sources should be availiable to it.</p>
+<p>Every book has the source folder. Sources are located in folders like <span class='filepath'>workshop/source/mybook</span>. If you use Bulldoc, through the web server, then sources should be available to it.</p>
 <p>
 The source folder has the following structure:
 </p>
@@ -40,9 +40,9 @@ mybook:
 <h3>Bookshelf setting</h3>
 <p>You should specify your book in bookshelf file for the program to find sources.</p>
 <p>The settings file is located in <span class='filepath'>workshop/source/bookshelf.yml</span></p>
-<p>Thre are one book allready. The one you read.</p>
+<p>There are one book already. The one you read.</p>
 
-<p>Books on the bookshelf are sources and export settings combined. Each book has an ID, called the keyword, which can contain alphanumeric characters. It is anough just to mention keyword of the book if you're using default settings:</p>
+<p>Books on the bookshelf are sources and export settings combined. Each book has an ID, called the keyword, which can contain alphanumeric characters. It is enough just to mention keyword of the book if you're using default settings:</p>
 <pre>
 mybook:
 </pre>
@@ -70,18 +70,18 @@ mybook:
 
 <p><b>rootIndexLevel</b> tunes table of contents depth. You can set another level for the chapters. If chapter hasn't depth's level <b>rootIndexLevel</b> will be used. The -1 value will remove limits and there should be entire tree displayed.</p>
 
-<p><b>theme</b>. There is allready one theme in the package &mdash; <b>blueprint</b>. You can copy this theme with another name and make changes. Themes are stored in <span class='filepath'>workshop/themes</span>. The 'theme' parameter value defines theme's folder's name. See also <bdc:link page='layout/index.html'/>. If this parameter is not set the default theme will be used (blueprint).</p>
+<p><b>theme</b>. There is already one theme in the package &mdash; <b>blueprint</b>. You can copy this theme with another name and make changes. Themes are stored in <span class='filepath'>workshop/themes</span>. The 'theme' parameter value defines theme's folder's name. See also <bdc:link page='layout/index.html'/>. If this parameter is not set the default theme will be used (blueprint).</p>
 
 <p><b>hideOnBookShelf</b> If set to <b>true</b> then this book will not appear on the bookshelf.</p>
 
 <p><b>outputMode</b> Output mode, &ndash; html, html_single and chm.</p>
 
-<p><b>language</b> sets interface language. If language of your book differs from one set in global settings, you should specify language. Thre are three language supported for now: russian-windows1251 (rus), russian-utf8 (utf8_rus) and english (eng).</p>
+<p><b>language</b> sets interface language. If language of your book differs from one set in global settings, you should specify language. There are three language supported for now: russian-windows1251 (rus), russian-utf8 (utf8_rus) and English (eng).</p>
 
 <p>It could happened that locale doesn't match with default one for selected language. You can set locale by <b>locale</b> parameter. See also <cls:link page='layout/language.html' />.</p>
 
-<h3>Bookshelf's didisions</h3>
-<p>By the time the number of books will grow. You can use separators for groupping books. They looks like pseudo-records in bookshelf file:</p>
+<h3>Bookshelf's divisions</h3>
+<p>By the time the number of books will grow. You can use separators for grouping books. They looks like pseudo-records in bookshelf file:</p>
 
 <pre>
 ...
