@@ -1,0 +1,90 @@
+<bdc:keywords data='working with the book, table of contents' />
+<h3>The draft</h3>
+<p>Let us draw the book's structure. Write down the following to some text file:</p>
+<pre>
+Cover
+- Cover, author, version, year, site and e-mail.
+
+Introduction
+- Tasks and goal
+- Features and abilities
+
+Installation
+- where to get
+- book's configuration
+- webserver set up
+
+Edition and contents
+- The structure
+- The  text
+- Images and other media
+- Syntax highlighting
+- Links
+
+Appearance
+- Themes
+- Theme's files
+
+Export
+- export to html
+- export to chm
+</pre>
+
+<p>Let's translate our draft to machine-readable format.</p>
+
+<h3>Table of contents in YAML</h3>
+<pre>
+introduction.html: Introduction
+installation.html: Installation
+    
+content:
+  type: chapter
+  title: The Book
+  level: 1     #levels of the table of contents
+               #on the chapter's first page
+  topics:
+    bookshelf.html: Bookshelf
+    toc.html: Book's structure
+    text:
+      type: chapter
+      title: Text
+      topics:
+        media.html: Images and media
+        highlighting.html: Syntax highlighting
+        links.html: Links
+
+layout:
+  type: chapter
+  title: Appearance
+  topics:
+    themes_config.html:  Themes
+    theme_layout.html:  How does the theme work
+
+export:
+  type: chapter
+  title: Export
+  topics:
+    html.html:  html
+    chm.html:  chm
+
+appendix:
+  type: chapter
+  title: Appendix
+  topics:
+    topic_index.html: {type: index, title: The Index}
+    similar.html:  Similar applications
+    roadmap.html:  The roadmap
+</pre>
+
+<p>The content's tree consist of nodes. Each node is identified  by the filename (or directory name for chapters). The text for the "Links" page in the above example will be stored in the <span class='filepath'>workshop/mybook/pages/content/text/links.html</span> file and will be available by corresponding URL. Each node has parameters:</p>
+<ul>
+<li><b>type</b> - Node's type:  "page" (default), "chapter" or "index" (<bdc:link page='content/topic_index.html' />).</li>
+<li><b>title</b> - Page's or Chapter's title. <span style='color: red'>This is mandatory property</span></li>
+<li><b>topics</b> - For the chapters only. Section contains pages or chapters</li>
+<li><b>level</b> - For the chapters only. Sets the level for the contents table in the first chapter's page. By default all levels will be displayed. Bookshelf's parameter <b>rootIndexLevel</b> is used for the book's cover page (<cls:link page='content/bookshelf.html'/>).</li>
+</ul>
+<p>As for pages only <b>title</b> parameter is needed, you can set is as string, bypassing an array syntax:</p>
+<pre>
+html.html:  html
+</pre>
+<p>Look to above code for examples.</p>
