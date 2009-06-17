@@ -1,0 +1,30 @@
+general_title:
+  separatorTitle: BullDoc
+
+bulldoc_book_eng:
+  language: eng
+
+
+bulldoc_service_title:
+  separatorTitle: Special Variants
+
+bulldoc_chm_eng:
+  title: BullDoc CHM
+  rootIndexLevel: -1
+  source: bulldoc_book_eng
+  dest: bulldoc_chm
+  theme: blueprint
+  outputMode: chm
+  language: eng
+
+bulldoc_site:
+  title: BullDoc for Web-Site
+  source: bulldoc_book_eng
+  dest: ../../../en/doc
+  theme: blueprint_site
+  hideOnBookShelf: 1
+  language: eng
+  
+  
+newbooks_title:
+  separatorTitle: New Books

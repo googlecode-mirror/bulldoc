@@ -1,0 +1,43 @@
+<bdc:keywords data='настройки системные' />
+<h3>Настройки</h3>
+
+<p>Настройки оформления, которые влияют на систему целиком находятся в файле <span class='filepath'>/local_config.inc.php</span>, вот список доступных настроек:</p>
+
+<bdc:php>
+<?php
+//system settings
+  $CONFIG['language']='rus';  //язык интерфейса и кодировки
+
+//настройки bulldoc. они не обязательны
+  $CONFIG['bulldoc::bookshelf']='/home/me/docs/bookshelf.yml'; // путь к файлу книжной полки
+  $CONFIG['bulldoc::source']='/home/me/docs/source';  //путь к папке с исходниками книг
+  $CONFIG['bulldoc::defaultTextProcessingClass']='docTemplateSet';  //парсер текста
+?>
+</bdc:php>
+
+<p>В файлах папки <span class='filepath'>lib/bulldoc/messages</span> содержатся строковые константы для заголовка страницы обложки и для текста страниц, которые еще не созданы. Эти файлы пользователям менять не рекомендуется.</p>
+
+
+<h3>Интерфейс класса парсера страниц</h3>
+<bdc:php>
+class docTemplateSet
+{
+  //свойства класса
+  protected $structureHolder; //ссылка на объект структуры
+  protected $pathBuilder;     //манипулятор пути к странице
+  protected $outputMode;      //режим вывода
+
+  //конструктор
+  //$filename -- путь до файла
+  //$params=array(
+  //  'path'=>$path, //путь до страницы внутри оглавления, 
+  //                 //например layout/theme.html
+  //  'structure'=>$structure  //Объект, манипулирующий оглавлением
+  //                           //Например вот так можно получить 
+  //                           //Название раздела по ссылке:
+  //                           //$structure->getSectionTitleByPath('layout/theme.html')
+  //                           //сохраняется в свойстве $this->structureHolder
+  //  )
+  string public function parseFile($filename,$params);
+}
+</bdc:php>

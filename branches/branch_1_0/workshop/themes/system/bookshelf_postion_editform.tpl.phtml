@@ -1,0 +1,101 @@
+<?php if (isset($errMessage) && $errMessage): ?><p style='color: red; font-weight: bold'><?php echo $errMessage; ?></p><?php endif; ?>
+<form <?php echo $this->makeFormName('editBook'); ?> method='post' style='margin-top: 25px;margin-left: 150px'>
+<h1 style='color: #666666;font-size: medium'><?php echo colesoApplication::getMessage('bulldoc','new_book'); ?></h1>
+<?php echo $this->token(); ?>
+
+<table style='border: 1px solid #666666'>
+<tr>
+<td colspan='2' style='background-color: #dfdfdf'><i><?php echo colesoApplication::getMessage('bulldoc','bookshelf_parameters'); ?></i></td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b style='color: red'><?php echo colesoApplication::getMessage('bulldoc','keyword'); ?></b></td>
+<td>
+<?php echo $this->field("name=key",'out: width="25"'); ?>
+</td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','book_position_title'); ?></b></td>
+<td>
+<?php echo $this->field("name=title",'out: width="25"'); ?>
+</td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','separator'); ?></b></td>
+<td>
+<?php echo $this->checkbox("name=separator",'out: '); ?>
+</td>
+</tr>
+
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','source'); ?></b></td>
+<td>
+<?php echo $this->field('name=source','out: width="25"'); ?>
+</td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','destination'); ?></b></td>
+<td>
+<?php echo $this->field('name=dest','out: width="25"'); ?>
+</td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','theme'); ?></b></td>
+<td>
+<?php echo $this->select('name=theme',"topics=themesList",'out: style="widht: 200px"'); ?>
+</td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','hide'); ?></b></td>
+<td style='padding-bottom: 15px'>
+<?php echo $this->checkbox("name=hideOnBookShelf","out: style=''"); ?>
+</td>
+</tr>
+
+<tr>
+<td colspan='2' style='background-color: #dfdfdf'><i><?php echo colesoApplication::getMessage('bulldoc','book_parameters'); ?></i></td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','book_title'); ?></b></td>
+<td>
+<?php echo $this->field("name=book_title",'out: width="25"'); ?>
+</td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','author'); ?></b></td>
+<td>
+<?php echo $this->field("name=author",'out: width="25"'); ?>
+</td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','copyright'); ?></b></td>
+<td>
+<?php echo $this->field("name=copyright",'out: width="25"'); ?>
+</td>
+</tr>
+
+<tr>
+<td style='padding-right: 15px;'><b><?php echo colesoApplication::getMessage('bulldoc','site'); ?></b></td>
+<td>
+<?php echo $this->field("name=site",'out: width="25"'); ?>
+</td>
+</tr>
+
+
+
+<tr><td colspan='2'>
+<input type="submit" value="<?php echo colesoApplication::getMessage('form','savetext'); ?>" name="Save" style='vertical-align: middle'/>
+</td>
+</tr>
+</table>
+</form>
+

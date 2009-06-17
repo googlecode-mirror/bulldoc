@@ -1,0 +1,57 @@
+<bdc:keywords data='working with the text, markup, syntax highlighting' />
+<h3>Text and markup</h3>
+<p>Main file's content is in HTML format (You could use special processing class to use wiki- or any other markup). There are few special tags in <b>bdc</b> namespace (from <b>b</b>ull<b>d</b>o<b>c</b>).</p>
+
+<h3>Images and media</h3>
+<p>You can place images on your text by putting image's file near the page's file and refer to it like following:</p>
+<pre>
+&lt;img src='myimage.jpg'>
+
+or you can place image to the folder, like that:
+
+&lt;img src='images/myimage.jpg'>
+</pre>
+
+<h3>References to other chapters</h3>
+<p>It is possible to place link to other chapter with the following</p>
+<pre>
+&lt;bdc:link page='content/text.html'/>
+</pre>
+<p>This will place chapter's title highlighted by the corresponding link. If the path is incorrect the system will throw exception and halt. Probably we will fix this in the future.</p>
+
+<h3>Syntax highlghiting</h3>
+<p>The <a href='http://qbnz.com/highlighter/'>GeSHi</a> syntax highlighter is used by default. You can cpecify one of the supported languages by the tag <b>&lt;bdc:my_lang></b>. For instance php highlighting is applied like this:</p>
+<pre>
+&lt;bdc:php>
+... code here ...
+&lt;/bdc:php>
+</pre>
+
+<p>The result will be:</p>
+<bdc:php>
+class mediaItem
+{
+  private $fromPath;
+  private $toPath;
+  
+  public function __construct($fileName,$sourceBasePath,$destBasePath)
+  {
+    $this->fromPath=$fileName;
+    $this->toPath=$destBasePath.$this->getRelativePath($fileName,$sourceBasePath);
+  }
+//--------------------------------------------
+  private function getRelativePath($fileName,$sourceBasePath)
+  {
+    $baseLength=strlen($sourceBasePath);
+    $relativePath=substr($fileName,$baseLength);
+    return $relativePath;
+  }
+}
+</bdc:php>
+
+<h3>Keywords for the automatic Index</h3>
+<p>You can assign keywords to the page. This words and phrases will be used for atomatic Index and for CHM document's index.</p>
+<p>Keywords are mentioned by the "keywords" tag:</p>
+<pre>
+&lt;bdc:keywords data='installation, setting up' /&gt;
+</pre>
