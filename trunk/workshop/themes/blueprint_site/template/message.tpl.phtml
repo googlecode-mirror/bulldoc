@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo colesoApplication::getConfigVal('/system/lngEncoding');?>">
+<link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/screen.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="<?php echo $assetsURL; ?>blueprint/print.css" type="text/css" media="print"/>
+<link rel="stylesheet" media="screen" type="text/css" href="<?php echo $assetsURL; ?>style.css" />
+</head>
+<body>
+<div class="container">
+<div class="column span-24 first last" style='background-color: #dddddd;margin-bottom: 40px'>
+<h1><?php echo $bookTitle; ?></h1>
+</div>
+
+<div class="column span-23 prepend-1 last">
+<div class='<?php echo $errstatus; ?>'>
+<?php echo $message; ?>
+</div>
+<p><a href='<?php echo $backLink; ?>'>&laquo; <?php echo colesoApplication::getMessage('navigation','back');?></a></p>
+</div>
+
+</div>
+</body>
+</html>

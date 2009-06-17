@@ -1,0 +1,41 @@
+general_title:
+  separatorTitle: BullDoc
+  
+bulldoc_book:
+
+bulldoc_chm:
+  title: BullDoc CHM
+  rootIndexLevel: -1
+  source: bulldoc_book
+  dest: bulldoc_chm
+  theme: blueprint
+  outputMode: chm
+
+bulldoc_single_page:
+  title: BullDoc Single Page
+  rootIndexLevel: -1
+  source: bulldoc_book
+  theme: blueprint
+  outputMode: html_single
+  hideOnBookShelf: 1
+
+bulldoc_site:
+  title: BullDoc for Web-Site
+  source: bulldoc_book
+  dest: ../../../doc
+  theme: blueprint_site
+  hideOnBookShelf: 1
+  
+bulldoc_emptytheme:
+  title: Empty theme sample
+  source: bulldoc_book
+  theme: empty
+
+bulldoc_eng_title:
+  separatorTitle: Bulldoc in English
+
+bulldoc_book_eng:
+  language: eng
+
+newbooks_title:
+  separatorTitle: Новые книги
