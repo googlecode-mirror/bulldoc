@@ -24,7 +24,8 @@ class buildCHMToc extends buildOnToc
 <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
 <!-- Sitemap 1.0 -->
 </HEAD><BODY><UL><LI><OBJECT type="text/sitemap">
-		                <param name="Name" value="Обложка">
+		                <param name="Name" value="'.
+                    colesoApplication::getMessage('bulldoc','toc').'">
 		                <param name="Local" value="index.html">
 		               </OBJECT>';
     foreach($iterator as $topic){
