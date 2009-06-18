@@ -1,0 +1,99 @@
+<bdc:keywords data='bookshelf, storage structure, files and folders, encoding, language' />
+<h3>Files and folders</h3>
+<p>Every book has the source folder. Sources are located in folders like <span class='filepath'>workshop/source/mybook</span>. If you use Bulldoc, through the web server, then sources should be available to it.</p>
+<p>
+The source folder has the following structure:
+</p>
+<pre>
+/pages  -- Page's text and images
+   introduction.html -- page
+   /chapter1  -- chapter's folder
+     topic1.html -- chapter's page
+
+toc.yml  -- Table of Contents file
+book_data.yml -- Book's data file: Name, author, year of publishing and so on.
+</pre>
+
+<p>To create new book run:</p>
+<code class='commandline'>
+bulldoc -c mybook
+</code>
+
+<p>This command will create 2 folders:<br/>
+<span class='filepath'>workshop/source/mybook</span><br/>
+<span class='filepath'>workshop/source/mybook/pages</span><br/>
+</p>
+
+<p>And two files:<br/>
+empty <span class='filepath'>/home/bulldoc/workshop/source/mybook/toc.yml</span><br/>
+and <span class='filepath'>/home/bulldoc/workshop/source/mybook/book_data.yml</span><br/>
+</p>
+
+<p>
+Also to <span class='filepath'>workshop/source/bookshelf.yml</span>, the following line will be added:</p>
+<pre>
+mybook:
+</pre>
+
+<p>You can edit <span class='filepath'>workshop/source/mybook/book_data.yml</span>, by pointing book's name or change other parameters.</p>
+
+<h3>Bookshelf setting</h3>
+<p>You should specify your book in bookshelf file for the program to find sources.</p>
+<p>The settings file is located in <span class='filepath'>workshop/source/bookshelf.yml</span></p>
+<p>There are one book already. The one you read.</p>
+
+<p>Books on the bookshelf are sources and export settings combined. Each book has an ID, called the keyword, which can contain alphanumeric characters. It is enough just to mention keyword of the book if you're using default settings:</p>
+<pre>
+mybook:
+</pre>
+
+<p>But sometimes you need special settings. The full book's settings section looks like the following:</p>
+
+<pre>
+...
+mybook:
+  title: BullDoc CHM
+  rootIndexLevel: -1   #Show full TOC on the cover
+  source: mybook_original
+  dest:   mybook_special
+  theme: blueprint_chm
+  outputMode: html
+  hideOnBookShelf: 0
+  language: eng
+</pre>
+
+<p><b>mybook</b> is the keyword. This keyword will be used in the URL to access the book. And the chm-compilation files will be named after it.</p>
+
+<p><b>title</b> sets Book's title, which will be displayed on the bookshelf. The value from the Book's data file will be used if this parameter is omitted. If this file doesn't exist still, then keyword will be used.</p>
+
+<p><b>source</b> &mdash; source folder. <b>dest</b> specifies the destination for static html files to be placed. The path could be either absolute or relative (standard path to workshop will be added in this case)</p>
+
+<p><b>rootIndexLevel</b> tunes table of contents depth. You can set another level for the chapters. If chapter hasn't depth's level <b>rootIndexLevel</b> will be used. The -1 value will remove limits and there should be entire tree displayed.</p>
+
+<p><b>theme</b>. There is already one theme in the package &mdash; <b>blueprint</b>. You can copy this theme with another name and make changes. Themes are stored in <span class='filepath'>workshop/themes</span>. The 'theme' parameter value defines theme's folder's name. See also <bdc:link page='layout/index.html'/>. If this parameter is not set the default theme will be used (blueprint).</p>
+
+<p><b>hideOnBookShelf</b> If set to <b>true</b> then this book will not appear on the bookshelf.</p>
+
+<p><b>outputMode</b> Output mode, &ndash; html, html_single and chm.</p>
+
+<p><b>language</b> sets interface language. If language of your book differs from one set in global settings, you should specify language. There are three language supported for now: russian-windows1251 (rus), russian-utf8 (utf8_rus) and English (eng).</p>
+
+<p>It could happened that locale doesn't match with default one for selected language. You can set locale by <b>locale</b> parameter. See also <cls:link page='layout/language.html' />.</p>
+
+<h3>Bookshelf's divisions</h3>
+<p>By the time the number of books will grow. You can use separators for grouping books. They looks like pseudo-records in bookshelf file:</p>
+
+<pre>
+...
+general_title:
+  separatorTitle: Computer books
+
+mybook1:
+mybook2:
+
+fiction_title:
+  separatorTitle: Fiction
+
+fictionbook1:
+fictionbook2:
+</pre>

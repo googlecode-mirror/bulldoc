@@ -1,0 +1,16 @@
+<bdc:keywords data='language, encodings' />
+<p>You can set the language of the web-interface up either globally or per-book basis.</p>
+
+<p>System's interface language is specified in <span class='filepath'>/local_config.inc.php</span> file</p>
+
+<pre>
+  $CONFIG['language']='eng';
+</pre>
+
+<p>windows1251 (rus), russian-utf8 (utf8_rus) and english (eng) are supported by now.</p>
+
+<p>You can also specify the language for selected books. Just mention language in book's parameters:</p>
+
+<pre>
+language: eng
+</pre>

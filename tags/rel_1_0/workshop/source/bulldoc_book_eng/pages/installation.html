@@ -1,0 +1,37 @@
+<cls:keywords data='installation, setting up' />
+<h3>Download and unpack</h3>
+<p>You need php 5.2+ (please, note that you need cli version of PHP interpreter for console usage. For instance you should install php5-cli package in Linux (K)Ubuntu).</p>
+
+<p>If you're going to use web-interface, you need enable mod_rewrite in Apache configuration. Place the following line to httpd.conf file</p>
+
+<pre>
+LoadModule rewrite_module modules/mod_rewrite.so
+</pre>
+
+<p>You also can use </p>
+<pre>
+a2enmod rewrite.load
+</pre>
+
+<p>in Linux (K)Ubuntu</p>
+
+<p>Apache should understand .htaccess file. It will be configured by the following addition (either to httpd.conf or to site configuration file (<span class='filepath'>/etc/apache2/sites-available</span> in (K)Ubuntu):
+
+<pre>
+LoadModule rewrite_module modules/mod_rewrite.so
+</pre>
+
+<p><a href='http://bulldoc.ru/eng/download.html'>Download</a>. Unpack.</p>
+
+<h3>Setting up</h3>
+<p>Your system is redy to work out of the box. Just give the write rights to <span class='filepath'>workshop</span> and <span class='filepath'>cache</span> folder. Give the execute rights to the file <span class='filepath'>/bulldoc</span> for command line use. You are ready to go.</p>
+
+
+<h3>Try it right now</h3>
+<p>Read <cls:link page='quickstart.html'/> to learn, how to make simple book.</p>
+<p>You can also check how the system works with it's own manual.  Just point your browser where you unpack Bulldoc and play with BullDoc manual.</p>
+<p>You can build static manual version:</p>
+<code class='commandline'>
+bulldoc bulldoc_book
+</code>
+<p>Check the result in the <span class='filepath'>workshop/output/bulldoc</span></p>

@@ -1,0 +1,16 @@
+<cls:keywords data='export, HTML, CHM' />
+<h3>HTML</h3>
+<p>Export to html is performed from command line</p>
+<code class='commandline'>
+bulldoc bulldoc
+</code>
+<p>If you want to export to the single html file, you should indicate this by the line in book's settings on the bookshelf &nbsp;(<span class='filepath'>config/bookshelf.yml</span>):</p>
+<pre>
+outputMode: html_single
+</pre>
+
+<h3>CHM</h3>
+<p>If you set <b>outputMode: chm</b>, then my_book_key.hhp, my_book_key.hhñ and my_book_key.hhk files will be created near html files. U just need to run chm compiler (<a href='http://msdn2.microsoft.com/en-us/library/ms669985.aspx'>Download SDK</a>) </p>
+<code class='commandline'>
+hhc my_book_key.hhp
+</code>

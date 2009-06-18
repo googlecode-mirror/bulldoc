@@ -1,0 +1,19 @@
+<!-- #allTest# -->
+<div style='margin-bottom: 20px;'>
+<a href='<?php echo $url; ?>'>Все тесты</a>
+</div>
+<!-- #dirPre# -->
+<div style='margin-left: 20px;margin-top: 15px;'>
+<?php if ($shortDirName): ?>
+<div style='margin-bottom: 5px'><span style='background-color: #cccccc'><?php echo $shortDirName; ?></span> 
+<?php if ($groupRunURL): ?>
+<i><a href='<?php echo $groupRunURL; ?>' style='color: gray'>Запустить группу</a></i>
+<?php endif; ?>
+</div>
+<?php endif; ?>
+<!-- #dirPost# -->
+</div>
+<!-- #testCase# -->
+<a href='<?php echo $url; ?>'><?php echo $filename; ?></a>,
+ <a href='<?php echo $url; ?>?mode=debug' style='color: #E47A34;'><i>debug</i></a>
+ <a href='?mode=source&path=<?php echo $systemPath; ?>' style='color: gray;' target='_blanc'><i>source</i></a><br/>

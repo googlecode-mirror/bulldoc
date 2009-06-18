@@ -1,0 +1,82 @@
+<bdc:keywords data="outside home directory, outside project's folder" />
+<p>It is common practice to put your docs in the same repository as code. Of course it is possible to work with this files simply by  adding the book with absolute path to the bookshelf</p>
+
+<pre>
+/workshop/source/booshelf.yml
+</pre>
+
+<p>but in this case the amount of books on our bookshelf will grow to much. Anyway the absolute paths are evil.</p>
+
+<p>
+Bulldoc gives the option to work with local bookshelves.
+</p>
+
+<p>Let's review folder's structure in some abstract project:</p>
+
+<pre>
+/snusmumrik/doc
+  /snusmumrik_user_guide
+  /snusmumrik_developer_guide
+  /compiled
+    /snusmumrik_user_guide
+    /snusmumrik_developer_guide
+
+  .htaccess
+  index.php
+  bookshelf.yml
+</pre>
+
+<p>
+<span class='filepath'>snusmumrik_user_guide</span> &mdash; is the docs source's folder and to <span class='filepath'>compiled/snusmumrik_user_guide</span> the export results will be placed. <span class='filepath'>.htaccess</span> contains request redirection to <span class='filepath'>index.php</span>, which in it's turn contains of just one line:
+</p>
+
+<bdc:php>
+require('/path/to/bulldoc/index.php');
+</bdc:php> 
+
+<p>
+<span class='filepath'>bookshelf.yml</span> &mdash; local bookshelf
+</p>
+
+<p>
+file <span class='filepath'>.htaccess</span> should looks like this:
+</p>
+
+<bdc:apache>
+Options FollowSymLinks
+
+RewriteEngine On
+
+#General config
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?colesoRequestPath=$1 [L,QSA]
+</bdc:apache>
+
+<p>
+If you're going to write some docs to your project, you should do the following steps:
+</p>
+
+<p>
+It is convenient to place bulldoc's directory to environment PATH variable, or you have to type full path every time you use the program (<a href='http://www.computerhope.com/issues/ch000549.htm'>windows</a>, <a href='http://www.google.com/search?hl=en&client=opera&rls=en&hs=FK3&q=system+path+linux&aq=f&oq=&aqi=g1'>linux</a>).
+Create <span class='filepath'>doc</span> directory inside your project's folder. Put <span class='filepath'>.htaccess</span> and <span class='filepath'>index.php</span> files there, if you are going to use web-interface. Add empty <span class='filepath'>bookshelf.yml</span> file. Run through the command line from the <span class='filepath'>doc</span> folder
+</p>
+
+<code class='commandline'>
+bulldoc -c snusmumrik_user_guide
+</code>
+
+<p>
+The necessary files will be created and a record will be added to the local bookshelf. Now is the time to write something.
+</p>
+
+<p>
+The export to static html files is performed by calling
+</p>
+
+<code class='commandline'>
+bulldoc snusmimrik_user_guide
+</code>
+
+<p>The folder <span class='filepath'>compiled</span> will be created and the result files will be placed there.</p>
