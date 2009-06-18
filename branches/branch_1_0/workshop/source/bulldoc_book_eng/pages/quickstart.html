@@ -52,6 +52,10 @@ copyright: Shadow Wizard, 2008
 site: www.lemmings-web.net
 </pre>
 
+<p>
+Note, you can create project right from Bulldoc's start page, i.e. from the bookshelf. Click "create book" link. Fill just the keyword field with "lemmings", optionally fill the book's data fields (name, author, etc.)  and you're done. But it is worth to know file structure, that's why we use command line and edit files in editor.
+</p>
+
 <p>The system already could work with our book. Point your browser to <span class='filepath'>http://bulldoc</span> and see your book in available books list. Click the link and you'll see the first page. It is still empty. Let's do something with it.</p>
 
 <h3>Table of contents file</h3>
@@ -79,6 +83,9 @@ Although browsers are typically used to access the World Wide Web, they can also
 &lt;/p></p>
 <p>&lt;p><br/>
 The purpose of a web browser is to display web pages to the user. This process begins when the user inputs a Uniform Resource Identifier (URI), for example http://en.wikipedia.org/, into the browser. The prefix of the URI determines how the URI will be interpreted. The most commonly used kind of URI starts with http: and identifies content to be retrieved over Hypertext Transfer Protocol (HTTP). Many browsers also support a variety of other prefixes, such as https: for HTTPS, ftp: for the File Transfer Protocol, and file: for local files. Prefixes that the web browser cannot directly handle are often handed off to another application entirely. For example, mailto: URIs are usually passed into the user's default e-mail application, and news: URIs are passed to the user's default newsgroup reader.<br/>&lt;/p></p>
+<p>&lt;p><br/>
+The Opera browser is a good example.<br/>&lt;/p></p>
+
 </div>
 
 <p>Look at the result: <span class='filepath'>http://bulldoc/snusmumrik/introduction.html</span></p>
@@ -165,6 +172,6 @@ topic_index.html: {type: index, title: Index}
 <p>Let's export book to the html-files. Type in your command line</p>
 <code class='commandline'>
 cd /home/bulldoc
-bulldoc snusmumrik
+bulldoc lemmings
 </code>
-<p>Look into <span class='filepath'>/home/bulldoc/workshop/output/snusmumrik</span> for the result.</p>
+<p>Look into <span class='filepath'>/home/bulldoc/workshop/output/lemmings</span> for the result.</p>
