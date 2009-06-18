@@ -75,9 +75,9 @@ cd ..\..\..
 copy workshop\output\bulldoc_chm_eng\bulldoc_chm_eng.chm %DISTRIB_PATH%\bulldoc_doc_%RELEASE%_eng.chm
 
 cd %DISTRIB_PATH%distrib
-zip -rq ..\bulldoc_eng_%RELEASE%.zip *
-tar -cf ..\bulldoc_eng_%RELEASE%.tar *
-gzip -fq ..\bulldoc_eng_%RELEASE%.tar
+zip -rq ..\bulldoc_%RELEASE%_eng.zip *
+tar -cf ..\bulldoc_%RELEASE%_eng.tar *
+gzip -fq ..\bulldoc_%RELEASE%_eng.tar
 
 cd ..\..\..\..\bulldoc
 
