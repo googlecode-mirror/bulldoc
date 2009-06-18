@@ -60,7 +60,7 @@ class colesoConfigLoader
 //-------------------------------------------
   protected function setCorePaths($docRoot)
   {
-    $urlRoot=$this->autodetectRootUrl($docRoot);
+    $urlRoot=str_replace('\\','/',$this->autodetectRootUrl($docRoot));
     colesoApplication::setConfigVal('/system/docRoot',$docRoot);
     colesoApplication::setConfigVal('/system/urlRoot',$urlRoot);
     colesoApplication::setConfigVal('/system/libUrlRoot',$urlRoot.'lib/');
