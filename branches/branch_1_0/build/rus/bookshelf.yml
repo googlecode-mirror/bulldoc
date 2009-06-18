@@ -19,18 +19,6 @@ bulldoc_single_page:
   outputMode: html_single
   hideOnBookShelf: 1
 
-bulldoc_site:
-  title: BullDoc for Web-Site
-  source: bulldoc_book
-  dest: ../../../doc
-  theme: blueprint_site
-  hideOnBookShelf: 1
-  
-bulldoc_emptytheme:
-  title: Empty theme sample
-  source: bulldoc_book
-  theme: empty
-
 bulldoc_eng_title:
   separatorTitle: Bulldoc in English
 

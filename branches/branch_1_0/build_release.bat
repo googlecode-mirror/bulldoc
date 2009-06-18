@@ -1,5 +1,8 @@
 SET BRANCH=1_0
 SET RELEASE=1_0
+
+echo *** Build Russian Distributive
+
 SET DISTRIB_PATH=..\download\%RELEASE%\
 mkdir %DISTRIB_PATH%
 
@@ -39,7 +42,7 @@ cd ..\..\..\bulldoc
 
 rmdir %DISTRIB_PATH%distrib /Q /S
 
-rem ------------------------------------------------------------------------------------------
+echo *** Build English Distributive
 
 SET DISTRIB_PATH=..\eng\download\%RELEASE%\
 mkdir %DISTRIB_PATH%
@@ -65,11 +68,11 @@ CALL bulldoc bulldoc_chm_eng
 D:\chm_factory\wshop\hhc workshop\output\bulldoc_chm_eng\bulldoc_chm_eng.hhp
 
 cd workshop\output\bulldoc_book_eng
-zip -rq ..\..\..\%DISTRIB_PATH%bulldoc_doc_%RELEASE%.zip *
-tar -cf ..\..\..\%DISTRIB_PATH%bulldoc_doc_%RELEASE%.tar *
-gzip -fq ..\..\..\%DISTRIB_PATH%bulldoc_doc_%RELEASE%.tar
+zip -rq ..\..\..\%DISTRIB_PATH%bulldoc_doc_%RELEASE%_eng.zip *
+tar -cf ..\..\..\%DISTRIB_PATH%bulldoc_doc_%RELEASE%_eng.tar *
+gzip -fq ..\..\..\%DISTRIB_PATH%bulldoc_doc_%RELEASE%_eng.tar
 cd ..\..\..
-copy workshop\output\bulldoc_chm_eng\bulldoc_chm_eng.chm %DISTRIB_PATH%\bulldoc_doc_%RELEASE%.chm
+copy workshop\output\bulldoc_chm_eng\bulldoc_chm_eng.chm %DISTRIB_PATH%\bulldoc_doc_%RELEASE%_eng.chm
 
 cd %DISTRIB_PATH%distrib
 zip -rq ..\bulldoc_eng_%RELEASE%.zip *
@@ -79,6 +82,3 @@ gzip -fq ..\bulldoc_eng_%RELEASE%.tar
 cd ..\..\..\..\bulldoc
 
 rmdir %DISTRIB_PATH%distrib /Q /S
-
-rem ------------------------------------------------------------------------------------------
-

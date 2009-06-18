@@ -17,14 +17,5 @@ bulldoc_chm_eng:
   outputMode: chm
   language: eng
 
-bulldoc_site:
-  title: BullDoc for Web-Site
-  source: bulldoc_book_eng
-  dest: ../../../en/doc
-  theme: blueprint_site
-  hideOnBookShelf: 1
-  language: eng
-  
-  
 newbooks_title:
   separatorTitle: New Books
