@@ -34,7 +34,7 @@ bulldoc -c lemmings
 
 <p>And two files:<br/>
 empty <span class='filepath'>/home/bulldoc/workshop/source/lemmings/toc.yml</span><br/>
-and <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/book_data.yml</span><br/>
+and <span class='filepath'>/home/bulldoc/workshop/source/lemmings/book_data.yml</span><br/>
 </p>
 
 <p>
@@ -43,7 +43,7 @@ It will also add the following line to file <span class='filepath'>/home/bulldoc
 lemmings:
 </pre>
 
-<p>Edit file <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/book_data.yml</span>, to indicate author, book's title, web-site and copyright:</p>
+<p>Edit file <span class='filepath'>/home/bulldoc/workshop/source/lemmings/book_data.yml</span>, to indicate author, book's title, web-site and copyright:</p>
 <pre>
 title: Web for lemmings
 author: Shadow wizard
@@ -59,7 +59,7 @@ Note, you can create project right from Bulldoc's start page, i.e. from the book
 <p>The system already could work with our book. Point your browser to <span class='filepath'>http://bulldoc</span> and see your book in available books list. Click the link and you'll see the first page. It is still empty. Let's do something with it.</p>
 
 <h3>Table of contents file</h3>
-<p>Let's fill up <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> file. Use the following code (you can use web-interface, by pressing 'Edit TOC' in top-right menu):</p>
+<p>Let's fill up <span class='filepath'>/home/bulldoc/workshop/source/lemmings/toc.yml</span> file. Use the following code (you can use web-interface, by pressing 'Edit TOC' in top-right menu):</p>
 <pre>
 introduction.html: Introduction
 browsers:
@@ -69,10 +69,10 @@ browsers:
     firefox.html: Firefox
     opera.html: Opera
 </pre>
-<p>Review your book in the browser <span class='filepath'>http://bulldoc/snusmumrik</span>. You can see outline, navigation and silly 'Under construction' message instead of page's content. Now let's write our pages.</p>
+<p>Review your book in the browser <span class='filepath'>http://bulldoc/lemmings</span>. You can see outline, navigation and silly 'Under construction' message instead of page's content. Now let's write our pages.</p>
 
 <h3>The content</h3>
-<p>Create file <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>. Put the following content into it:</p>
+<p>Create file <span class='filepath'>/home/bulldoc/workshop/source/lemmings/introduction.html</span>. Put the following content into it:</p>
 <div class='file'>
 &lt;bdc:keywords data='browser' />
 <p>&lt;p><br/>
@@ -88,10 +88,10 @@ The Opera browser is a good example.<br/>&lt;/p></p>
 
 </div>
 
-<p>Look at the result: <span class='filepath'>http://bulldoc/snusmumrik/introduction.html</span></p>
+<p>Look at the result: <span class='filepath'>http://bulldoc/lemmings/introduction.html</span></p>
 
 <p>Create files about browsers and fill them (you can use web-interface. Just use table of contents page and open page you want to edit. Press 'Edit' link):</p>
-<div><b>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</b></div>
+<div><b>/home/bulldoc/workshop/source/lemmings/browsers/firefox.html</b></div>
 <div  class='file'>
 &lt;bdc:keywords data='netscape, mozilla, firefox' />
 <p>&lt;p><br/>
@@ -107,7 +107,7 @@ the official name of what was re-named Mozilla Application Suite
 the Mascot of Netscape.
 <br/>&lt;/p></p>
 </div>
-<div><b>/home/bulldoc/workshop/source/snusmumrik/browsers/opera.html</b></div>
+<div><b>/home/bulldoc/workshop/source/lemmings/browsers/opera.html</b></div>
 <div class='file'>
 &lt;bdc:keywords data='opera, opera mini' />
 <p>&lt;p><br/>
@@ -123,14 +123,14 @@ Opera runs on a variety of personal computer operating systems, including Micros
 </div>
 
 <p>Walk throug pages, and check the result.</p>
-<p>Place this <a href='firefox.png'>logo</a> into <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.png</span> and edit <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/browsers/firefox.html</span> by adding </p>
+<p>Place this <a href='firefox.png'>logo</a> into <span class='filepath'>/home/bulldoc/workshop/source/lemmings/browsers/firefox.png</span> and edit <span class='filepath'>/home/bulldoc/workshop/source/lemmings/browsers/firefox.html</span> by adding </p>
 <pre>
 &lt;img src='firefox.png'>
 </pre>
 <p>to beginning of the file.</p>
 
 <p>Check the result.</p>
-<p>Edit <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/introduction.html</span>, by replacing Opera with</p>
+<p>Edit <span class='filepath'>/home/bulldoc/workshop/source/lemmings/introduction.html</span>, by replacing Opera with</p>
 <pre>
 &lt;bdc:link page='browsers/opera.html' />
 </pre>
@@ -154,7 +154,7 @@ Opera runs on a variety of personal computer operating systems, including Micros
 <p>You should see the highlighting.</p>
 
 <h3>The index</h3>
-<p>Add Index page to the Table of Contents file <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/toc.yml</span> (you can also use web-interface by pressing TOC-edit link on the top):</p>
+<p>Add Index page to the Table of Contents file <span class='filepath'>/home/bulldoc/workshop/source/lemmings/toc.yml</span> (you can also use web-interface by pressing TOC-edit link on the top):</p>
 <pre>
 introduction.html: Introduction
 browsers:
@@ -167,6 +167,15 @@ topic_index.html: {type: index, title: Index}
 </pre>
 
 <p>Check the Index page &mdash; there are something allready!</p>
+
+<h3>Let's add the cover image</h3>
+<p>Save <a href='lemmings_cover.png'>this</a> picture as <span class='filepath'>/home/bulldoc/workshop/source/lemmings/pages/cover.png</span>. Point your browser to the first book's page (<span class='filepath'>http://bulldoc/lemmings</span>), press "Edit" link and place the following content:
+</p>
+<pre>
+&lt;img src='cover.png' style='display: block'>
+&lt;h2>Table of contents&lt;/h2>
+</pre>
+<p>Now you can see an image. More over, your bookshelf will display the book's cover in the book list.</p>
 
 <h3>Export to static html</h3>
 <p>Let's export book to the html-files. Type in your command line</p>

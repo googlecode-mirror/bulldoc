@@ -158,6 +158,15 @@ topic_index.html: {type: index, title: Предметный указатель}
 
 <p>Зайдите на страницу предметного указателя, &mdash; он уже не пуст!</p>
 
+<h3>Добавим изображение обложки</h3>
+<p>Сохраните <a href='cover_snusmumrik.png'>эту</a> картинку, как <span class='filepath'>/home/bulldoc/workshop/source/snusmumrik/pages/cover.png</span>. Зайдите браузером на начальную страницу книги (<span class='filepath'>http://bulldoc/snusmumrik</span>), нажмите "правка" и впишите такое содержимое:
+</p>
+<pre>
+&lt;img src='cover.png' style='display: block'>
+&lt;h2>Оглавление&lt;/h2>
+</pre>
+<p>Посмотрите, &ndash; появилась картинка. Более того и на книжной полке наша книга теперь с обложкой.</p>
+
 <h3>Экспорт в статику</h3>
 <p>Осталось построить статический набор html-файлов. В консоли наберите</p>
 <code class='commandline'>
