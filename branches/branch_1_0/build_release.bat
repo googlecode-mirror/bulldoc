@@ -1,7 +1,7 @@
 SET BRANCH=1_0
 SET RELEASE=1_0
 
-echo *** Build Russian Distributive
+@echo *** Build Russian Distributive
 
 SET DISTRIB_PATH=..\download\%RELEASE%\
 mkdir %DISTRIB_PATH%
@@ -14,6 +14,7 @@ mkdir %DISTRIB_PATH%distrib\workshop\output
 rmdir %DISTRIB_PATH%distrib\lib\simpletest /Q /S
 rmdir %DISTRIB_PATH%distrib\lib\simpletest_extensions /Q /S
 rmdir %DISTRIB_PATH%distrib\lib\bulldoc\test /Q /S
+rmdir %DISTRIB_PATH%distrib\build /Q /S
 
 copy build\rus\local_config.inc.php  %DISTRIB_PATH%distrib\local_config.inc.php /Y
 copy build\rus\bookshelf.yml  %DISTRIB_PATH%distrib\workshop\source\bookshelf.yml /Y
@@ -42,7 +43,7 @@ cd ..\..\..\bulldoc
 
 rmdir %DISTRIB_PATH%distrib /Q /S
 
-echo *** Build English Distributive
+@echo *** Build English Distributive
 
 SET DISTRIB_PATH=..\eng\download\%RELEASE%\
 mkdir %DISTRIB_PATH%
@@ -55,6 +56,7 @@ mkdir %DISTRIB_PATH%distrib\workshop\output
 rmdir %DISTRIB_PATH%distrib\lib\simpletest /Q /S
 rmdir %DISTRIB_PATH%distrib\lib\simpletest_extensions /Q /S
 rmdir %DISTRIB_PATH%distrib\lib\bulldoc\test /Q /S
+rmdir %DISTRIB_PATH%distrib\build /Q /S
 
 copy build\eng\local_config.inc.php  %DISTRIB_PATH%distrib\local_config.inc.php /Y
 copy build\eng\bookshelf.yml  %DISTRIB_PATH%distrib\workshop\source\bookshelf.yml /Y
