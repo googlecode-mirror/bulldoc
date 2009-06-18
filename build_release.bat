@@ -5,6 +5,7 @@ mkdir %DISTRIB_PATH%
 
 svn export http://bulldoc.googlecode.com/svn/branches/branch_%BRANCH% %DISTRIB_PATH%distrib
 del %DISTRIB_PATH%distrib\build_release.bat
+del %DISTRIB_PATH%distrib\read.me
 mkdir %DISTRIB_PATH%distrib\cache
 mkdir %DISTRIB_PATH%distrib\workshop\output
 rmdir %DISTRIB_PATH%distrib\lib\simpletest /Q /S
@@ -45,6 +46,7 @@ mkdir %DISTRIB_PATH%
 
 svn export http://bulldoc.googlecode.com/svn/branches/branch_%BRANCH% %DISTRIB_PATH%distrib
 del %DISTRIB_PATH%distrib\build_release.bat
+del %DISTRIB_PATH%distrib\read.me
 mkdir %DISTRIB_PATH%distrib\cache
 mkdir %DISTRIB_PATH%distrib\workshop\output
 rmdir %DISTRIB_PATH%distrib\lib\simpletest /Q /S
