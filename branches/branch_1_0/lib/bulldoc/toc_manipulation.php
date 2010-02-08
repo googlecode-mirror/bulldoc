@@ -152,7 +152,7 @@ class structureHolder
     $curNode=array('type'=>'top_index');
     foreach ($parts as $filename){
       if ($filename=='index.html') break;
-      if (!isset($curPool[$filename])) throw new pageNotFoundException($pathBuilder);
+      if (!isset($curPool[$filename])) throw new pageNotFoundException($pathBuilder->__toString());
       $curNode=$curPool[$filename];
       if (!isset($curNode['type'])) $curNode['type']='page';
       if ($curNode['type']=='chapter') $curPool=$curNode['topics'];
@@ -200,7 +200,7 @@ class structureHolder
     $upTitle=array();
     $level=-1;
     foreach ($parts as $chapter){
-      if (!isset($curPool[$chapter])) throw new pageNotFoundException($pathBuilder);
+      if (!isset($curPool[$chapter])) throw new pageNotFoundException($pathBuilder->__toString());
       array_unshift($upTitle,$curPool[$chapter]['title']);
       $parentSection=$curSection;
       $curSection=$curPool[$chapter]['topics'];

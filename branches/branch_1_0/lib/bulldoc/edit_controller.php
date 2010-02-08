@@ -64,7 +64,7 @@ class pageEditController extends bulldocFileEditController
 //------------------------------------------------
   protected function getPageFileName()
   {
-    return $this->parameters->book->getBookSource().'pages/'.$this->pathBuilder;
+    return $this->parameters->book->getBookSource().'pages/'.$this->pathBuilder->__toString();
   }
 }
 

@@ -22,7 +22,7 @@ class bookshelfPositionEditController extends colesoGeneralController
         $bookData=$this->loadData($this->bookFields,array('title'=>'book_title'));
         if (!$bookshelfData['key']) throw new bookCreationException('You should assign keyword value');
         $this->saveBookshelfPosition($bookshelfData);
-        if($bookshelfData['separator']=='') $this->saveBook($bookData,$bookshelfData['key']);
+        if($bookshelfData['separator']=='') $this->saveBook($bookData,$bookshelfData);
       } catch (bookCreationException $e) {
         $data=array('errMessage'=>$e->getMessage());
         $data=array_merge($data,$bookshelfData);
@@ -101,15 +101,19 @@ class bookshelfPositionEditController extends colesoGeneralController
     file_put_contents($bookshelfFile,"\n$text",FILE_APPEND);
   }
 //-----------------------------------------------------------------------------------
-  protected function saveBook($data,$bookKey)
+  protected function saveBook($data,$bookshelfData)
   {
+    $bookKey=$bookshelfData['key'];
     $text='';
     foreach ($data as $key=>$val) $text.="$key: $val\n";
-    $bookDir=colesoApplication::getConfigVal('/bulldoc/source')."$bookKey/";
+    
+    if ($bookshelfData['source']!='') $bookDir=rtrim($bookshelfData['source'],'\\/').'/';
+    else $bookDir=colesoApplication::getConfigVal('/bulldoc/source')."$bookKey/";
+    
     if (file_exists($bookDir)) throw new bookCreationException('This folder allready exists: '.$bookDir);
 
-    mkdir ($bookDir,0777);
-    mkdir ($bookDir.'pages',0777);
+    mkdir ($bookDir,0777,true);
+    mkdir ($bookDir.'pages',0777,true);
     file_put_contents($bookDir.'book_data.yml',$text);
     
     $tocText='introduction.html: '.colesoApplication::getMessage('bulldoc','introduction');
