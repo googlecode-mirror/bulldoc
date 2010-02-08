@@ -12,7 +12,7 @@ class pathBuilder
   
   public function __construct($path)
   {
-    $path=(string) $path;
+    if ($path instanceof  pathBuilder) $path=$path->__toString();
     $path=ltrim($path,'\\/');
     if ($path=='') $path='index.html';
     $this->path=$path;

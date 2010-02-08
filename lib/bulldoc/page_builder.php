@@ -111,7 +111,7 @@ class renderDocPage  extends buildOnToc
 //---------------------------------------------------------------------------
   private function buildGeneralData($pathBuilder,&$data)
   {
-    $data['path']=(string) $pathBuilder;
+    $data['path']=$pathBuilder->__toString();
     $data['bookTitle']=$this->bookTitle;
     $data['bookData']=$this->book->getBookData();
     $data['level']=$pathBuilder->getLevel();
@@ -212,8 +212,10 @@ class renderDocPage  extends buildOnToc
     $templateClass=colesoApplication::getConfigVal('/bulldoc/textProcessingClass');
     $t=new $templateClass;
     $t->setOutputMode($this->book->getOutputMode());
-    $fileName=$this->sourcePath.$pathBuilder;
-    $params=array('root'=>$pathBuilder->getRootPath(),'path'=>$pathBuilder,'structure'=>$this->structureHolder);
+    $fileName=$this->sourcePath.$pathBuilder->__toString();
+    $params=array('root'=>$pathBuilder->getRootPath(),
+                  'path'=>$pathBuilder->__toString(),
+                  'structure'=>$this->structureHolder);
     
     $pageData=$this->structureHolder->getPage($pathBuilder);
     
@@ -225,7 +227,7 @@ class renderDocPage  extends buildOnToc
     } elseif ($pageData['type']=='index'){
       $myIndexBuilder=new IndexBuilder($this->sourcePath,$this->structureHolder->getToc());
       $myIndexRender=new IndexRender($myIndexBuilder, $this->book, $this->themeManager);
-      return $myIndexRender->render($pathBuilder);
+      return $myIndexRender->render($pathBuilder->__toString());
     } elseif (file_exists($fileName)){
       return $t->parseFile($fileName,$params);
     } else {
@@ -235,7 +237,7 @@ class renderDocPage  extends buildOnToc
 //---------------------------------------------------------------------------
   private function buildIndex($pathBuilder)
   {
-    $basePath=dirname((string) $pathBuilder);
+    $basePath=dirname($pathBuilder->__toString());
     if ($basePath=='.') $basePath='';
     else $basePath.='/';
     

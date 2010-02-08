@@ -10,7 +10,7 @@ class docTemplateSet
 //---------------------------------------------
   public function parseFile($filename,$params)
   {
-    $this->pathBuilder=$params['path'];
+    $this->pathBuilder=new pathBuilder($params['path']);
     $this->structureHolder=$params['structure'];
     $content=file_get_contents($filename);
     
