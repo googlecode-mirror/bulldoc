@@ -86,11 +86,18 @@ class bulldocFrontController extends colesoFrontController
         rtrim($this->url,'\\/').'/index.html');
     }
     $this->getAction();
+    
     $this->parameters=array(
      'bookLoader' => $this->bookLoader,
      'url' => $this->getPageUrl()
      );
-       
+    
+    if($this->isMedia() && preg_match('#^workshop/themes#',$this->url)){
+      $this->parameters['url']=$this->url;
+      return;
+    }
+
+    
     if ($this->action!='bookshelf' && $this->action!='book_edit' && $this->action!='bookshelf_edit') {
       $bookKey=$this->getBookKey();
       $this->parameters['bookKey']=$bookKey;
@@ -199,7 +206,14 @@ class bookMediaController extends bookController
   public function run()
   {
     $headers=array('Content-Type: '.$this->media_mime[$this->getUrlExt()]);
-    $content=file_get_contents($this->parameters->book->getBookSource().'pages/'.$this->parameters->url);
+    
+    if (preg_match('#(workshop/themes.*?)$#',$this->parameters->url,$matches)) {
+      $filePath=colesoApplication::getConfigVal('/system/docRoot').$matches[1];
+    } else {
+      $filePath=$this->parameters->book->getBookSource().'pages/'.$this->parameters->url;
+    }
+    
+    $content=file_get_contents($filePath);
     return new colesoControllerExecResult($content,$headers);
   }
 }

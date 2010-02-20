@@ -38,6 +38,17 @@ class docgenBuilder extends bookLoader
     }
   }
 //---------------------------------------------------
+  protected function getBookshelfFile($parsedRequest)
+  {
+    if (isset($parsedRequest[0]['f'])) return $parsedRequest[0]['f'];
+    if (file_exists('bulldoc')) return null;  //use autoconfig in bookLoader
+    if (file_exists('bookshelf.yml')) return null;
+    
+    //we are in outside bulldoc dir and there is no bookshelf file in cwd
+    //let's create new one (empty)
+    file_put_contents('bookshelf.yml',"");
+  }
+//---------------------------------------------------
   public function run()
   {
     global $argc,$argv;
@@ -45,7 +56,7 @@ class docgenBuilder extends bookLoader
       require (colesoApplication::getConfigVal('/bulldoc/systemTemplates').'help.tpl.phtml');
     } else {
       $parsedRequest=Console_Getopt::getopt($argv, 'f:c:');
-      $bookshelfFile=isset($parsedRequest[0]['f'])? $parsedRequest[0]['f']:null; 
+      $bookshelfFile=$this->getBookshelfFile($parsedRequest);
       $this->loader = new bookLoader($bookshelfFile);
       
       if (isset($parsedRequest[0]['c'])) {
