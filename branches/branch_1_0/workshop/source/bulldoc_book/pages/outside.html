@@ -27,10 +27,11 @@ Bulldoc дает возможность работать с файлами документации из директорий проектов.
 </pre>
 
 <p>
-<span class='filepath'>snusmumrik_user_guide</span> &mdash; это папка с исходниками книги, а в <span class='filepath'>compiled/snusmumrik_user_guide</span> будут складываться результаты экспорта. <span class='filepath'>.htaccess</span> содержит перенаправление запросов на <span class='filepath'>index.php</span>, который, в свою очередь, состоит из одной строчки:
+<span class='filepath'>snusmumrik_user_guide</span> &mdash; это папка с исходниками книги, а в <span class='filepath'>compiled/snusmumrik_user_guide</span> будут складываться результаты экспорта. <span class='filepath'>.htaccess</span> содержит перенаправление запросов на <span class='filepath'>index.php</span>, который, в свою очередь, состоит из двух строчек:
 </p>
 
 <bdc:php>
+set_include_path('.');
 require('/path/to/bulldoc/index.php');
 </bdc:php> 
 
@@ -60,7 +61,7 @@ RewriteRule ^(.+)$ index.php?colesoRequestPath=$1 [L,QSA]
 
 <p>
 Чтобы не указывать полный путь к программе, добавьте путь к bulldoc к переменной окружения PATH (<a href='http://yandex.ru/yandsearch?text=windows+%E8%E7%EC%E5%ED%E8%F2%FC+PATH&rpt=rad'>windows</a>, <a href='http://yandex.ru/yandsearch?text=linux+%E7%E0%E4%E0%F2%FC+PATH&rpt=rad'>linux</a>).
-Создайте папку <span class='filepath'>doc</span> внутри проекта. Поместите туда файлы <span class='filepath'>.htaccess</span> и <span class='filepath'>index.php</span>, если хотите пользоваться веб-интерфейсом. Добавьте пустой файл <span class='filepath'>bookshelf.yml</span>. В командной строке из папки <span class='filepath'>doc</span> запустите
+Создайте папку <span class='filepath'>doc</span> внутри проекта. Поместите туда файлы <span class='filepath'>.htaccess</span> и <span class='filepath'>index.php</span>, если хотите пользоваться веб-интерфейсом. В командной строке из папки <span class='filepath'>doc</span> запустите
 </p>
 
 <code class='commandline'>

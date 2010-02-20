@@ -27,10 +27,11 @@ Bulldoc gives the option to work with local bookshelves.
 </pre>
 
 <p>
-<span class='filepath'>snusmumrik_user_guide</span> &mdash; is the docs source's folder and to <span class='filepath'>compiled/snusmumrik_user_guide</span> the export results will be placed. <span class='filepath'>.htaccess</span> contains request redirection to <span class='filepath'>index.php</span>, which in it's turn contains of just one line:
+<span class='filepath'>snusmumrik_user_guide</span> &mdash; is the docs source's folder and to <span class='filepath'>compiled/snusmumrik_user_guide</span> the export results will be placed. <span class='filepath'>.htaccess</span> contains request redirection to <span class='filepath'>index.php</span>, which in it's turn contains of just two lines:
 </p>
 
 <bdc:php>
+set_include_path('.');
 require('/path/to/bulldoc/index.php');
 </bdc:php> 
 
@@ -60,7 +61,7 @@ If you're going to write some docs to your project, you should do the following 
 
 <p>
 It is convenient to place bulldoc's directory to environment PATH variable, or you have to type full path every time you use the program (<a href='http://www.computerhope.com/issues/ch000549.htm'>windows</a>, <a href='http://www.google.com/search?hl=en&client=opera&rls=en&hs=FK3&q=system+path+linux&aq=f&oq=&aqi=g1'>linux</a>).
-Create <span class='filepath'>doc</span> directory inside your project's folder. Put <span class='filepath'>.htaccess</span> and <span class='filepath'>index.php</span> files there, if you are going to use web-interface. Add empty <span class='filepath'>bookshelf.yml</span> file. Run through the command line from the <span class='filepath'>doc</span> folder
+Create <span class='filepath'>doc</span> directory inside your project's folder. Put <span class='filepath'>.htaccess</span> and <span class='filepath'>index.php</span> files there, if you are going to use web-interface. Run through the command line from the <span class='filepath'>doc</span> folder
 </p>
 
 <code class='commandline'>

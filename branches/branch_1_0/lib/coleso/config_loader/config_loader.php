@@ -37,6 +37,7 @@ class colesoConfigLoader
       get_include_path().PATH_SEPARATOR.
       rtrim($docRoot,'\\/').PATH_SEPARATOR.
       $docRoot.'lib');
+    
     require_once('coleso/application/application.php');
     colesoApplication::init();
     date_default_timezone_set('UTC');
@@ -53,9 +54,12 @@ class colesoConfigLoader
   protected function autodetectRootUrl($docRoot)
   {
     if ($this->CONFIG['urlRoot']) return $this->CONFIG['urlRoot'];
+    /*
     $rootUrl=substr($docRoot,strlen($_SERVER['DOCUMENT_ROOT']));
     $rootUrl='/'.ltrim($rootUrl,'/\\');
     return $rootUrl;
+    */
+    return dirname($_SERVER['PHP_SELF']).'/';
   }
 //-------------------------------------------
   protected function setCorePaths($docRoot)
@@ -93,6 +97,7 @@ class colesoConfigLoader
     $this->getLocale();
 
     colesoApplication::setConfigVal('/system/lngEncoding',$this->locale['encoding']);
+    colesoApplication::setConfigVal('/system/localeData',$this->locale);
 
     if (isset($this->locale['locale_name'])) setlocale(LC_ALL, $this->locale['locale_name']);
   }
