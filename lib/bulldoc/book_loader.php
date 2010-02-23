@@ -51,8 +51,7 @@ class bookLoader
       return colesoApplication::getConfigVal('/bulldoc/source')."$key/";
     }
     $source=$this->books[$key]['source'];
-    if (detectAbsolutePath($source)) return $source;
-    $source=colesoApplication::getConfigVal('/bulldoc/source').$source;
+    if (!detectAbsolutePath($source)) $source=colesoApplication::getConfigVal('/bulldoc/source').$source;
     $source=rtrim($source,'\\/').'/';
     return $source;
   }
