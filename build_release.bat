@@ -1,5 +1,5 @@
 SET BRANCH=1_0
-SET RELEASE=1_0
+SET RELEASE=1_01
 
 @echo *** Build Russian Distributive
 
