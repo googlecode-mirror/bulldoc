@@ -5,20 +5,10 @@ require_once('bulldoc/output_generator.php');
 require_once('bulldoc/chm_generator.php');
 require_once('getopt/getopt.php');
 
-class docgenBuilder extends bookLoader
+class docgenBuilder
 {
   private $loader;
-//---------------------------------------------------
-  private function buildBook($key)
-  {
-    if (!isset($this->books[$key])) {
-      $this->createBook($key);
-      echo 'New book created';
-    } else {
-      $generator= new outputGenerator($this->getBook($key));
-      $generator->build();
-    }
-  }
+
 //---------------------------------------------------
   private function createBook($key)
   {
